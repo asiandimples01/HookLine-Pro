@@ -2433,22 +2433,24 @@ function calcBiteScore(conds){
   return{s,label,cls};
 }
 
-async function loadWeather(lat,lon){
+async function loadWeather(lat,lon,src,locName){
   try{
-    const r=await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=bd5e378503939ddaee76f12ad7a97608&units=imperial`);
+    const vars='temperature_2m,apparent_temperature,precipitation,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,surface_pressure,relative_humidity_2m,weather_code,is_day';
+    const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=${vars}&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=auto`);
     const d=await r.json();
-    if(d.cod!==200)throw new Error('API');
+    if(d.error)throw new Error('API');
+    const c=d.current;
     const now=new Date();
-    const airTemp=Math.round(d.main.temp);
-    const pressure=Math.round(d.main.pressure);
-    const wind=Math.round(d.wind.speed);
-    const humidity=Math.round(d.main.humidity);
-    const clouds=d.clouds?.all||0;
-    const rain=!!(d.rain||d.weather?.[0]?.main==='Rain');
+    const airTemp=Math.round(c.temperature_2m||70);
+    const pressure=Math.round(c.surface_pressure||1013);
+    const wind=Math.round(c.wind_speed_10m||0);
+    const humidity=Math.round(c.relative_humidity_2m||50);
+    const clouds=Math.round(c.cloud_cover||0);
+    const rain=(c.precipitation||0)>0||(c.weather_code||0)>=51;
     const month=now.getMonth();
     const hour=now.getHours();
     const dirs=['N','NE','E','SE','S','SW','W','NW'];
-    const windDir=dirs[Math.round((d.wind.deg||0)/45)%8];
+    const windDir=dirs[Math.round((c.wind_direction_10m||0)/45)%8];
     const pTrend=pressureTrend(pressure);
     const wtempF=estimateWaterTemp(airTemp);
     let wtCat='prime';
@@ -2457,6 +2459,7 @@ async function loadWeather(lat,lon){
     else if(wtempF<72)wtCat='prime';
     else if(wtempF<82)wtCat='warm';
     else wtCat='hot';
+    const locationName=locName||wxLocName||liveConditions.locationName||'Your Location';
     liveConditions={
       season:getSeason(month),
       weather:estimateWeather(clouds,rain,wind),
@@ -2466,8 +2469,7 @@ async function loadWeather(lat,lon){
       time:getTimeOfDay(hour),
       location:'Open Water',
       airTemp,wind,humidity,windDir,clouds,
-      locationName:d.name+', '+d.sys.country,
-      sunrise:d.sys.sunrise,sunset:d.sys.sunset
+      locationName
     };
     whatIf={...liveConditions};
     renderWeatherHero();
@@ -2483,10 +2485,13 @@ async function loadByZip(){
   if(!z)return;
   try{
     document.getElementById('wx-hero').innerHTML='<div class="load-txt"><span class="spin"></span> Loading...</div>';
-    const r=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(z)}&appid=bd5e378503939ddaee76f12ad7a97608&units=imperial`);
-    const d=await r.json();
-    if(d.cod!==200)throw new Error('Not found');
-    await loadWeather(d.coord.lat,d.coord.lon);
+    const geo=await wxGeocodeQuery(z);
+    activePin=null;locationSource='zip';
+    mapLat=geo.lat;mapLon=geo.lon;
+    if(leafletMap){leafletMap.setView([mapLat,mapLon],12);}
+    await loadWeather(geo.lat,geo.lon,'zip',geo.name);
+    loadWxForecast(geo.lat,geo.lon,geo.name);
+    updateActiveBanner();
   }catch(e){
     alert('Location not found. Try a city name or ZIP code.');
   }
@@ -3172,24 +3177,6 @@ function renderSpotsList(){
   }).join('');
 }
 
-/* ── ZIP/City search ── */
-async function loadByZip(){
-  const z=document.getElementById('wx-zip-input')?.value?.trim();
-  if(!z)return;
-  try{
-    document.getElementById('wx-hero').innerHTML='<div class="load-txt"><span class="spin"></span> Loading weather...</div>';
-    const r=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(z)}&appid=bd5e378503939ddaee76f12ad7a97608&units=imperial`);
-    const d=await r.json();
-    if(d.cod!==200)throw new Error('Not found');
-    activePin=null;locationSource='zip';
-    mapLat=d.coord.lat;mapLon=d.coord.lon;
-    if(leafletMap){leafletMap.setView([mapLat,mapLon],12);}
-    await loadWeather(d.coord.lat,d.coord.lon,'zip');
-    updateActiveBanner();
-  }catch(e){
-    alert('Location not found. Try a city name or ZIP code.');
-  }
-}
 
 /* startup */
 renderSpotsList();
@@ -3335,7 +3322,7 @@ async function loadWxForecast(lat, lon, locName){
     wxDataHr  = dHr;
     wxDayIdx  = 0;
     wxViewMode = '15min';
-    /* Snap slider to current time on today's 15-min slots */
+    /* Snap slider to the slot closest to current time */
     (function(){
       const now = Date.now();
       const slots = parseOMSlots(d15, 'minutely_15');
@@ -3620,7 +3607,6 @@ function wxSelectDay(i){
   wxDayIdx  = i;
   wxViewMode = i===0 ? '15min' : 'hourly';
   if(i === 0 && wxData15){
-    /* Snap to current time for today */
     const now = Date.now();
     const slots = parseOMSlots(wxData15, 'minutely_15');
     const todaySlots = wxGroupByDay(slots)[0]?.slots || [];
