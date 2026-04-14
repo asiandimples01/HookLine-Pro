@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)http://localhost:8080/hookline_pro.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HookLine Pro</title>
-<link rel="stylesheet" href="./HookLine Pro WORKING_files/leaflet.min.css">
-<script src="./HookLine Pro WORKING_files/leaflet.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -382,37 +382,18 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 <div class="app">
 
 <!-- ── PAGE: LIVE ADVISOR ── -->
-<div class="pg" id="pg-live">
+<div class="pg on" id="pg-live">
   <div class="hdr">
     <div class="hdr-row">
-      <div><div class="sub" id="loc-text">Fountain Valley, US</div><h1>HookLine Pro</h1></div>
+      <div><div class="sub" id="loc-text">Detecting location...</div><h1>HookLine Pro</h1></div>
       <div class="live-badge"><span class="live-dot"></span>LIVE</div>
     </div>
   </div>
 
   <!-- WEATHER HERO -->
   <div class="wx-hero" id="wx-hero">
-    <div style="padding:1rem 1rem .5rem">
-      <div class="wx-main-row">
-        <div class="wx-temp-big">65°F</div>
-        <div class="wx-right">
-          <div class="wx-desc">Sunny · Spring</div>
-          <div class="wx-loc">Fountain Valley, US</div>
-          <div class="wx-time">Dusk · Updated now</div>
-          <span class="bite-pill bite-good">Good Bite</span>
-        </div>
-      </div>
-      <div class="wx-stats-grid">
-        <div class="wx-stat"><div class="wx-stat-val">1016</div><div class="wx-stat-lbl">hPa</div><div class="wx-stat-trend trend-flat">→ Stable</div></div>
-        <div class="wx-stat"><div class="wx-stat-val">57°</div><div class="wx-stat-lbl">Water Temp</div><div class="wx-stat-trend trend-flat">50–60°F</div></div>
-        <div class="wx-stat"><div class="wx-stat-val">14</div><div class="wx-stat-lbl">mph Wind</div><div class="wx-stat-trend trend-flat">SW</div></div>
-        <div class="wx-stat"><div class="wx-stat-val">Clear</div><div class="wx-stat-lbl">Clarity Est.</div><div class="wx-stat-trend trend-flat">56% humid</div></div>
-      </div>
-      <div style="margin-top:8px;font-size:12px;color:var(--mu);display:flex;align-items:center;gap:6px">
-        <span id="wx-src-tag" class="loc-src-tag loc-src-gps">GPS</span>
-        <span id="wx-src-label">Auto location — change on Spot Map tab</span>
-      </div>
-    </div></div>
+    <div class="load-txt"><span class="spin"></span> Loading live conditions...</div>
+  </div>
 
   <!-- WHAT-IF TOGGLE -->
   <button class="whatif-toggle" id="wi-toggle" onclick="toggleWhatIf()">
@@ -423,59 +404,59 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
     <div class="wi-note" id="wi-note">Showing what-if results — not live conditions</div>
     <div class="wi-label">Season</div>
     <div class="wi-btns" id="wi-season">
-      <button class="wib" onclick="wiSel(this,&#39;season&#39;,&#39;Spring&#39;)">Spring</button>
-      <button class="wib" onclick="wiSel(this,&#39;season&#39;,&#39;Summer&#39;)">Summer</button>
-      <button class="wib" onclick="wiSel(this,&#39;season&#39;,&#39;Fall&#39;)">Fall</button>
-      <button class="wib" onclick="wiSel(this,&#39;season&#39;,&#39;Winter&#39;)">Winter</button>
+      <button class="wib" onclick="wiSel(this,'season','Spring')">Spring</button>
+      <button class="wib" onclick="wiSel(this,'season','Summer')">Summer</button>
+      <button class="wib" onclick="wiSel(this,'season','Fall')">Fall</button>
+      <button class="wib" onclick="wiSel(this,'season','Winter')">Winter</button>
     </div>
     <div class="wi-label">Weather</div>
     <div class="wi-btns" id="wi-weather">
-      <button class="wib" onclick="wiSel(this,&#39;weather&#39;,&#39;Sunny&#39;)">Sunny</button>
-      <button class="wib" onclick="wiSel(this,&#39;weather&#39;,&#39;Overcast&#39;)">Overcast</button>
-      <button class="wib" onclick="wiSel(this,&#39;weather&#39;,&#39;Pre-frontal&#39;)">Pre-frontal</button>
-      <button class="wib" onclick="wiSel(this,&#39;weather&#39;,&#39;Post-frontal&#39;)">Post-frontal</button>
-      <button class="wib" onclick="wiSel(this,&#39;weather&#39;,&#39;Windy&#39;)">Windy</button>
-      <button class="wib" onclick="wiSel(this,&#39;weather&#39;,&#39;Rain&#39;)">Rain</button>
+      <button class="wib" onclick="wiSel(this,'weather','Sunny')">Sunny</button>
+      <button class="wib" onclick="wiSel(this,'weather','Overcast')">Overcast</button>
+      <button class="wib" onclick="wiSel(this,'weather','Pre-frontal')">Pre-frontal</button>
+      <button class="wib" onclick="wiSel(this,'weather','Post-frontal')">Post-frontal</button>
+      <button class="wib" onclick="wiSel(this,'weather','Windy')">Windy</button>
+      <button class="wib" onclick="wiSel(this,'weather','Rain')">Rain</button>
     </div>
     <div class="wi-label">Water Clarity</div>
     <div class="wi-btns" id="wi-clarity">
-      <button class="wib" onclick="wiSel(this,&#39;clarity&#39;,&#39;Muddy&#39;)">Muddy</button>
-      <button class="wib" onclick="wiSel(this,&#39;clarity&#39;,&#39;Stained&#39;)">Stained</button>
-      <button class="wib" onclick="wiSel(this,&#39;clarity&#39;,&#39;Clear&#39;)">Clear</button>
-      <button class="wib" onclick="wiSel(this,&#39;clarity&#39;,&#39;Crystal&#39;)">Crystal Clear</button>
+      <button class="wib" onclick="wiSel(this,'clarity','Muddy')">Muddy</button>
+      <button class="wib" onclick="wiSel(this,'clarity','Stained')">Stained</button>
+      <button class="wib" onclick="wiSel(this,'clarity','Clear')">Clear</button>
+      <button class="wib" onclick="wiSel(this,'clarity','Crystal')">Crystal Clear</button>
     </div>
     <div class="wi-label">Water Temperature</div>
     <div class="wi-btns" id="wi-wtemp">
-      <button class="wib" onclick="wiSel(this,&#39;wtemp&#39;,&#39;cold&#39;)">Below 50°F</button>
-      <button class="wib" onclick="wiSel(this,&#39;wtemp&#39;,&#39;cool&#39;)">50–60°F</button>
-      <button class="wib" onclick="wiSel(this,&#39;wtemp&#39;,&#39;prime&#39;)">60–72°F</button>
-      <button class="wib" onclick="wiSel(this,&#39;wtemp&#39;,&#39;warm&#39;)">72–82°F</button>
-      <button class="wib" onclick="wiSel(this,&#39;wtemp&#39;,&#39;hot&#39;)">82°F+</button>
+      <button class="wib" onclick="wiSel(this,'wtemp','cold')">Below 50°F</button>
+      <button class="wib" onclick="wiSel(this,'wtemp','cool')">50–60°F</button>
+      <button class="wib" onclick="wiSel(this,'wtemp','prime')">60–72°F</button>
+      <button class="wib" onclick="wiSel(this,'wtemp','warm')">72–82°F</button>
+      <button class="wib" onclick="wiSel(this,'wtemp','hot')">82°F+</button>
     </div>
     <div class="wi-label">Pressure Trend</div>
     <div class="wi-btns" id="wi-pressure">
-      <button class="wib" onclick="wiSel(this,&#39;pressure&#39;,&#39;Rising&#39;)">Rising</button>
-      <button class="wib" onclick="wiSel(this,&#39;pressure&#39;,&#39;Stable&#39;)">Stable</button>
-      <button class="wib" onclick="wiSel(this,&#39;pressure&#39;,&#39;Falling&#39;)">Falling</button>
+      <button class="wib" onclick="wiSel(this,'pressure','Rising')">Rising</button>
+      <button class="wib" onclick="wiSel(this,'pressure','Stable')">Stable</button>
+      <button class="wib" onclick="wiSel(this,'pressure','Falling')">Falling</button>
     </div>
     <div class="wi-label">Time of Day</div>
     <div class="wi-btns" id="wi-time">
-      <button class="wib" onclick="wiSel(this,&#39;time&#39;,&#39;Dawn&#39;)">Dawn</button>
-      <button class="wib" onclick="wiSel(this,&#39;time&#39;,&#39;Morning&#39;)">Morning</button>
-      <button class="wib" onclick="wiSel(this,&#39;time&#39;,&#39;Midday&#39;)">Midday</button>
-      <button class="wib" onclick="wiSel(this,&#39;time&#39;,&#39;Afternoon&#39;)">Afternoon</button>
-      <button class="wib" onclick="wiSel(this,&#39;time&#39;,&#39;Dusk&#39;)">Dusk</button>
-      <button class="wib" onclick="wiSel(this,&#39;time&#39;,&#39;Night&#39;)">Night</button>
+      <button class="wib" onclick="wiSel(this,'time','Dawn')">Dawn</button>
+      <button class="wib" onclick="wiSel(this,'time','Morning')">Morning</button>
+      <button class="wib" onclick="wiSel(this,'time','Midday')">Midday</button>
+      <button class="wib" onclick="wiSel(this,'time','Afternoon')">Afternoon</button>
+      <button class="wib" onclick="wiSel(this,'time','Dusk')">Dusk</button>
+      <button class="wib" onclick="wiSel(this,'time','Night')">Night</button>
     </div>
     <div class="wi-label">Location Type</div>
     <div class="wi-btns" id="wi-location">
-      <button class="wib" onclick="wiSel(this,&#39;location&#39;,&#39;Open Water&#39;)">Open Water</button>
-      <button class="wib" onclick="wiSel(this,&#39;location&#39;,&#39;Heavy Cover&#39;)">Heavy Cover</button>
-      <button class="wib" onclick="wiSel(this,&#39;location&#39;,&#39;Grass Edge&#39;)">Grass Edge</button>
-      <button class="wib" onclick="wiSel(this,&#39;location&#39;,&#39;Docks&#39;)">Docks</button>
-      <button class="wib" onclick="wiSel(this,&#39;location&#39;,&#39;Rocky Bottom&#39;)">Rocky Bottom</button>
-      <button class="wib" onclick="wiSel(this,&#39;location&#39;,&#39;Deep Structure&#39;)">Deep Structure</button>
-      <button class="wib" onclick="wiSel(this,&#39;location&#39;,&#39;River/Creek&#39;)">River/Creek</button>
+      <button class="wib" onclick="wiSel(this,'location','Open Water')">Open Water</button>
+      <button class="wib" onclick="wiSel(this,'location','Heavy Cover')">Heavy Cover</button>
+      <button class="wib" onclick="wiSel(this,'location','Grass Edge')">Grass Edge</button>
+      <button class="wib" onclick="wiSel(this,'location','Docks')">Docks</button>
+      <button class="wib" onclick="wiSel(this,'location','Rocky Bottom')">Rocky Bottom</button>
+      <button class="wib" onclick="wiSel(this,'location','Deep Structure')">Deep Structure</button>
+      <button class="wib" onclick="wiSel(this,'location','River/Creek')">River/Creek</button>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:14px">
       <button class="wi-reset" onclick="resetWhatIf()">Reset to Live</button>
@@ -486,1867 +467,53 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
   <!-- RANKED RESULTS -->
   <div class="sec-hdr">
     <span class="BB">Best Lures Right Now</span>
-    <span class="sec-sub" id="rank-sub">Live · Spring, Sunny, Clear water</span>
+    <span class="sec-sub" id="rank-sub">Loading...</span>
   </div>
-  <div class="rank-list" id="rank-list"><div class="rank-card top" onclick="openDetailFromRank(15)">
-      <div class="rank-num gold">🥇</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1a30"></rect>
-<!-- slim minnow body -->
-<path d="M22 50 Q24 34 55 28 Q100 22 148 28 Q170 34 174 50 Q170 66 148 72 Q100 78 55 72 Q24 66 22 50Z" fill="#d0e8f8"></path>
-<!-- chrome back -->
-<path d="M26 38 Q55 26 148 30 Q170 36 174 46 Q170 34 148 28 Q100 22 55 28 Q28 32 26 38Z" fill="#1a3050"></path>
-<!-- silver flash sides -->
-<path d="M26 42 Q55 34 148 36 Q170 40 174 48 Q170 36 148 30 Q100 24 55 28 Q30 34 26 42Z" fill="#fff" opacity=".6"></path>
-<!-- white belly -->
-<path d="M26 62 Q55 72 148 68 Q170 64 174 56 Q170 68 148 72 Q100 78 55 72 Q28 68 26 62Z" fill="#fff" opacity=".95"></path>
-<!-- short lip - suspending style (not too long) -->
-<path d="M16 52 L22 60 L30 54Z" fill="#d0d0d0"></path>
-<!-- front treble -->
-<path d="M80 72 Q83 83 77 88" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M80 72 Q85 85 91 86" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- middle treble -->
-<path d="M118 72 Q121 83 115 88" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M118 72 Q123 85 129 86" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- tail hook -->
-<path d="M155 68 Q158 79 152 84" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M155 68 Q160 81 166 82" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="42" cy="43" r="7" fill="#fff"></circle>
-<circle cx="43" cy="43" r="5" fill="#ee2200"></circle>
-<circle cx="44" cy="43" r="3" fill="#1a1a1a"></circle>
-<circle cx="45" cy="42" r="1" fill="#fff"></circle>
-<!-- suspend indicator -->
-<text x="148" y="22" font-family="DM Sans,sans-serif" font-size="9" fill="#7ac0ff">suspending</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Jerkbait — Suspending</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Slim minnow · suspends in place · 3 trebles</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">🏆 Jerkbait</div>
-        <div class="rank-cat">Hard Bait · <strong>#1 Pick</strong></div>
-        <div class="rank-why">Cold clear water below 60°F — the single best bait in these conditions. Long pauses.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">100%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:100%"></div></div>
-      </div>
-    </div><div class="rank-card top" onclick="openDetailFromRank(21)">
-      <div class="rank-num ">🥈</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1530"></rect>
-<!-- large profile body - 2 sections (jointed) -->
-<!-- front section -->
-<path d="M18 50 Q20 28 55 22 Q90 18 108 26 Q118 32 118 50 Q118 68 108 74 Q90 80 55 76 Q20 72 18 50Z" fill="#5a8ab0"></path>
-<!-- front section detail -->
-<path d="M22 36 Q55 22 106 28 Q116 34 118 44 Q116 30 108 24 Q90 18 55 22 Q26 28 22 36Z" fill="#1a3a5a"></path>
-<path d="M22 40 Q55 28 106 32 Q116 38 118 46 Q116 32 108 26 Q90 20 55 24 Q28 32 22 40Z" fill="#fff" opacity=".4"></path>
-<!-- belly white front -->
-<path d="M22 64 Q55 78 106 72 Q116 66 118 58 Q116 70 108 74 Q90 80 55 76 Q24 70 22 64Z" fill="#fff" opacity=".9"></path>
-<!-- joint connector -->
-<rect x="116" y="44" width="8" height="12" rx="3" fill="#888"></rect>
-<!-- rear section - slightly angled for glide -->
-<path d="M122 46 Q124 32 148 28 Q165 26 172 36 Q178 44 175 56 Q172 66 155 70 Q138 72 126 64 Q120 58 122 46Z" fill="#4a7aa0"></path>
-<path d="M126 33 Q148 26 170 36 Q176 42 175 50 Q172 38 165 30 Q148 26 126 34Z" fill="#1a3050"></path>
-<path d="M126 36 Q148 28 170 38 Q176 44 175 52 Q172 40 165 32 Q148 28 126 36Z" fill="#fff" opacity=".35"></path>
-<!-- tail fin -->
-<path d="M175 50 Q183 36 190 32 Q188 44 186 50 Q188 56 190 68 Q183 64 175 50Z" fill="#3a6a90"></path>
-<!-- joint pin detail -->
-<circle cx="120" cy="50" r="3" fill="#555"></circle>
-<!-- hooks -->
-<path d="M76 76 Q79 87 73 92" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M76 76 Q81 89 87 90" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M152 70 Q155 81 149 86" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M152 70 Q157 83 163 84" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="36" cy="42" r="7" fill="#fff"></circle>
-<circle cx="37" cy="42" r="5" fill="#ee6600"></circle>
-<circle cx="38" cy="42" r="3" fill="#1a1a1a"></circle>
-<circle cx="39" cy="41" r="1" fill="#fff"></circle>
-<!-- S-curve motion indicator -->
-<path d="M10 22 Q30 14 50 22 Q70 30 90 22" stroke="#9fecc8" stroke-width="1.5" fill="none" stroke-dasharray="4,3" opacity=".4"></path>
-<text x="8" y="88" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Glide Bait</text>
-<text x="8" y="98" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Jointed · S-curve glide · trophy prespawn bait</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">🏆 Glide Bait</div>
-        <div class="rank-cat">Swimbait · <strong>#2 Pick</strong></div>
-        <div class="rank-why">Clear spring water, stable pressure, trophy hunting. Fewer bites but giants only.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">97%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:97%"></div></div>
-      </div>
-    </div><div class="rank-card top" onclick="openDetailFromRank(2)">
-      <div class="rank-num ">🥉</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#0a1a2a"></rect>
-<!-- main line -->
-<line x1="100" y1="5" x2="100" y2="40" stroke="#d0d0d0" stroke-width="1.2"></line>
-<!-- hook tied above weight -->
-<path d="M100 40 Q115 40 118 52 Q118 62 108 62 Q98 62 98 52" stroke="#c0c0c0" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
-<!-- hook point -->
-<path d="M98 52 L102 48" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<!-- finesse worm on hook -->
-<path d="M100 40 Q130 38 150 42 Q165 45 168 42 Q165 50 150 50 Q130 48 100 48Z" fill="#cc3333"></path>
-<path d="M120 39 Q120 49 120 49" stroke="#ee5555" stroke-width="1" fill="none"></path>
-<path d="M138 40 Q138 50 138 50" stroke="#ee5555" stroke-width="1" fill="none"></path>
-<!-- leader line to weight -->
-<line x1="100" y1="62" x2="100" y2="100" stroke="#d0d0d0" stroke-width="1.2"></line>
-<!-- drop shot weight (cylindrical) -->
-<rect x="90" y="100" width="20" height="24" rx="4" fill="#909090"></rect>
-<rect x="91" y="101" width="18" height="22" rx="3" fill="#b0b0b0"></rect>
-<line x1="100" y1="100" x2="100" y2="97" stroke="#d0d0d0" stroke-width="1.5"></line>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Drop Shot</text>
-<text x="8" y="128" font-family="DM Sans,sans-serif" font-size="9" fill="#4a7a8a">Hook above · finesse worm · drop weight</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">🏆 Drop Shot</div>
-        <div class="rank-cat">Finesse · <strong>#3 Pick</strong></div>
-        <div class="rank-why">Post-frontal finesse weapon. Clear water, suspended fish, tough bites — this catches when nothing else will.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">92%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:92%"></div></div>
-      </div>
-    </div><div class="rank-separator"><span>Remaining picks</span></div><div class="rank-card" onclick="openDetailFromRank(19)">
-      <div class="rank-num ">4</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1a30"></rect>
-<!-- realistic shad body shape -->
-<path d="M20 50 Q22 32 50 26 Q100 20 148 28 Q168 34 170 50 Q168 66 148 72 Q100 80 50 74 Q22 68 20 50Z" fill="#c8d8e8"></path>
-<!-- dark back stripe -->
-<path d="M24 36 Q50 24 148 30 Q168 36 170 44 Q168 36 148 28 Q100 20 50 26 Q28 30 24 36Z" fill="#2a4a6a"></path>
-<!-- silver flash -->
-<path d="M28 40 Q50 30 148 34 Q168 40 170 48 Q168 38 148 30 Q100 22 50 26 Q32 30 28 40Z" fill="#fff" opacity=".5"></path>
-<!-- white belly -->
-<path d="M24 64 Q50 76 148 70 Q168 64 170 58 Q168 68 148 72 Q100 80 50 74 Q26 68 24 64Z" fill="#fff" opacity=".95"></path>
-<!-- paddle tail - the signature -->
-<path d="M170 50 Q178 40 185 36 Q192 40 188 50 Q192 60 185 64 Q178 60 170 50Z" fill="#a0b8d0"></path>
-<path d="M170 50 Q176 44 182 42 Q186 46 184 50 Q186 54 182 58 Q176 56 170 50Z" fill="#c0d0e0" opacity=".8"></path>
-<!-- hook rigged internal -->
-<path d="M60 74 Q60 84 76 84" stroke="#b0b0b0" stroke-width="2" fill="none" opacity=".6"></path>
-<!-- eye -->
-<circle cx="38" cy="44" r="7" fill="#fff"></circle>
-<circle cx="39" cy="44" r="5" fill="#ee6600"></circle>
-<circle cx="40" cy="44" r="3" fill="#1a1a1a"></circle>
-<circle cx="41" cy="43" r="1" fill="#fff"></circle>
-<!-- scales detail -->
-<path d="M70 38 Q80 34 90 38" stroke="#aabbd0" stroke-width="0.8" fill="none" opacity=".4"></path>
-<path d="M90 36 Q100 32 110 36" stroke="#aabbd0" stroke-width="0.8" fill="none" opacity=".4"></path>
-<path d="M110 38 Q120 34 130 38" stroke="#aabbd0" stroke-width="0.8" fill="none" opacity=".4"></path>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Swimbait — Paddle Tail</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Soft shad body · kicking tail · open water</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Swimbait (Paddle Tail)</div>
-        <div class="rank-cat">Swimbait</div>
-        <div class="rank-why">Clear stable water with baitfish schools. Open water finesse power fishing.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">92%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:92%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(22)">
-      <div class="rank-num ">5</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1030"></rect>
-<!-- very large trout imitator - 3 sections -->
-<!-- section 1 - head -->
-<path d="M14 50 Q16 26 48 20 Q72 16 82 24 Q90 30 88 50 Q88 70 72 76 Q50 80 28 72 Q14 66 14 50Z" fill="#7a9860"></path>
-<!-- section 2 - mid -->
-<path d="M86 46 Q88 28 112 24 Q128 22 134 32 Q138 40 136 54 Q134 66 120 70 Q104 72 90 64 Q86 58 86 46Z" fill="#6a8850"></path>
-<!-- section 3 - rear -->
-<path d="M134 48 Q136 34 154 30 Q166 28 170 38 Q174 46 170 58 Q166 66 152 68 Q138 68 134 58 Q132 54 134 48Z" fill="#5a7840"></path>
-<!-- tail fin - large -->
-<path d="M170 50 Q180 32 188 26 Q186 40 184 50 Q186 60 188 74 Q180 68 170 50Z" fill="#4a6830"></path>
-<!-- pink/red lateral stripe - trout coloring -->
-<path d="M20 50 Q55 46 88 50 Q112 48 134 50 Q152 50 170 50" stroke="#e84060" stroke-width="3" fill="none" opacity=".6"></path>
-<!-- spots on body - trout pattern -->
-<circle cx="40" cy="40" r="4" fill="#1a3010" opacity=".5"></circle>
-<circle cx="60" cy="44" r="3" fill="#1a3010" opacity=".5"></circle>
-<circle cx="75" cy="36" r="4" fill="#1a3010" opacity=".5"></circle>
-<circle cx="105" cy="38" r="3.5" fill="#1a3010" opacity=".5"></circle>
-<circle cx="120" cy="44" r="3" fill="#1a3010" opacity=".5"></circle>
-<circle cx="150" cy="40" r="3" fill="#1a3010" opacity=".5"></circle>
-<!-- belly white -->
-<path d="M18 64 Q55 78 88 72 Q112 68 134 68 Q152 66 170 58 Q152 70 134 72 Q88 80 18 68" fill="#fff" opacity=".7"></path>
-<!-- joints connectors -->
-<rect x="84" y="44" width="6" height="12" rx="2" fill="#666"></rect>
-<rect x="132" y="44" width="6" height="12" rx="2" fill="#666"></rect>
-<!-- eye -->
-<circle cx="30" cy="40" r="8" fill="#fff"></circle>
-<circle cx="31" cy="40" r="6" fill="#ee8800"></circle>
-<circle cx="32" cy="40" r="4" fill="#1a1a1a"></circle>
-<circle cx="33" cy="39" r="1.5" fill="#fff"></circle>
-<!-- treble hooks -->
-<path d="M68 76 Q71 86 65 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M68 76 Q73 88 79 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M155 68 Q158 78 152 83" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M155 68 Q160 80 166 81" stroke="#aaa" stroke-width="2" fill="none"></path>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Large Profile Swimbait</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a7aaa">Trout imitation · 3 sections · trophy bass only</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Swimbait (Large Profile)</div>
-        <div class="rank-cat">Swimbait</div>
-        <div class="rank-why">Clear stable water, open structure, targeting personal-best largemouth.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">92%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:92%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(25)">
-      <div class="rank-num ">6</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="90" fill="#0a1a2a"></rect>
-<path d="M16 45 Q18 28 52 22 Q100 16 158 22 Q178 28 180 45 Q178 62 158 68 Q100 74 52 68 Q18 62 16 45Z" fill="#d8d8e8"></path>
-<path d="M20 32 Q52 20 158 24 Q176 30 180 40 Q176 28 158 22 Q100 16 52 22 Q26 26 20 32Z" fill="#fff" opacity=".5"></path>
-<path d="M20 58 Q52 70 158 66 Q176 60 180 52 Q176 64 158 68 Q100 74 52 68 Q22 62 20 58Z" fill="#fff" opacity=".9"></path>
-<path d="M180 45 Q190 34 194 28 Q194 36 192 45 Q194 54 194 62 Q190 56 180 45Z" fill="#b8b8c8"></path>
-<path d="M180 45 Q188 37 191 33 Q191 38 190 45 Q191 52 191 57 Q188 52 180 45Z" fill="#d8d8e8" opacity=".7"></path>
-<path d="M48 32 Q60 28 72 32" stroke="#9898b8" stroke-width="0.8" fill="none" opacity=".5"></path>
-<path d="M88 30 Q100 26 112 30" stroke="#9898b8" stroke-width="0.8" fill="none" opacity=".5"></path>
-<path d="M128 32 Q140 28 152 32" stroke="#9898b8" stroke-width="0.8" fill="none" opacity=".5"></path>
-<circle cx="32" cy="40" r="6" fill="#fff"></circle>
-<circle cx="33" cy="40" r="4" fill="#cc4400"></circle>
-<circle cx="34" cy="40" r="2.5" fill="#111"></circle>
-<circle cx="35" cy="39" r="1" fill="#fff"></circle>
-<path d="M95 68 Q98 78 92 83" stroke="#b0b0b0" stroke-width="2.2" fill="none"></path>
-<path d="M95 68 Q100 80 106 81" stroke="#b0b0b0" stroke-width="2.2" fill="none"></path>
-<text x="8" y="80" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Fluke — Soft Jerkbait</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Soft shad body · dart on jerk · weightless rigged</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Fluke (Soft Jerkbait)</div>
-        <div class="rank-cat">Soft Plastic</div>
-        <div class="rank-why">Open water, baitfish schools, clear calm conditions. Darts and flutters like a dying shad.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">92%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:92%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(31)">
-      <div class="rank-num ">7</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1020"></rect>
-<line x1="14" y1="50" x2="170" y2="50" stroke="#c0c0c0" stroke-width="2"></line>
-<path d="M10 50 Q8 44 14 44 Q20 44 18 50" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<circle cx="62" cy="50" r="5" fill="#e84040"></circle>
-<circle cx="76" cy="50" r="5" fill="#e84040"></circle>
-<circle cx="90" cy="50" r="5" fill="#e84040"></circle>
-<path d="M96 44 Q102 40 120 42 Q132 44 133 50 Q132 56 120 58 Q102 60 96 56 Q92 53 96 44Z" fill="#b0b0b0"></path>
-<path d="M98 46 Q118 42 132 48 Q118 44 98 47" fill="#d0d0d0" opacity=".6"></path>
-<path d="M133 50 Q145 46 148 56 Q145 66 133 64" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M133 64 L129 59" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<ellipse cx="42" cy="58" rx="24" ry="10" fill="#d4af37" transform="rotate(-20 42 58)"></ellipse>
-<ellipse cx="42" cy="58" rx="18" ry="7" fill="#f0c840" opacity=".7" transform="rotate(-20 42 58)"></ellipse>
-<circle cx="60" cy="53" r="5" fill="#888"></circle>
-<rect x="58" y="50" width="8" height="6" rx="2" fill="#777"></rect>
-<path d="M152 50 Q162 46 166 52 Q166 58 160 62 Q154 66 152 60" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<text x="8" y="88" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Underspin</text>
-<text x="8" y="98" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Blade below jig head · spinning blade flash · slow roll</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Underspin</div>
-        <div class="rank-cat">Finesse</div>
-        <div class="rank-why">Clear highland lake finesse weapon. Spotted bass killer in cold post-frontal conditions.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">89%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:89%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(29)">
-      <div class="rank-num ">8</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="90" fill="#0a1020"></rect>
-<path d="M18 45 Q20 33 42 29 Q92 23 160 29 Q180 33 182 45 Q180 57 160 61 Q92 67 42 61 Q20 57 18 45Z" fill="#2a1a3a"></path>
-<line x1="30" y1="29" x2="30" y2="61" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="55" y1="28" x2="55" y2="62" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="80" y1="27" x2="80" y2="63" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="105" y1="27" x2="105" y2="63" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="130" y1="27" x2="130" y2="63" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="155" y1="28" x2="155" y2="62" stroke="#3a2a4a" stroke-width="1.2"></line>
-<ellipse cx="28" cy="45" rx="10" ry="14" fill="#606060"></ellipse>
-<ellipse cx="28" cy="45" rx="7" ry="10" fill="#888"></ellipse>
-<line x1="24" y1="34" x2="32" y2="34" stroke="#444" stroke-width="2"></line>
-<path d="M100 27 Q100 15 100 8" stroke="#c0c0c0" stroke-width="1.5" fill="none"></path>
-<path d="M100 8 Q116 4 120 16 Q122 26 114 30" stroke="#c0c0c0" stroke-width="2.2" fill="none"></path>
-<path d="M114 30 L110 26" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<ellipse cx="100" cy="45" rx="5" ry="14" fill="none" stroke="#888" stroke-width="1.5" opacity=".5"></ellipse>
-<text x="8" y="80" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Neko Rig</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="9" fill="#4a6aaa">Nail weight in nose · hook through middle · head-down fall</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Neko Rig</div>
-        <div class="rank-cat">Finesse</div>
-        <div class="rank-why">Docks, seawalls and pressured fish. Head-down fall and vertical stand-up is unique and deadly.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">86%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:86%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(30)">
-      <div class="rank-num ">9</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1020"></rect>
-<path d="M26 50 Q28 30 56 24 Q100 18 148 24 Q168 30 170 50 Q168 70 148 76 Q100 82 56 76 Q28 70 26 50Z" fill="#c8c840"></path>
-<path d="M30 36 Q56 22 148 26 Q168 32 170 42 Q168 28 148 24 Q100 18 56 24 Q34 28 30 36Z" fill="#1a1a00" opacity=".7"></path>
-<path d="M30 40 Q56 28 148 30 Q168 36 170 44 Q168 30 148 26 Q100 20 56 24 Q36 30 30 40Z" fill="#fff" opacity=".3"></path>
-<path d="M30 64 Q56 78 148 72 Q168 66 170 58 Q168 70 148 76 Q100 82 56 76 Q32 70 30 64Z" fill="#fff" opacity=".9"></path>
-<path d="M170 50 Q178 40 182 35 Q184 43 182 50 Q184 57 182 65 Q178 60 170 50Z" fill="#a0a030"></path>
-<circle cx="170" cy="50" r="3.5" fill="#888"></circle>
-<circle cx="26" cy="50" r="3.5" fill="#b0b0b0"></circle>
-<path d="M82 76 Q85 88 79 93" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M82 76 Q87 90 93 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M132 74 Q135 86 129 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M132 74 Q137 88 143 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<circle cx="44" cy="40" r="7" fill="#fff"></circle>
-<circle cx="45" cy="40" r="5" fill="#111"></circle>
-<circle cx="45" cy="40" r="2.5" fill="#ffdd00"></circle>
-<circle cx="46" cy="39" r="1" fill="#fff"></circle>
-<path d="M18 38 Q22 44 18 52" stroke="#4a9aba" stroke-width="1.5" fill="none" stroke-dasharray="3,2" opacity=".4"></path>
-<path d="M184 38 Q188 44 184 52" stroke="#4a9aba" stroke-width="1.5" fill="none" stroke-dasharray="3,2" opacity=".4"></path>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Topwater Walker (Zara Spook)</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Pencil body · walk-the-dog · two trebles</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Topwater Walker</div>
-        <div class="rank-cat">Topwater</div>
-        <div class="rank-why">Calm dawn open water with falling pressure. Walk-the-dog action calls bass from distance.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">86%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:86%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(11)">
-      <div class="rank-num ">10</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a1008"></rect>
-<!-- mushroom head jig - flat wide head -->
-<path d="M55 72 Q54 56 64 50 Q72 45 82 48 Q90 51 90 62 Q90 75 82 80 Q72 84 64 80 Q55 80 55 72Z" fill="#3a3a3a"></path>
-<!-- flat mushroom top -->
-<ellipse cx="72" cy="50" rx="20" ry="10" fill="#505050"></ellipse>
-<ellipse cx="72" cy="50" rx="16" ry="7" fill="#686868"></ellipse>
-<!-- hook eye -->
-<circle cx="72" cy="42" r="3.5" fill="#c0c0c0"></circle>
-<circle cx="72" cy="42" r="2" fill="#888"></circle>
-<!-- hook shank short -->
-<line x1="84" y1="50" x2="122" y2="38" stroke="#b0b0b0" stroke-width="2"></line>
-<!-- light wire hook bend -->
-<path d="M122 38 Q134 36 134 48 Q134 60 124 62" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- hook point -->
-<path d="M124 62 L120 57" stroke="#b0b0b0" stroke-width="1.8" fill="none"></path>
-<!-- TRD style worm STANDING UP vertically - key feature -->
-<path d="M90 62 Q92 52 96 44 Q100 36 100 28 Q100 36 104 44 Q108 52 110 62 Q100 68 90 62Z" fill="#8a6a40"></path>
-<!-- worm texture -->
-<path d="M94 55 Q100 52 106 55" stroke="#aa8a60" stroke-width="1" fill="none"></path>
-<path d="M95 47 Q100 44 105 47" stroke="#aa8a60" stroke-width="1" fill="none"></path>
-<!-- STANDING indicator - highlight the stand-up feature -->
-<line x1="100" y1="28" x2="100" y2="62" stroke="#9fecc8" stroke-width="1" stroke-dasharray="3,2" opacity=".4"></line>
-<text x="115" y="32" font-family="DM Sans,sans-serif" font-size="9" fill="#9fecc8" opacity=".8">stands up</text>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Ned Rig</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#7a6a4a">Mushroom head · bait stands vertical · finesse</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Ned Rig</div>
-        <div class="rank-cat">Finesse</div>
-        <div class="rank-why">Clear water, rocky bottom, any tough post-frontal conditions. The never-fail bait.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">84%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:84%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(23)">
-      <div class="rank-num ">11</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a1a10"></rect>
-<ellipse cx="72" cy="50" rx="22" ry="10" fill="#444"></ellipse>
-<ellipse cx="72" cy="50" rx="16" ry="7" fill="#666"></ellipse>
-<path d="M50 55 Q50 40 62 35 Q76 30 88 35 Q100 40 100 55 Q100 68 88 74 Q74 80 62 74 Q50 70 50 55Z" fill="#3a3a3a"></path>
-<path d="M54 45 Q68 32 96 36 Q100 44 100 52 Q96 36 88 34 Q74 30 62 34 Q54 40 54 45Z" fill="#555" opacity=".5"></path>
-<circle cx="62" cy="34" r="3.5" fill="#c0c0c0"></circle>
-<circle cx="62" cy="34" r="2" fill="#888"></circle>
-<line x1="100" y1="48" x2="148" y2="34" stroke="#b0b0b0" stroke-width="2.5"></line>
-<path d="M148 34 Q162 32 162 48 Q162 62 150 64" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M150 64 L146 59" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<path d="M100 58 Q104 48 108 40 Q112 32 112 24 Q112 32 116 40 Q120 48 120 58 Q112 64 100 58Z" fill="#7a5a30"></path>
-<path d="M104 50 Q108 47 116 50" stroke="#9a7a50" stroke-width="1" fill="none"></path>
-<path d="M105 42 Q108 39 115 42" stroke="#9a7a50" stroke-width="1" fill="none"></path>
-<path d="M100 56 Q95 62 92 70 Q98 65 103 58" fill="#7a5a30" opacity=".6"></path>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Shaky Head Jig</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#7a6a4a">Stand-up head · finesse worm · shaking retrieve</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Shaky Head</div>
-        <div class="rank-cat">Finesse</div>
-        <div class="rank-why">Finesse magic on rocky bottom in tough post-frontal conditions. If the Ned won't work, try this.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">84%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:84%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(24)">
-      <div class="rank-num ">12</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1a20"></rect>
-<path d="M18 50 Q20 28 52 22 Q90 16 132 22 Q156 28 160 50 Q156 72 132 78 Q90 84 52 78 Q20 72 18 50Z" fill="#3a8a30"></path>
-<path d="M22 36 Q52 20 132 24 Q154 30 160 42 Q154 28 132 22 Q90 16 52 22 Q28 26 22 36Z" fill="#1a4010"></path>
-<path d="M22 40 Q52 28 132 30 Q154 36 160 44 Q154 30 132 24 Q90 18 52 22 Q30 30 22 40Z" fill="#fff" opacity=".25"></path>
-<path d="M22 64 Q52 78 132 72 Q154 66 160 58 Q156 70 132 78 Q90 84 52 78 Q24 72 22 64Z" fill="#ffe080" opacity=".7"></path>
-<path d="M28 44 Q60 36 130 40" stroke="#1a4010" stroke-width="1.5" fill="none" opacity=".5"></path>
-<circle cx="40" cy="36" r="3" fill="#222" opacity=".6"></circle>
-<circle cx="40" cy="36" r="1.5" fill="#cc4400"></circle>
-<rect x="155" y="43" width="7" height="14" rx="2" fill="#777"></rect>
-<ellipse cx="162" cy="44" rx="12" ry="5" fill="#b0b0b0" transform="rotate(-25 162 44)"></ellipse>
-<ellipse cx="162" cy="56" rx="12" ry="5" fill="#909090" transform="rotate(25 162 56)"></ellipse>
-<circle cx="162" cy="50" r="4" fill="#606060"></circle>
-<path d="M78 78 Q81 90 75 95" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M78 78 Q83 92 89 93" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M128 74 Q131 86 125 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M128 74 Q133 88 139 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<circle cx="35" cy="42" r="6" fill="#fff"></circle>
-<circle cx="36" cy="42" r="4" fill="#ee6600"></circle>
-<circle cx="37" cy="42" r="2.5" fill="#111"></circle>
-<circle cx="38" cy="41" r="1" fill="#fff"></circle>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Hard Body Swimbait</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Jointed hard body · bluegill/perch colors · prop tail</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Swimbait (Hard Body)</div>
-        <div class="rank-cat">Hard Bait</div>
-        <div class="rank-why">Clear stable water, grass edges, bluegill spawn. Targets big fish feeding on large prey.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">84%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:84%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(33)">
-      <div class="rank-num ">13</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 115" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="115" fill="#0a1020"></rect>
-<line x1="16" y1="22" x2="100" y2="22" stroke="#c8c8c8" stroke-width="1.2"></line>
-<circle cx="100" cy="22" r="8" fill="#888"></circle>
-<circle cx="100" cy="22" r="6" fill="#aaa"></circle>
-<line x1="96" y1="22" x2="104" y2="22" stroke="#555" stroke-width="2"></line>
-<line x1="100" y1="30" x2="100" y2="72" stroke="#c8c8c8" stroke-width="1.2"></line>
-<path d="M100 72 Q100 62 104 54 Q108 46 108 38 Q108 46 112 54 Q116 62 116 72 Q108 78 100 72Z" fill="#cc3333"></path>
-<line x1="100" y1="32" x2="100" y2="26" stroke="#b0b0b0" stroke-width="1.4" fill="none"></line>
-<path d="M100 26 Q116 22 120 34 Q122 44 114 48" stroke="#b0b0b0" stroke-width="2.2" fill="none"></path>
-<path d="M114 48 L110 44" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<text x="108" y="20" font-family="DM Sans,sans-serif" font-size="9" fill="#d0d0d0">split shot</text>
-<text x="120" y="58" font-family="DM Sans,sans-serif" font-size="9" fill="#9fecc8">finesse</text>
-<text x="120" y="68" font-family="DM Sans,sans-serif" font-size="9" fill="#9fecc8">worm</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Split Shot Rig</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#4a6aaa">Pinch weight 12-18in above hook · ultra-clear water</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Split Shot Rig</div>
-        <div class="rank-cat">Finesse</div>
-        <div class="rank-why">Ultra-clear water and post-frontal conditions when everything else fails. Pure finesse.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">84%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:84%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(32)">
-      <div class="rank-num ">14</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="80" fill="#0a1020"></rect>
-<path d="M16 40 Q18 29 42 25 Q100 19 170 25 Q184 29 186 40 Q184 51 170 55 Q100 61 42 55 Q18 51 16 40Z" fill="#1a1a30"></path>
-<line x1="38" y1="25" x2="38" y2="55" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="63" y1="24" x2="63" y2="56" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="88" y1="24" x2="88" y2="56" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="113" y1="24" x2="113" y2="56" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="138" y1="24" x2="138" y2="56" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="163" y1="25" x2="163" y2="55" stroke="#2a2a48" stroke-width="1.2"></line>
-<circle cx="75" cy="31" r="1.5" fill="#6060a0" opacity=".6"></circle>
-<circle cx="115" cy="33" r="1.5" fill="#6060a0" opacity=".6"></circle>
-<path d="M78 24 Q78 14 78 8" stroke="#b0b0b0" stroke-width="1.4" fill="none"></path>
-<path d="M78 8 Q94 4 98 16 Q100 26 92 30" stroke="#b0b0b0" stroke-width="2.2" fill="none"></path>
-<path d="M92 30 L88 26" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<path d="M16 40 Q12 44 10 50" stroke="#1a1a30" stroke-width="7" stroke-linecap="round" fill="none"></path>
-<path d="M186 40 Q190 44 192 50" stroke="#1a1a30" stroke-width="7" stroke-linecap="round" fill="none"></path>
-<text x="8" y="70" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Stick Worm — Weightless</text>
-<text x="8" y="80" font-family="DM Sans,sans-serif" font-size="9" fill="#4a6aaa">Nose hook only · falls on slack line · spiraling drop</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Stick Worm (Weightless)</div>
-        <div class="rank-cat">Soft Plastic</div>
-        <div class="rank-why">Spawn and post-spawn, clear calm water. The spiraling sink drives bass out of their mind.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">81%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:81%"></div></div>
-      </div>
-    </div><div class="rank-card" onclick="openDetailFromRank(34)">
-      <div class="rank-num ">15</div>
-      <div class="rank-photo" style="height:64px"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="90" fill="#121008"></rect>
-<path d="M14 45 Q14 28 38 24 Q80 18 142 24 Q170 30 174 45 Q170 60 142 66 Q80 72 38 66 Q14 62 14 45Z" fill="#8a1818"></path>
-<path d="M18 32 Q38 20 142 26 Q168 32 174 40 Q168 26 142 24 Q80 18 38 24 Q22 28 18 32Z" fill="#cc3333" opacity=".25"></path>
-<line x1="34" y1="24" x2="34" y2="66" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="50" y1="23" x2="50" y2="67" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="66" y1="22" x2="66" y2="68" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="82" y1="22" x2="82" y2="68" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="98" y1="21" x2="98" y2="69" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="114" y1="22" x2="114" y2="68" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="130" y1="22" x2="130" y2="68" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="146" y1="23" x2="146" y2="67" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="160" y1="24" x2="160" y2="66" stroke="#aa2020" stroke-width="2.2"></line>
-<path d="M174 45 Q180 37 184 33 Q184 39 182 45 Q184 51 184 57 Q180 53 174 45Z" fill="#8a1818"></path>
-<path d="M78 22 Q78 12 78 5" stroke="#c0c0c0" stroke-width="1.5" fill="none"></path>
-<path d="M78 5 Q94 1 98 13 Q100 23 92 27" stroke="#c0c0c0" stroke-width="2.2" fill="none"></path>
-<path d="M92 27 L88 23" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<text x="8" y="80" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Ribbed Worm (10–12 inch)</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="9" fill="#7a4a3a">Deep ribs · large profile · big bass trigger in any depth</text>
-</svg></div>
-      <div class="rank-body">
-        <div class="rank-name">Ribbed Worm</div>
-        <div class="rank-cat">Soft Plastic</div>
-        <div class="rank-why">Universal big bass catcher in any season. Works everywhere — the ultimate slow-down bait.</div>
-        <div class="rank-tags">
-          <span class="rtag">Spring</span>
-          <span class="rtag w">Sunny</span>
-          <span class="rtag b">Clear</span>
-          <span class="rtag">Dusk</span>
-        </div>
-      </div>
-      <div class="rank-score-wrap">
-        <div class="rank-score score-h">81%</div>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:81%"></div></div>
-      </div>
-    </div></div>
+  <div class="rank-list" id="rank-list">
+    <div class="load-txt"><span class="spin"></span> Scoring lures...</div>
+  </div>
 </div>
 
 <!-- ── PAGE: LURE LIBRARY ── -->
-<div class="pg on" id="pg-lib">
+<div class="pg" id="pg-lib">
   <div class="hdr">
     <div class="hdr-row">
-      <div><div class="sub">Study &amp; Edit</div><h1>Lure Library</h1></div>
+      <div><div class="sub">Study & Edit</div><h1>Lure Library</h1></div>
       <button class="ebtn" onclick="openAddModal()" style="margin-bottom:2px">+ Add</button>
     </div>
   </div>
-  <div class="lib-search" style="display: none;">
+  <div class="lib-search">
     <input type="text" id="lib-search" placeholder="Search lures, categories, seasons..." oninput="renderLib()">
-    <div class="cat-row" id="cat-row"><button class="ctag on" onclick="setLibCat(&#39;All&#39;,this)">All</button><button class="ctag ctag-bigfish" onclick="setLibCat(&#39;Big Fish&#39;,this)">Big Fish</button><button class="ctag" onclick="setLibCat(&#39;Soft Plastic&#39;,this)">Soft Plastic</button><button class="ctag" onclick="setLibCat(&#39;Finesse&#39;,this)">Finesse</button><button class="ctag" onclick="setLibCat(&#39;Topwater&#39;,this)">Topwater</button><button class="ctag" onclick="setLibCat(&#39;Reaction Bait&#39;,this)">Reaction Bait</button><button class="ctag" onclick="setLibCat(&#39;Hard Bait&#39;,this)">Hard Bait</button><button class="ctag" onclick="setLibCat(&#39;Jig&#39;,this)">Jig</button><button class="ctag" onclick="setLibCat(&#39;Swimbait&#39;,this)">Swimbait</button><button class="ctag" onclick="setLibCat(&#39;Light Tackle&#39;,this)">Light Tackle</button></div>
+    <div class="cat-row" id="cat-row"></div>
   </div>
-  <div class="lure-grid" id="lure-grid" style="display: none;"><div class="lure-card" onclick="openDetail(1)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a2a1a"></rect>
-<!-- bullet weight -->
-<ellipse cx="52" cy="60" rx="10" ry="16" fill="#b0b0b0"></ellipse>
-<ellipse cx="52" cy="60" rx="8" ry="13" fill="#d0d0d0"></ellipse>
-<circle cx="52" cy="47" r="3" fill="#888"></circle>
-<!-- line through weight -->
-<line x1="52" y1="44" x2="52" y2="10" stroke="#c8c8c8" stroke-width="1.2"></line>
-<!-- plastic worm body -->
-<path d="M62 58 Q90 45 120 55 Q145 62 160 52 Q170 46 175 52 Q170 60 160 62 Q145 70 120 63 Q90 55 65 68 Q62 66 62 58Z" fill="#4a1a6a"></path>
-<!-- worm segments -->
-<path d="M80 52 Q80 66 80 66" stroke="#6a2a9a" stroke-width="1" fill="none"></path>
-<path d="M100 53 Q100 67 100 67" stroke="#6a2a9a" stroke-width="1" fill="none"></path>
-<path d="M120 55 Q120 67 120 67" stroke="#6a2a9a" stroke-width="1" fill="none"></path>
-<path d="M140 56 Q140 66 140 66" stroke="#6a2a9a" stroke-width="1" fill="none"></path>
-<!-- hook point -->
-<path d="M160 58 Q185 56 182 72 Q178 84 168 82" stroke="#c0c0c0" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
-<!-- hook point tip -->
-<path d="M168 82 L164 78" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Texas Rig</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#5a8a6a">Bullet weight · EWG hook · soft plastic</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Texas Rig</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(2)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#0a1a2a"></rect>
-<!-- main line -->
-<line x1="100" y1="5" x2="100" y2="40" stroke="#d0d0d0" stroke-width="1.2"></line>
-<!-- hook tied above weight -->
-<path d="M100 40 Q115 40 118 52 Q118 62 108 62 Q98 62 98 52" stroke="#c0c0c0" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
-<!-- hook point -->
-<path d="M98 52 L102 48" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<!-- finesse worm on hook -->
-<path d="M100 40 Q130 38 150 42 Q165 45 168 42 Q165 50 150 50 Q130 48 100 48Z" fill="#cc3333"></path>
-<path d="M120 39 Q120 49 120 49" stroke="#ee5555" stroke-width="1" fill="none"></path>
-<path d="M138 40 Q138 50 138 50" stroke="#ee5555" stroke-width="1" fill="none"></path>
-<!-- leader line to weight -->
-<line x1="100" y1="62" x2="100" y2="100" stroke="#d0d0d0" stroke-width="1.2"></line>
-<!-- drop shot weight (cylindrical) -->
-<rect x="90" y="100" width="20" height="24" rx="4" fill="#909090"></rect>
-<rect x="91" y="101" width="18" height="22" rx="3" fill="#b0b0b0"></rect>
-<line x1="100" y1="100" x2="100" y2="97" stroke="#d0d0d0" stroke-width="1.5"></line>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Drop Shot</text>
-<text x="8" y="128" font-family="DM Sans,sans-serif" font-size="9" fill="#4a7a8a">Hook above · finesse worm · drop weight</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Drop Shot</div>
-        <div class="lure-cat">Finesse</div>
-        <div class="lure-tags"><span class="stag">Summer</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(3)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="110" fill="#0a1a30"></rect>
-<!-- water line -->
-<path d="M0 68 Q40 62 80 68 Q120 74 160 68 Q180 65 200 68" stroke="#2a6a9a" stroke-width="1.5" fill="none" opacity=".5"></path>
-<!-- popper body -->
-<path d="M45 45 Q48 32 70 28 Q110 22 145 30 Q162 34 165 45 Q165 62 145 66 Q110 72 70 66 Q48 62 45 45Z" fill="#e83030"></path>
-<!-- cupped face -->
-<ellipse cx="50" cy="46" rx="12" ry="14" fill="#c02020"></ellipse>
-<ellipse cx="50" cy="46" rx="9" ry="11" fill="#0a1a30" opacity=".7"></ellipse>
-<!-- white belly -->
-<path d="M55 60 Q110 68 145 62 Q162 58 165 52 Q162 66 145 68 Q110 74 55 66Z" fill="#ffffff" opacity=".85"></path>
-<!-- front treble hook -->
-<path d="M85 66 Q88 78 82 84 Q76 88 74 82" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M85 66 Q90 82 96 84 Q102 86 100 78" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- rear treble -->
-<path d="M140 66 Q143 78 137 84 Q131 88 130 82" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M140 66 Q145 82 151 84 Q157 86 155 78" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="62" cy="40" r="5" fill="#fff"></circle>
-<circle cx="63" cy="40" r="3" fill="#1a1a1a"></circle>
-<circle cx="64" cy="39" r="1" fill="#fff"></circle>
-<!-- tail feather -->
-<path d="M165 44 Q178 36 182 40 Q178 46 165 48" fill="#ff8800" opacity=".8"></path>
-<!-- split ring at tail -->
-<circle cx="165" cy="46" r="3" fill="none" stroke="#aaa" stroke-width="1.5"></circle>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Topwater Popper</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Cupped face · surface splash · two trebles</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Topwater Popper</div>
-        <div class="lure-cat">Topwater</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(4)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="110" fill="#0a1020"></rect>
-<!-- body - torpedo shape -->
-<path d="M30 50 Q32 30 70 24 Q115 18 150 28 Q168 33 170 50 Q168 67 150 72 Q115 80 70 76 Q32 70 30 50Z" fill="#c8c8a0"></path>
-<!-- silver sides -->
-<path d="M35 42 Q70 32 150 36 Q168 40 170 50 Q168 36 150 30 Q115 22 70 26 Q40 30 35 42Z" fill="#e8e8d0" opacity=".8"></path>
-<!-- dark back -->
-<path d="M35 42 Q70 32 150 36 Q168 40 170 44 Q150 36 70 34 Q45 35 35 42Z" fill="#2a3a1a"></path>
-<!-- belly white -->
-<path d="M35 58 Q70 70 150 66 Q168 62 170 56 Q168 66 150 72 Q115 80 70 76 Q38 68 35 58Z" fill="#fff" opacity=".9"></path>
-<!-- prop tail - the signature feature -->
-<rect x="168" y="42" width="6" height="16" rx="2" fill="#888"></rect>
-<!-- spinning prop blades -->
-<ellipse cx="174" cy="44" rx="12" ry="5" fill="#b0b0b0" transform="rotate(-30 174 44)"></ellipse>
-<ellipse cx="174" cy="56" rx="12" ry="5" fill="#909090" transform="rotate(30 174 56)"></ellipse>
-<!-- propeller hub -->
-<circle cx="174" cy="50" r="5" fill="#707070"></circle>
-<circle cx="174" cy="50" r="2" fill="#444"></circle>
-<!-- treble hooks -->
-<path d="M80 76 Q83 88 77 93" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M80 76 Q85 90 91 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M135 72 Q138 84 132 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M135 72 Q140 86 146 87" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="52" cy="44" r="6" fill="#fff"></circle>
-<circle cx="53" cy="44" r="4" fill="#1a1a1a"></circle>
-<circle cx="54" cy="43" r="1.5" fill="#fff"></circle>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Whopper Plopper</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#4a6a8a">Rotating tail prop · torpedo body · surface</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Whopper Plopper</div>
-        <div class="lure-cat">Topwater</div>
-        <div class="lure-tags"><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(5)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#1a1a0a"></rect>
-<!-- wire frame - V shape -->
-<line x1="100" y1="85" x2="38" y2="25" stroke="#d0d0d0" stroke-width="2.5"></line>
-<line x1="100" y1="85" x2="162" y2="18" stroke="#d0d0d0" stroke-width="2.5"></line>
-<!-- R-bend at top of upper arm -->
-<circle cx="162" cy="18" r="4" fill="none" stroke="#d0d0d0" stroke-width="2"></circle>
-<!-- spinner blade - willow -->
-<ellipse cx="155" cy="12" rx="18" ry="8" fill="#e8c840" transform="rotate(-20 155 12)"></ellipse>
-<ellipse cx="155" cy="12" rx="14" ry="5" fill="#f5d830" opacity=".7" transform="rotate(-20 155 12)"></ellipse>
-<!-- swivel at wire junction -->
-<circle cx="38" cy="25" r="5" fill="#b0b0b0"></circle>
-<circle cx="38" cy="25" r="3" fill="#d0d0d0"></circle>
-<!-- jig head -->
-<ellipse cx="100" cy="90" rx="16" ry="14" fill="#d0d020"></ellipse>
-<ellipse cx="100" cy="88" rx="12" ry="9" fill="#e8e030" opacity=".7"></ellipse>
-<!-- hook -->
-<path d="M100 100 Q100 118 114 118 Q126 118 126 106 Q126 95 116 95" stroke="#b0b0b0" stroke-width="3" fill="none" stroke-linecap="round"></path>
-<!-- skirt -->
-<path d="M84 90 Q80 112 76 118" stroke="#ff6600" stroke-width="1.8" fill="none"></path>
-<path d="M86 93 Q82 115 79 120" stroke="#ff4400" stroke-width="1.8" fill="none"></path>
-<path d="M88 96 Q86 118 85 122" stroke="#ffaa00" stroke-width="1.8" fill="none"></path>
-<path d="M112 93 Q116 115 119 120" stroke="#ff6600" stroke-width="1.8" fill="none"></path>
-<path d="M114 96 Q118 118 120 122" stroke="#ffaa00" stroke-width="1.8" fill="none"></path>
-<!-- eye -->
-<circle cx="93" cy="88" r="4" fill="#fff"></circle>
-<circle cx="93" cy="88" r="2.5" fill="#1a1a1a"></circle>
-<text x="6" y="118" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Spinnerbait</text>
-<text x="6" y="128" font-family="DM Sans,sans-serif" font-size="9" fill="#7a8a4a">V-wire · willow blade · rubber skirt jig</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Spinnerbait</div>
-        <div class="lure-cat">Reaction Bait</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(6)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="110" fill="#0a1a30"></rect>
-<!-- body - rounded squarebill shape -->
-<path d="M38 50 Q40 28 72 22 Q110 16 145 24 Q164 30 166 50 Q164 70 145 76 Q110 84 72 78 Q40 72 38 50Z" fill="#ff6600"></path>
-<!-- chrome sides -->
-<path d="M42 38 Q72 26 145 28 Q164 34 166 44 Q164 30 145 24 Q110 18 72 22 Q46 26 42 38Z" fill="#fff" opacity=".7"></path>
-<!-- belly white -->
-<path d="M42 62 Q72 76 145 72 Q164 66 166 58 Q164 72 145 78 Q110 86 72 80 Q44 72 42 62Z" fill="#fff" opacity=".9"></path>
-<!-- square lip / bill -->
-<rect x="28" y="50" width="18" height="12" rx="2" fill="#d0d0d0"></rect>
-<rect x="30" y="52" width="14" height="8" rx="1" fill="#e8e8e8"></rect>
-<!-- line tie on bill -->
-<circle cx="29" cy="51" r="2.5" fill="#aaa"></circle>
-<!-- lateral line detail -->
-<path d="M75 50 Q110 48 145 52" stroke="#cc4400" stroke-width="1" fill="none" opacity=".5"></path>
-<!-- front treble -->
-<path d="M90 76 Q93 88 87 94" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M90 76 Q95 90 101 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- rear treble -->
-<path d="M140 74 Q143 86 137 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M140 74 Q145 88 151 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="58" cy="40" r="7" fill="#fff"></circle>
-<circle cx="59" cy="40" r="5" fill="#ee3300"></circle>
-<circle cx="60" cy="40" r="3" fill="#1a1a1a"></circle>
-<circle cx="61" cy="39" r="1" fill="#fff"></circle>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Crankbait — Shallow</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Square bill · 1–6 ft · deflection bait</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Crankbait (Shallow)</div>
-        <div class="lure-cat">Hard Bait</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(7)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="110" fill="#0a1a30"></rect>
-<!-- elongated body -->
-<path d="M50 50 Q52 30 82 24 Q118 18 152 26 Q168 32 170 50 Q168 68 152 74 Q118 82 82 76 Q52 70 50 50Z" fill="#4a90d0"></path>
-<!-- silver flash sides -->
-<path d="M54 38 Q82 26 152 30 Q168 36 170 46 Q168 32 152 26 Q118 20 82 24 Q58 28 54 38Z" fill="#e0f0ff" opacity=".8"></path>
-<!-- belly -->
-<path d="M54 62 Q82 76 152 70 Q168 64 170 56 Q168 68 152 74 Q118 82 82 76 Q56 70 54 62Z" fill="#fff" opacity=".95"></path>
-<!-- LONG diving lip - the key difference from shallow -->
-<path d="M40 52 L18 82 Q16 86 20 88 Q24 88 26 84 L50 54Z" fill="#d8d8d8"></path>
-<path d="M42 53 L22 80 Q21 83 23 84 L50 56Z" fill="#eeeeee" opacity=".7"></path>
-<!-- line tie at lip -->
-<circle cx="19" cy="86" r="3" fill="#aaa"></circle>
-<!-- front treble -->
-<path d="M95 76 Q98 88 92 94" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M95 76 Q100 90 106 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- rear treble -->
-<path d="M148 72 Q151 84 145 90" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M148 72 Q153 86 159 87" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="68" cy="40" r="7" fill="#fff"></circle>
-<circle cx="69" cy="40" r="5" fill="#ee3300"></circle>
-<circle cx="70" cy="40" r="3" fill="#1a1a1a"></circle>
-<circle cx="71" cy="39" r="1" fill="#fff"></circle>
-<!-- depth rating badge -->
-<rect x="155" y="8" width="40" height="16" rx="4" fill="#1a3a5a"></rect>
-<text x="162" y="20" font-family="DM Sans,sans-serif" font-size="10" fill="#7ac0ff">10–25 ft</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Deep Diver Crankbait</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Long lip · 10–25 ft · ledge fishing</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Deep Diver Crankbait</div>
-        <div class="lure-cat">Hard Bait</div>
-        <div class="lure-tags"><span class="stag">Summer</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(8)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#1a1008"></rect>
-<!-- football head - flat wide bottom -->
-<path d="M60 70 Q58 50 72 42 Q88 36 104 40 Q116 44 118 56 Q118 70 104 76 Q88 82 72 78 Q60 84 60 70Z" fill="#cc6600"></path>
-<!-- flat underside of football head -->
-<path d="M60 70 Q65 80 80 82 Q95 84 108 78 Q118 72 118 65 Q115 76 104 80 Q88 86 72 82 Q62 78 60 70Z" fill="#aa4400"></path>
-<!-- hook eye on top -->
-<circle cx="72" cy="42" r="4" fill="#ccc"></circle>
-<circle cx="72" cy="42" r="2" fill="#888"></circle>
-<!-- hook shank -->
-<line x1="104" y1="44" x2="150" y2="30" stroke="#b0b0b0" stroke-width="2.5"></line>
-<!-- hook bend -->
-<path d="M150 30 Q165 28 165 44 Q165 58 152 60" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<!-- hook point -->
-<path d="M152 60 L148 54" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- skirt strands -->
-<path d="M75 76 Q72 98 70 108" stroke="#6a3a00" stroke-width="1.8"></path>
-<path d="M80 80 Q78 102 77 112" stroke="#8a5a00" stroke-width="1.8"></path>
-<path d="M86 82 Q85 104 85 114" stroke="#6a3a00" stroke-width="1.8"></path>
-<path d="M92 82 Q92 104 93 114" stroke="#aa7a00" stroke-width="1.8"></path>
-<path d="M98 80 Q99 102 100 112" stroke="#6a3a00" stroke-width="1.8"></path>
-<path d="M104 78 Q106 100 107 110" stroke="#8a5a00" stroke-width="1.8"></path>
-<!-- craw trailer suggestion -->
-<path d="M70 106 Q60 112 55 118 Q58 122 64 118 Q68 116 72 112" fill="#5a3a1a" opacity=".7"></path>
-<path d="M80 112 Q72 118 68 124 Q72 128 78 124 Q82 120 84 116" fill="#5a3a1a" opacity=".7"></path>
-<text x="8" y="120" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Football Jig</text>
-<text x="8" y="130" font-family="DM Sans,sans-serif" font-size="9" fill="#8a6a3a">Wide flat head · gravel/rocks · drag technique</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Football Jig</div>
-        <div class="lure-cat">Jig</div>
-        <div class="lure-tags"><span class="stag">Summer</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(9)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#1a1008"></rect>
-<!-- round bullet head -->
-<path d="M55 62 Q55 40 72 34 Q90 28 104 34 Q118 40 118 60 Q118 78 104 84 Q90 90 72 84 Q55 80 55 62Z" fill="#1a1a1a"></path>
-<path d="M60 50 Q72 36 100 36 Q116 42 118 55 Q116 40 104 34 Q90 28 72 34 Q62 40 60 50Z" fill="#3a3a3a" opacity=".6"></path>
-<!-- weed guard - twin fiber strands -->
-<line x1="60" y1="80" x2="50" y2="105" stroke="#d0c090" stroke-width="1.5"></line>
-<line x1="64" y1="82" x2="56" y2="107" stroke="#d0c090" stroke-width="1.5"></line>
-<!-- hook eye on head top -->
-<circle cx="72" cy="34" r="4" fill="#ccc"></circle>
-<circle cx="72" cy="34" r="2" fill="#888"></circle>
-<!-- hook shank going back -->
-<line x1="104" y1="38" x2="152" y2="22" stroke="#b0b0b0" stroke-width="2.5"></line>
-<!-- hook bend -->
-<path d="M152 22 Q166 20 166 36 Q166 52 153 54" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<!-- hook point -->
-<path d="M153 54 L148 48" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- full skirt - denser for flipping -->
-<path d="M70 82 Q66 104 63 118" stroke="#2a5a00" stroke-width="1.8"></path>
-<path d="M75 86 Q72 108 70 120" stroke="#1a4a00" stroke-width="1.8"></path>
-<path d="M81 88 Q80 110 80 122" stroke="#3a7a00" stroke-width="1.8"></path>
-<path d="M87 88 Q88 110 89 122" stroke="#2a5a00" stroke-width="1.8"></path>
-<path d="M93 86 Q95 108 97 120" stroke="#1a4a00" stroke-width="1.8"></path>
-<path d="M99 84 Q102 106 104 118" stroke="#3a7a00" stroke-width="1.8"></path>
-<path d="M105 82 Q109 104 111 116" stroke="#2a5a00" stroke-width="1.8"></path>
-<text x="8" y="120" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Flipping Jig</text>
-<text x="8" y="130" font-family="DM Sans,sans-serif" font-size="9" fill="#4a7a3a">Bullet head · weed guard · heavy cover</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Flipping Jig</div>
-        <div class="lure-cat">Jig</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(10)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1a2a"></rect>
-<!-- Senko worm - straight cigar shape hooked in the middle -->
-<path d="M20 48 Q22 38 40 34 Q100 28 160 34 Q178 38 180 48 Q178 58 160 62 Q100 68 40 62 Q22 58 20 48Z" fill="#2a1a4a"></path>
-<!-- ribbing on Senko -->
-<line x1="50" y1="34" x2="50" y2="62" stroke="#3a2a5a" stroke-width="1"></line>
-<line x1="70" y1="33" x2="70" y2="63" stroke="#3a2a5a" stroke-width="1"></line>
-<line x1="90" y1="32" x2="90" y2="64" stroke="#3a2a5a" stroke-width="1"></line>
-<line x1="110" y1="32" x2="110" y2="64" stroke="#3a2a5a" stroke-width="1"></line>
-<line x1="130" y1="33" x2="130" y2="63" stroke="#3a2a5a" stroke-width="1"></line>
-<line x1="150" y1="34" x2="150" y2="62" stroke="#3a2a5a" stroke-width="1"></line>
-<!-- fleck detail on Senko -->
-<circle cx="80" cy="46" r="1.5" fill="#8a6aaa" opacity=".6"></circle>
-<circle cx="120" cy="44" r="1.5" fill="#8a6aaa" opacity=".6"></circle>
-<circle cx="60" cy="50" r="1" fill="#8a6aaa" opacity=".5"></circle>
-<!-- hook through MIDDLE of worm - wacky style -->
-<path d="M100 32 Q100 22 100 18" stroke="#c0c0c0" stroke-width="1.5" fill="none"></path>
-<!-- hook bend going around -->
-<path d="M100 18 Q115 14 120 24 Q122 32 115 36" stroke="#c0c0c0" stroke-width="2.2" fill="none"></path>
-<!-- hook point -->
-<path d="M115 36 L111 32" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<!-- both ends droop naturally -->
-<path d="M20 48 Q16 52 14 58" stroke="#2a1a4a" stroke-width="6" stroke-linecap="round" fill="none"></path>
-<path d="M180 48 Q184 52 186 58" stroke="#2a1a4a" stroke-width="6" stroke-linecap="round" fill="none"></path>
-<!-- o-ring indicator -->
-<ellipse cx="100" cy="48" rx="6" ry="14" fill="none" stroke="#888" stroke-width="1.5" opacity=".6"></ellipse>
-<text x="8" y="88" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Wacky Rig</text>
-<text x="8" y="98" font-family="DM Sans,sans-serif" font-size="9" fill="#4a6aaa">Senko hooked in middle · both ends wiggle free</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Wacky Rig</div>
-        <div class="lure-cat">Finesse</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(11)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a1008"></rect>
-<!-- mushroom head jig - flat wide head -->
-<path d="M55 72 Q54 56 64 50 Q72 45 82 48 Q90 51 90 62 Q90 75 82 80 Q72 84 64 80 Q55 80 55 72Z" fill="#3a3a3a"></path>
-<!-- flat mushroom top -->
-<ellipse cx="72" cy="50" rx="20" ry="10" fill="#505050"></ellipse>
-<ellipse cx="72" cy="50" rx="16" ry="7" fill="#686868"></ellipse>
-<!-- hook eye -->
-<circle cx="72" cy="42" r="3.5" fill="#c0c0c0"></circle>
-<circle cx="72" cy="42" r="2" fill="#888"></circle>
-<!-- hook shank short -->
-<line x1="84" y1="50" x2="122" y2="38" stroke="#b0b0b0" stroke-width="2"></line>
-<!-- light wire hook bend -->
-<path d="M122 38 Q134 36 134 48 Q134 60 124 62" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- hook point -->
-<path d="M124 62 L120 57" stroke="#b0b0b0" stroke-width="1.8" fill="none"></path>
-<!-- TRD style worm STANDING UP vertically - key feature -->
-<path d="M90 62 Q92 52 96 44 Q100 36 100 28 Q100 36 104 44 Q108 52 110 62 Q100 68 90 62Z" fill="#8a6a40"></path>
-<!-- worm texture -->
-<path d="M94 55 Q100 52 106 55" stroke="#aa8a60" stroke-width="1" fill="none"></path>
-<path d="M95 47 Q100 44 105 47" stroke="#aa8a60" stroke-width="1" fill="none"></path>
-<!-- STANDING indicator - highlight the stand-up feature -->
-<line x1="100" y1="28" x2="100" y2="62" stroke="#9fecc8" stroke-width="1" stroke-dasharray="3,2" opacity=".4"></line>
-<text x="115" y="32" font-family="DM Sans,sans-serif" font-size="9" fill="#9fecc8" opacity=".8">stands up</text>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Ned Rig</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#7a6a4a">Mushroom head · bait stands vertical · finesse</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Ned Rig</div>
-        <div class="lure-cat">Finesse</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(12)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#1a1a0a"></rect>
-<!-- wire frame - L/safety pin shape -->
-<line x1="100" y1="90" x2="35" y2="28" stroke="#d0d0d0" stroke-width="2.5"></line>
-<line x1="100" y1="90" x2="165" y2="28" stroke="#d0d0d0" stroke-width="2.5"></line>
-<!-- clacker arm -->
-<line x1="165" y1="28" x2="170" y2="18" stroke="#d0d0d0" stroke-width="2"></line>
-<!-- clacker blade (small round) -->
-<circle cx="170" cy="14" r="8" fill="#c0a030"></circle>
-<circle cx="170" cy="14" r="6" fill="#e0c040"></circle>
-<!-- prop/buzz blade - the big propeller -->
-<ellipse cx="132" cy="20" rx="28" ry="10" fill="#c0c0c0" transform="rotate(-15 132 20)"></ellipse>
-<ellipse cx="132" cy="20" rx="28" ry="10" fill="#e0e0e0" opacity=".5" transform="rotate(15 132 20)"></ellipse>
-<!-- prop hub axle -->
-<circle cx="145" cy="22" r="5" fill="#888"></circle>
-<circle cx="145" cy="22" r="3" fill="#aaa"></circle>
-<!-- jig head -->
-<ellipse cx="100" cy="94" rx="14" ry="12" fill="#1a1a1a"></ellipse>
-<!-- hook -->
-<path d="M100 104 Q100 120 114 120 Q128 120 128 108 Q128 97 116 96" stroke="#b0b0b0" stroke-width="3" fill="none" stroke-linecap="round"></path>
-<!-- hook point -->
-<path d="M116 96 L112 100" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- skirt -->
-<path d="M86 96 Q82 114 80 122" stroke="#ffffff" stroke-width="1.8"></path>
-<path d="M88 100 Q85 118 83 126" stroke="#dddddd" stroke-width="1.8"></path>
-<path d="M114 97 Q117 115 118 123" stroke="#ffffff" stroke-width="1.8"></path>
-<path d="M112 100 Q114 118 115 126" stroke="#dddddd" stroke-width="1.8"></path>
-<text x="6" y="118" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Buzzbait</text>
-<text x="6" y="128" font-family="DM Sans,sans-serif" font-size="9" fill="#7a8a4a">Propeller blade · surface churn · clacker</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Buzzbait</div>
-        <div class="lure-cat">Topwater</div>
-        <div class="lure-tags"><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(13)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a1008"></rect>
-<!-- jig body -->
-<path d="M55 62 Q54 44 68 38 Q82 32 96 36 Q110 40 110 56 Q110 72 96 78 Q82 84 68 80 Q54 76 55 62Z" fill="#ffffff"></path>
-<path d="M59 50 Q68 36 94 38 Q108 42 110 52 Q108 40 96 36 Q82 32 68 38 Q62 44 59 50Z" fill="#e8e8e8" opacity=".5"></path>
-<!-- hex blade - the signature chatterbait blade -->
-<path d="M28 58 L36 40 L56 36 L60 58 L52 74 L32 74 Z" fill="#d0d0d0"></path>
-<path d="M30 58 L37 43 L54 39 L58 58 L51 72 L33 72 Z" fill="#e8e8e8"></path>
-<!-- screw eye connecting blade to head -->
-<circle cx="56" cy="38" r="4" fill="#b0b0b0"></circle>
-<circle cx="56" cy="38" r="2" fill="#d0d0d0"></circle>
-<!-- hook -->
-<line x1="96" y1="38" x2="148" y2="22" stroke="#b0b0b0" stroke-width="2.5"></line>
-<path d="M148 22 Q162 20 162 36 Q162 50 150 52" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M150 52 L146 47" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- swimbait trailer -->
-<path d="M110 60 Q130 56 148 60 Q158 62 160 60 Q158 70 148 72 Q130 68 110 68Z" fill="#c8c8c8"></path>
-<path d="M160 60 Q166 56 170 60 Q172 64 166 68 Q162 66 160 68" fill="#c8c8c8"></path>
-<!-- skirt -->
-<path d="M74 78 Q72 96 70 106" stroke="#2a6a00" stroke-width="1.8"></path>
-<path d="M80 82 Q79 100 78 110" stroke="#1a5a00" stroke-width="1.8"></path>
-<path d="M86 84 Q86 102 87 112" stroke="#3a7a00" stroke-width="1.8"></path>
-<path d="M92 82 Q93 100 95 110" stroke="#2a6a00" stroke-width="1.8"></path>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Chatterbait</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#4a7a3a">Hex blade · vibrating jig · grass edges</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Chatterbait</div>
-        <div class="lure-cat">Reaction Bait</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(14)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a3a1a"></rect>
-<!-- frog body - round hollow body -->
-<path d="M45 60 Q46 34 72 26 Q105 18 130 28 Q152 36 154 60 Q152 84 130 92 Q105 100 72 92 Q46 84 45 60Z" fill="#3a8a2a"></path>
-<!-- belly pattern -->
-<path d="M55 72 Q72 88 105 88 Q128 88 148 76 Q152 82 130 92 Q105 100 72 92 Q50 82 55 72Z" fill="#e8e0a0"></path>
-<!-- dark spots on back -->
-<circle cx="88" cy="44" r="10" fill="#1a4a10" opacity=".7"></circle>
-<circle cx="118" cy="40" r="8" fill="#1a4a10" opacity=".7"></circle>
-<circle cx="106" cy="60" r="7" fill="#1a4a10" opacity=".5"></circle>
-<!-- frog eyes - prominent -->
-<circle cx="72" cy="34" r="12" fill="#1a1a00"></circle>
-<circle cx="72" cy="34" r="10" fill="#2a2a00"></circle>
-<circle cx="72" cy="34" r="6" fill="#aa8800"></circle>
-<circle cx="74" cy="32" r="3" fill="#1a1a1a"></circle>
-<circle cx="75" cy="31" r="1.2" fill="#fff"></circle>
-<circle cx="128" cy="34" r="12" fill="#1a1a00"></circle>
-<circle cx="128" cy="34" r="10" fill="#2a2a00"></circle>
-<circle cx="128" cy="34" r="6" fill="#aa8800"></circle>
-<circle cx="130" cy="32" r="3" fill="#1a1a1a"></circle>
-<circle cx="131" cy="31" r="1.2" fill="#fff"></circle>
-<!-- twin hooks riding up (weedless) -->
-<path d="M88 90 Q88 102 100 104 Q110 104 110 92" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M100 92 L97 88" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<path d="M112 90 Q112 102 124 104 Q134 104 134 92" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M124 92 L121 88" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- line tie on nose -->
-<circle cx="46" cy="60" r="3.5" fill="#c0c0c0"></circle>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Hollow Body Frog</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8a4a">Hollow soft body · twin upturned hooks · mat bait</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Hollow Body Frog</div>
-        <div class="lure-cat">Topwater</div>
-        <div class="lure-tags"><span class="stag">Summer</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(15)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1a30"></rect>
-<!-- slim minnow body -->
-<path d="M22 50 Q24 34 55 28 Q100 22 148 28 Q170 34 174 50 Q170 66 148 72 Q100 78 55 72 Q24 66 22 50Z" fill="#d0e8f8"></path>
-<!-- chrome back -->
-<path d="M26 38 Q55 26 148 30 Q170 36 174 46 Q170 34 148 28 Q100 22 55 28 Q28 32 26 38Z" fill="#1a3050"></path>
-<!-- silver flash sides -->
-<path d="M26 42 Q55 34 148 36 Q170 40 174 48 Q170 36 148 30 Q100 24 55 28 Q30 34 26 42Z" fill="#fff" opacity=".6"></path>
-<!-- white belly -->
-<path d="M26 62 Q55 72 148 68 Q170 64 174 56 Q170 68 148 72 Q100 78 55 72 Q28 68 26 62Z" fill="#fff" opacity=".95"></path>
-<!-- short lip - suspending style (not too long) -->
-<path d="M16 52 L22 60 L30 54Z" fill="#d0d0d0"></path>
-<!-- front treble -->
-<path d="M80 72 Q83 83 77 88" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M80 72 Q85 85 91 86" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- middle treble -->
-<path d="M118 72 Q121 83 115 88" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M118 72 Q123 85 129 86" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- tail hook -->
-<path d="M155 68 Q158 79 152 84" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M155 68 Q160 81 166 82" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="42" cy="43" r="7" fill="#fff"></circle>
-<circle cx="43" cy="43" r="5" fill="#ee2200"></circle>
-<circle cx="44" cy="43" r="3" fill="#1a1a1a"></circle>
-<circle cx="45" cy="42" r="1" fill="#fff"></circle>
-<!-- suspend indicator -->
-<text x="148" y="22" font-family="DM Sans,sans-serif" font-size="9" fill="#7ac0ff">suspending</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Jerkbait — Suspending</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Slim minnow · suspends in place · 3 trebles</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Jerkbait</div>
-        <div class="lure-cat">Hard Bait</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(16)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a1a0a"></rect>
-<!-- main line -->
-<line x1="20" y1="12" x2="75" y2="12" stroke="#c8c8c8" stroke-width="1.2"></line>
-<!-- egg sinker (oval weight) -->
-<ellipse cx="90" cy="12" rx="16" ry="10" fill="#b0b0b0"></ellipse>
-<ellipse cx="90" cy="12" rx="13" ry="8" fill="#d0d0d0"></ellipse>
-<!-- bead -->
-<circle cx="107" cy="12" r="5" fill="#e84040"></circle>
-<!-- swivel -->
-<circle cx="118" cy="12" r="5" fill="#888"></circle>
-<circle cx="118" cy="12" r="3" fill="#aaa"></circle>
-<!-- LONG leader - key feature -->
-<line x1="118" y1="12" x2="188" y2="12" stroke="#c8c8c8" stroke-width="1.2"></line>
-<!-- leader label -->
-<path d="M118 8 Q153 4 188 8" stroke="#9fecc8" stroke-width="1" fill="none" stroke-dasharray="3,2" opacity=".4"></path>
-<text x="138" y="7" font-family="DM Sans,sans-serif" font-size="8" fill="#9fecc8" opacity=".7">18–36" leader</text>
-<!-- hook at end of leader -->
-<circle cx="188" cy="12" r="3" fill="#aaa"></circle>
-<!-- lizard / creature bait -->
-<path d="M188 14 Q192 24 188 34 Q184 44 180 50 Q184 48 188 40 Q192 32 190 22 Q192 28 196 34 Q198 28 194 20 Q200 26 200 32 Q198 24 196 18 Q196 24 198 30 Q196 22 188 14Z" fill="#2a6a2a"></path>
-<!-- lizard legs -->
-<path d="M188 28 Q178 24 172 28 Q178 30 188 30" fill="#2a6a2a"></path>
-<path d="M188 40 Q178 36 172 40 Q178 42 188 42" fill="#2a6a2a"></path>
-<!-- label parts -->
-<text x="74" y="8" font-family="DM Sans,sans-serif" font-size="9" fill="#d0d0d0">weight</text>
-<text x="102" y="28" font-family="DM Sans,sans-serif" font-size="9" fill="#e84040">bead</text>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Carolina Rig</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#7a8a4a">Egg weight · bead · long leader · floating bait</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Carolina Rig</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(17)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#1a1a0a"></rect>
-<!-- very heavy tungsten weight - pegged -->
-<ellipse cx="100" cy="32" rx="18" ry="22" fill="#444"></ellipse>
-<ellipse cx="100" cy="30" rx="14" ry="16" fill="#666"></ellipse>
-<!-- peg line -->
-<line x1="100" y1="10" x2="100" y2="14" stroke="#c8c8c8" stroke-width="1.5"></line>
-<!-- weight label -->
-<text x="122" y="30" font-family="DM Sans,sans-serif" font-size="9" fill="#9fecc8">1.5–2 oz</text>
-<!-- heavy EWG hook -->
-<line x1="100" y1="52" x2="140" y2="44" stroke="#b0b0b0" stroke-width="3"></line>
-<path d="M140 44 Q160 40 160 60 Q160 78 144 78" stroke="#b0b0b0" stroke-width="3" fill="none"></path>
-<path d="M144 78 L138 72" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<!-- compact beaver/craw bait - pegged tight -->
-<path d="M100 52 Q105 60 108 70 Q110 80 108 90 Q104 80 100 70 Q96 80 92 90 Q90 80 92 70 Q95 60 100 52Z" fill="#3a1a00"></path>
-<!-- claw detail -->
-<path d="M108 88 Q116 92 118 100 Q112 98 108 92" fill="#3a1a00"></path>
-<path d="M92 88 Q84 92 82 100 Q88 98 92 92" fill="#3a1a00"></path>
-<!-- compact profile arrows -->
-<path d="M72 68 L82 68" stroke="#9fecc8" stroke-width="1" marker-end="url(#arr)" opacity=".5"></path>
-<path d="M128 68 L118 68" stroke="#9fecc8" stroke-width="1" opacity=".5"></path>
-<text x="50" y="72" font-family="DM Sans,sans-serif" font-size="8" fill="#9fecc8" opacity=".6">compact</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Punch Rig</text>
-<text x="8" y="128" font-family="DM Sans,sans-serif" font-size="9" fill="#7a8a4a">Heavy pegged weight · compact bait · mats only</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Punch Rig</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Summer</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(18)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="110" fill="#0a1a30"></rect>
-<!-- jigging spoon - elongated teardrop shape -->
-<path d="M82 20 Q88 14 100 12 Q112 14 118 20 Q130 36 128 62 Q126 80 100 86 Q74 80 72 62 Q70 36 82 20Z" fill="#d4af37"></path>
-<!-- chrome inner -->
-<path d="M86 24 Q100 16 114 24 Q124 38 122 60 Q120 76 100 82 Q80 76 78 60 Q76 38 86 24Z" fill="#f0d060"></path>
-<!-- concave flash effect -->
-<path d="M90 30 Q100 22 110 30 Q118 44 114 60 Q108 74 100 78 Q92 74 86 60 Q82 44 90 30Z" fill="#fff" opacity=".3"></path>
-<!-- line tie at top -->
-<circle cx="100" cy="13" r="5" fill="#b0b0b0"></circle>
-<circle cx="100" cy="13" r="3" fill="#d0d0d0"></circle>
-<!-- treble at bottom -->
-<path d="M100 86 Q100 96 113 98 Q125 98 122 88" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M100 86 Q100 98 88 100 Q76 100 78 90" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M100 86 L100 100" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- flutter motion arrows -->
-<path d="M56 45 Q48 55 56 65" stroke="#9fecc8" stroke-width="1.5" fill="none" stroke-dasharray="3,2" opacity=".5"></path>
-<path d="M144 45 Q152 55 144 65" stroke="#9fecc8" stroke-width="1.5" fill="none" stroke-dasharray="3,2" opacity=".5"></path>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Blade Bait / Spoon</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Chrome spoon · flutter fall · vertical jigging</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Blade Bait / Spoon</div>
-        <div class="lure-cat">Reaction Bait</div>
-        <div class="lure-tags"><span class="stag">Winter</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(19)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1a30"></rect>
-<!-- realistic shad body shape -->
-<path d="M20 50 Q22 32 50 26 Q100 20 148 28 Q168 34 170 50 Q168 66 148 72 Q100 80 50 74 Q22 68 20 50Z" fill="#c8d8e8"></path>
-<!-- dark back stripe -->
-<path d="M24 36 Q50 24 148 30 Q168 36 170 44 Q168 36 148 28 Q100 20 50 26 Q28 30 24 36Z" fill="#2a4a6a"></path>
-<!-- silver flash -->
-<path d="M28 40 Q50 30 148 34 Q168 40 170 48 Q168 38 148 30 Q100 22 50 26 Q32 30 28 40Z" fill="#fff" opacity=".5"></path>
-<!-- white belly -->
-<path d="M24 64 Q50 76 148 70 Q168 64 170 58 Q168 68 148 72 Q100 80 50 74 Q26 68 24 64Z" fill="#fff" opacity=".95"></path>
-<!-- paddle tail - the signature -->
-<path d="M170 50 Q178 40 185 36 Q192 40 188 50 Q192 60 185 64 Q178 60 170 50Z" fill="#a0b8d0"></path>
-<path d="M170 50 Q176 44 182 42 Q186 46 184 50 Q186 54 182 58 Q176 56 170 50Z" fill="#c0d0e0" opacity=".8"></path>
-<!-- hook rigged internal -->
-<path d="M60 74 Q60 84 76 84" stroke="#b0b0b0" stroke-width="2" fill="none" opacity=".6"></path>
-<!-- eye -->
-<circle cx="38" cy="44" r="7" fill="#fff"></circle>
-<circle cx="39" cy="44" r="5" fill="#ee6600"></circle>
-<circle cx="40" cy="44" r="3" fill="#1a1a1a"></circle>
-<circle cx="41" cy="43" r="1" fill="#fff"></circle>
-<!-- scales detail -->
-<path d="M70 38 Q80 34 90 38" stroke="#aabbd0" stroke-width="0.8" fill="none" opacity=".4"></path>
-<path d="M90 36 Q100 32 110 36" stroke="#aabbd0" stroke-width="0.8" fill="none" opacity=".4"></path>
-<path d="M110 38 Q120 34 130 38" stroke="#aabbd0" stroke-width="0.8" fill="none" opacity=".4"></path>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Swimbait — Paddle Tail</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Soft shad body · kicking tail · open water</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Swimbait (Paddle Tail)</div>
-        <div class="lure-cat">Swimbait</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(20)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1a2a"></rect>
-<!-- wire body -->
-<line x1="18" y1="50" x2="162" y2="50" stroke="#c0c0c0" stroke-width="2"></line>
-<!-- line tie loop -->
-<path d="M14 50 Q12 44 18 44 Q24 44 22 50" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<!-- beads on wire -->
-<circle cx="60" cy="50" r="5" fill="#e84040"></circle>
-<circle cx="72" cy="50" r="5" fill="#e84040"></circle>
-<circle cx="84" cy="50" r="5" fill="#e84040"></circle>
-<!-- metal body/bullet -->
-<path d="M90 44 Q95 40 115 42 Q128 44 130 50 Q128 56 115 58 Q95 60 90 56 Q86 53 90 44Z" fill="#b0b0b0"></path>
-<path d="M92 45 Q115 42 128 48 Q115 44 92 46" fill="#d0d0d0" opacity=".6"></path>
-<!-- treble hook -->
-<path d="M130 50 Q142 46 145 56 Q142 65 132 63" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M130 50 Q142 54 140 64 Q134 70 128 64" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M132 63 L128 59" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<!-- SPINNER BLADE at front - key feature -->
-<ellipse cx="38" cy="42" rx="22" ry="10" fill="#d4af37" transform="rotate(-25 38 42)"></ellipse>
-<ellipse cx="38" cy="42" rx="17" ry="7" fill="#f0c840" opacity=".8" transform="rotate(-25 38 42)"></ellipse>
-<!-- blade axle/clevis -->
-<rect x="54" y="47" width="8" height="6" rx="2" fill="#888"></rect>
-<!-- inline body -->
-<text x="8" y="88" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Inline Spinner</text>
-<text x="8" y="98" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Front blade spins · beads · treble hook · creeks</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Inline Spinner</div>
-        <div class="lure-cat">Light Tackle</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(21)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1530"></rect>
-<!-- large profile body - 2 sections (jointed) -->
-<!-- front section -->
-<path d="M18 50 Q20 28 55 22 Q90 18 108 26 Q118 32 118 50 Q118 68 108 74 Q90 80 55 76 Q20 72 18 50Z" fill="#5a8ab0"></path>
-<!-- front section detail -->
-<path d="M22 36 Q55 22 106 28 Q116 34 118 44 Q116 30 108 24 Q90 18 55 22 Q26 28 22 36Z" fill="#1a3a5a"></path>
-<path d="M22 40 Q55 28 106 32 Q116 38 118 46 Q116 32 108 26 Q90 20 55 24 Q28 32 22 40Z" fill="#fff" opacity=".4"></path>
-<!-- belly white front -->
-<path d="M22 64 Q55 78 106 72 Q116 66 118 58 Q116 70 108 74 Q90 80 55 76 Q24 70 22 64Z" fill="#fff" opacity=".9"></path>
-<!-- joint connector -->
-<rect x="116" y="44" width="8" height="12" rx="3" fill="#888"></rect>
-<!-- rear section - slightly angled for glide -->
-<path d="M122 46 Q124 32 148 28 Q165 26 172 36 Q178 44 175 56 Q172 66 155 70 Q138 72 126 64 Q120 58 122 46Z" fill="#4a7aa0"></path>
-<path d="M126 33 Q148 26 170 36 Q176 42 175 50 Q172 38 165 30 Q148 26 126 34Z" fill="#1a3050"></path>
-<path d="M126 36 Q148 28 170 38 Q176 44 175 52 Q172 40 165 32 Q148 28 126 36Z" fill="#fff" opacity=".35"></path>
-<!-- tail fin -->
-<path d="M175 50 Q183 36 190 32 Q188 44 186 50 Q188 56 190 68 Q183 64 175 50Z" fill="#3a6a90"></path>
-<!-- joint pin detail -->
-<circle cx="120" cy="50" r="3" fill="#555"></circle>
-<!-- hooks -->
-<path d="M76 76 Q79 87 73 92" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M76 76 Q81 89 87 90" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M152 70 Q155 81 149 86" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M152 70 Q157 83 163 84" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="36" cy="42" r="7" fill="#fff"></circle>
-<circle cx="37" cy="42" r="5" fill="#ee6600"></circle>
-<circle cx="38" cy="42" r="3" fill="#1a1a1a"></circle>
-<circle cx="39" cy="41" r="1" fill="#fff"></circle>
-<!-- S-curve motion indicator -->
-<path d="M10 22 Q30 14 50 22 Q70 30 90 22" stroke="#9fecc8" stroke-width="1.5" fill="none" stroke-dasharray="4,3" opacity=".4"></path>
-<text x="8" y="88" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Glide Bait</text>
-<text x="8" y="98" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Jointed · S-curve glide · trophy prespawn bait</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Glide Bait</div>
-        <div class="lure-cat">Swimbait</div>
-        <div class="lure-tags"><span class="stag">Spring</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(22)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1030"></rect>
-<!-- very large trout imitator - 3 sections -->
-<!-- section 1 - head -->
-<path d="M14 50 Q16 26 48 20 Q72 16 82 24 Q90 30 88 50 Q88 70 72 76 Q50 80 28 72 Q14 66 14 50Z" fill="#7a9860"></path>
-<!-- section 2 - mid -->
-<path d="M86 46 Q88 28 112 24 Q128 22 134 32 Q138 40 136 54 Q134 66 120 70 Q104 72 90 64 Q86 58 86 46Z" fill="#6a8850"></path>
-<!-- section 3 - rear -->
-<path d="M134 48 Q136 34 154 30 Q166 28 170 38 Q174 46 170 58 Q166 66 152 68 Q138 68 134 58 Q132 54 134 48Z" fill="#5a7840"></path>
-<!-- tail fin - large -->
-<path d="M170 50 Q180 32 188 26 Q186 40 184 50 Q186 60 188 74 Q180 68 170 50Z" fill="#4a6830"></path>
-<!-- pink/red lateral stripe - trout coloring -->
-<path d="M20 50 Q55 46 88 50 Q112 48 134 50 Q152 50 170 50" stroke="#e84060" stroke-width="3" fill="none" opacity=".6"></path>
-<!-- spots on body - trout pattern -->
-<circle cx="40" cy="40" r="4" fill="#1a3010" opacity=".5"></circle>
-<circle cx="60" cy="44" r="3" fill="#1a3010" opacity=".5"></circle>
-<circle cx="75" cy="36" r="4" fill="#1a3010" opacity=".5"></circle>
-<circle cx="105" cy="38" r="3.5" fill="#1a3010" opacity=".5"></circle>
-<circle cx="120" cy="44" r="3" fill="#1a3010" opacity=".5"></circle>
-<circle cx="150" cy="40" r="3" fill="#1a3010" opacity=".5"></circle>
-<!-- belly white -->
-<path d="M18 64 Q55 78 88 72 Q112 68 134 68 Q152 66 170 58 Q152 70 134 72 Q88 80 18 68" fill="#fff" opacity=".7"></path>
-<!-- joints connectors -->
-<rect x="84" y="44" width="6" height="12" rx="2" fill="#666"></rect>
-<rect x="132" y="44" width="6" height="12" rx="2" fill="#666"></rect>
-<!-- eye -->
-<circle cx="30" cy="40" r="8" fill="#fff"></circle>
-<circle cx="31" cy="40" r="6" fill="#ee8800"></circle>
-<circle cx="32" cy="40" r="4" fill="#1a1a1a"></circle>
-<circle cx="33" cy="39" r="1.5" fill="#fff"></circle>
-<!-- treble hooks -->
-<path d="M68 76 Q71 86 65 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M68 76 Q73 88 79 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M155 68 Q158 78 152 83" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M155 68 Q160 80 166 81" stroke="#aaa" stroke-width="2" fill="none"></path>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Large Profile Swimbait</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a7aaa">Trout imitation · 3 sections · trophy bass only</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Swimbait (Large Profile)</div>
-        <div class="lure-cat">Swimbait</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(23)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a1a10"></rect>
-<ellipse cx="72" cy="50" rx="22" ry="10" fill="#444"></ellipse>
-<ellipse cx="72" cy="50" rx="16" ry="7" fill="#666"></ellipse>
-<path d="M50 55 Q50 40 62 35 Q76 30 88 35 Q100 40 100 55 Q100 68 88 74 Q74 80 62 74 Q50 70 50 55Z" fill="#3a3a3a"></path>
-<path d="M54 45 Q68 32 96 36 Q100 44 100 52 Q96 36 88 34 Q74 30 62 34 Q54 40 54 45Z" fill="#555" opacity=".5"></path>
-<circle cx="62" cy="34" r="3.5" fill="#c0c0c0"></circle>
-<circle cx="62" cy="34" r="2" fill="#888"></circle>
-<line x1="100" y1="48" x2="148" y2="34" stroke="#b0b0b0" stroke-width="2.5"></line>
-<path d="M148 34 Q162 32 162 48 Q162 62 150 64" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M150 64 L146 59" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<path d="M100 58 Q104 48 108 40 Q112 32 112 24 Q112 32 116 40 Q120 48 120 58 Q112 64 100 58Z" fill="#7a5a30"></path>
-<path d="M104 50 Q108 47 116 50" stroke="#9a7a50" stroke-width="1" fill="none"></path>
-<path d="M105 42 Q108 39 115 42" stroke="#9a7a50" stroke-width="1" fill="none"></path>
-<path d="M100 56 Q95 62 92 70 Q98 65 103 58" fill="#7a5a30" opacity=".6"></path>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Shaky Head Jig</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#7a6a4a">Stand-up head · finesse worm · shaking retrieve</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Shaky Head</div>
-        <div class="lure-cat">Finesse</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(24)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1a20"></rect>
-<path d="M18 50 Q20 28 52 22 Q90 16 132 22 Q156 28 160 50 Q156 72 132 78 Q90 84 52 78 Q20 72 18 50Z" fill="#3a8a30"></path>
-<path d="M22 36 Q52 20 132 24 Q154 30 160 42 Q154 28 132 22 Q90 16 52 22 Q28 26 22 36Z" fill="#1a4010"></path>
-<path d="M22 40 Q52 28 132 30 Q154 36 160 44 Q154 30 132 24 Q90 18 52 22 Q30 30 22 40Z" fill="#fff" opacity=".25"></path>
-<path d="M22 64 Q52 78 132 72 Q154 66 160 58 Q156 70 132 78 Q90 84 52 78 Q24 72 22 64Z" fill="#ffe080" opacity=".7"></path>
-<path d="M28 44 Q60 36 130 40" stroke="#1a4010" stroke-width="1.5" fill="none" opacity=".5"></path>
-<circle cx="40" cy="36" r="3" fill="#222" opacity=".6"></circle>
-<circle cx="40" cy="36" r="1.5" fill="#cc4400"></circle>
-<rect x="155" y="43" width="7" height="14" rx="2" fill="#777"></rect>
-<ellipse cx="162" cy="44" rx="12" ry="5" fill="#b0b0b0" transform="rotate(-25 162 44)"></ellipse>
-<ellipse cx="162" cy="56" rx="12" ry="5" fill="#909090" transform="rotate(25 162 56)"></ellipse>
-<circle cx="162" cy="50" r="4" fill="#606060"></circle>
-<path d="M78 78 Q81 90 75 95" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M78 78 Q83 92 89 93" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M128 74 Q131 86 125 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M128 74 Q133 88 139 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<circle cx="35" cy="42" r="6" fill="#fff"></circle>
-<circle cx="36" cy="42" r="4" fill="#ee6600"></circle>
-<circle cx="37" cy="42" r="2.5" fill="#111"></circle>
-<circle cx="38" cy="41" r="1" fill="#fff"></circle>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Hard Body Swimbait</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Jointed hard body · bluegill/perch colors · prop tail</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Swimbait (Hard Body)</div>
-        <div class="lure-cat">Hard Bait</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(25)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="90" fill="#0a1a2a"></rect>
-<path d="M16 45 Q18 28 52 22 Q100 16 158 22 Q178 28 180 45 Q178 62 158 68 Q100 74 52 68 Q18 62 16 45Z" fill="#d8d8e8"></path>
-<path d="M20 32 Q52 20 158 24 Q176 30 180 40 Q176 28 158 22 Q100 16 52 22 Q26 26 20 32Z" fill="#fff" opacity=".5"></path>
-<path d="M20 58 Q52 70 158 66 Q176 60 180 52 Q176 64 158 68 Q100 74 52 68 Q22 62 20 58Z" fill="#fff" opacity=".9"></path>
-<path d="M180 45 Q190 34 194 28 Q194 36 192 45 Q194 54 194 62 Q190 56 180 45Z" fill="#b8b8c8"></path>
-<path d="M180 45 Q188 37 191 33 Q191 38 190 45 Q191 52 191 57 Q188 52 180 45Z" fill="#d8d8e8" opacity=".7"></path>
-<path d="M48 32 Q60 28 72 32" stroke="#9898b8" stroke-width="0.8" fill="none" opacity=".5"></path>
-<path d="M88 30 Q100 26 112 30" stroke="#9898b8" stroke-width="0.8" fill="none" opacity=".5"></path>
-<path d="M128 32 Q140 28 152 32" stroke="#9898b8" stroke-width="0.8" fill="none" opacity=".5"></path>
-<circle cx="32" cy="40" r="6" fill="#fff"></circle>
-<circle cx="33" cy="40" r="4" fill="#cc4400"></circle>
-<circle cx="34" cy="40" r="2.5" fill="#111"></circle>
-<circle cx="35" cy="39" r="1" fill="#fff"></circle>
-<path d="M95 68 Q98 78 92 83" stroke="#b0b0b0" stroke-width="2.2" fill="none"></path>
-<path d="M95 68 Q100 80 106 81" stroke="#b0b0b0" stroke-width="2.2" fill="none"></path>
-<text x="8" y="80" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Fluke — Soft Jerkbait</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Soft shad body · dart on jerk · weightless rigged</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Fluke (Soft Jerkbait)</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(26)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#121208"></rect>
-<path d="M70 55 Q72 40 90 36 Q108 32 120 38 Q130 44 128 58 Q126 70 110 74 Q92 78 80 70 Q68 64 70 55Z" fill="#2a4a18"></path>
-<path d="M74 43 Q90 35 118 40 Q128 46 128 54 Q126 42 120 38 Q108 32 90 36 Q76 40 74 43Z" fill="#3a6a25" opacity=".5"></path>
-<path d="M128 52 Q140 46 146 52 Q150 58 144 66 Q137 70 128 64 Q124 60 128 52Z" fill="#2a4a18"></path>
-<path d="M58 50 Q50 42 46 50 Q46 60 55 62 Q64 62 70 56" fill="#2a4a18"></path>
-<path d="M70 64 Q58 72 52 82 Q46 90 50 96 Q56 90 62 82 Q68 74 74 68" fill="#243d15"></path>
-<path d="M122 68 Q130 76 134 86 Q138 94 134 98 Q128 92 124 82 Q120 74 118 68" fill="#243d15"></path>
-<path d="M86 74 Q82 86 78 98 Q84 94 88 84 Q92 94 96 98 Q94 86 92 74" fill="#243d15"></path>
-<path d="M108 74 Q106 86 104 98 Q108 94 110 84 Q114 94 116 98 Q114 86 112 74" fill="#243d15"></path>
-<path d="M82 38 Q80 28 78 18 Q82 24 86 34" fill="#3a6a25" opacity=".6"></path>
-<path d="M118 40 Q120 30 122 20 Q118 26 114 36" fill="#3a6a25" opacity=".6"></path>
-<circle cx="88" cy="44" r="3" fill="#80c040" opacity=".5"></circle>
-<circle cx="114" cy="44" r="3" fill="#80c040" opacity=".5"></circle>
-<path d="M114 54 Q120 58 118 64" stroke="#3a6a25" stroke-width="1.2" fill="none"></path>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Creature Bait</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#5a8a3a">Multi-appendage · crawfish imitator · Texas rig or jig trailer</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Creature Bait</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(27)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1020"></rect>
-<path d="M36 50 Q38 28 70 22 Q114 16 152 24 Q170 30 172 50 Q170 70 152 76 Q114 84 70 78 Q38 72 36 50Z" fill="#cc2020"></path>
-<path d="M40 36 Q70 22 152 26 Q170 32 172 42 Q170 28 152 24 Q114 18 70 22 Q46 26 40 36Z" fill="#fff" opacity=".45"></path>
-<path d="M40 64 Q70 78 152 72 Q170 66 172 58 Q170 70 152 76 Q114 84 70 78 Q42 72 40 64Z" fill="#fff" opacity=".9"></path>
-<path d="M32 42 L38 50 L32 58Z" fill="#aa1818"></path>
-<circle cx="32" cy="50" r="3" fill="#b0b0b0"></circle>
-<path d="M78 78 Q81 90 75 95" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M78 78 Q83 92 89 93" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M140 74 Q143 86 137 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M140 74 Q145 88 151 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<circle cx="56" cy="36" r="7" fill="#fff"></circle>
-<circle cx="57" cy="36" r="5" fill="#111"></circle>
-<circle cx="57" cy="36" r="2.5" fill="#ffcc00"></circle>
-<circle cx="58" cy="35" r="1" fill="#fff"></circle>
-<path d="M78 42 Q108 38 144 42" stroke="#ff6666" stroke-width="1.5" fill="none" opacity=".4"></path>
-<text x="8" y="10" font-family="DM Sans,sans-serif" font-size="9" fill="#7ac0ff" opacity=".7">No bill — sinks on its own</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Lipless Crankbait (RatL-Trap)</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">No lip · tight wobble · rattle · sinking bait</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Lipless Crankbait</div>
-        <div class="lure-cat">Hard Bait</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Fall</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(28)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#121008"></rect>
-<path d="M46 58 Q44 40 58 34 Q74 28 90 32 Q104 36 104 52 Q104 68 90 74 Q74 80 58 74 Q44 70 46 58Z" fill="#1a4a20"></path>
-<ellipse cx="70" cy="34" rx="22" ry="10" fill="#2a6a30"></ellipse>
-<ellipse cx="70" cy="34" rx="16" ry="7" fill="#3a8040"></ellipse>
-<circle cx="58" cy="28" r="3.5" fill="#b0b0b0"></circle>
-<circle cx="58" cy="28" r="2" fill="#888"></circle>
-<line x1="90" y1="34" x2="148" y2="18" stroke="#b0b0b0" stroke-width="2.5"></line>
-<path d="M148 18 Q163 16 163 32 Q163 48 150 50" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M150 50 L146 45" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<path d="M104 55 Q118 52 132 58 Q140 62 138 70 Q136 78 128 76 Q118 74 112 66 Q106 62 104 55Z" fill="#c8c8c8"></path>
-<path d="M138 68 Q144 64 148 70 Q148 76 142 76" fill="#c8c8c8"></path>
-<path d="M58 72 Q52 90 48 106" stroke="#1a6a20" stroke-width="1.8" fill="none"></path>
-<path d="M64 76 Q60 94 58 110" stroke="#0a5010" stroke-width="1.8" fill="none"></path>
-<path d="M70 78 Q68 96 68 112" stroke="#2a7a30" stroke-width="1.8" fill="none"></path>
-<path d="M76 76 Q76 94 78 110" stroke="#1a6a20" stroke-width="1.8" fill="none"></path>
-<path d="M82 74 Q84 92 86 108" stroke="#0a5010" stroke-width="1.8" fill="none"></path>
-<path d="M88 72 Q92 90 94 106" stroke="#2a7a30" stroke-width="1.8" fill="none"></path>
-<text x="8" y="120" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Swim Jig</text>
-<text x="8" y="130" font-family="DM Sans,sans-serif" font-size="9" fill="#4a7a3a">Swim-cut head · swimbait trailer · grass swimmer</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Swim Jig</div>
-        <div class="lure-cat">Jig</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(29)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="90" fill="#0a1020"></rect>
-<path d="M18 45 Q20 33 42 29 Q92 23 160 29 Q180 33 182 45 Q180 57 160 61 Q92 67 42 61 Q20 57 18 45Z" fill="#2a1a3a"></path>
-<line x1="30" y1="29" x2="30" y2="61" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="55" y1="28" x2="55" y2="62" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="80" y1="27" x2="80" y2="63" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="105" y1="27" x2="105" y2="63" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="130" y1="27" x2="130" y2="63" stroke="#3a2a4a" stroke-width="1.2"></line>
-<line x1="155" y1="28" x2="155" y2="62" stroke="#3a2a4a" stroke-width="1.2"></line>
-<ellipse cx="28" cy="45" rx="10" ry="14" fill="#606060"></ellipse>
-<ellipse cx="28" cy="45" rx="7" ry="10" fill="#888"></ellipse>
-<line x1="24" y1="34" x2="32" y2="34" stroke="#444" stroke-width="2"></line>
-<path d="M100 27 Q100 15 100 8" stroke="#c0c0c0" stroke-width="1.5" fill="none"></path>
-<path d="M100 8 Q116 4 120 16 Q122 26 114 30" stroke="#c0c0c0" stroke-width="2.2" fill="none"></path>
-<path d="M114 30 L110 26" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<ellipse cx="100" cy="45" rx="5" ry="14" fill="none" stroke="#888" stroke-width="1.5" opacity=".5"></ellipse>
-<text x="8" y="80" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Neko Rig</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="9" fill="#4a6aaa">Nail weight in nose · hook through middle · head-down fall</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Neko Rig</div>
-        <div class="lure-cat">Finesse</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(30)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1020"></rect>
-<path d="M26 50 Q28 30 56 24 Q100 18 148 24 Q168 30 170 50 Q168 70 148 76 Q100 82 56 76 Q28 70 26 50Z" fill="#c8c840"></path>
-<path d="M30 36 Q56 22 148 26 Q168 32 170 42 Q168 28 148 24 Q100 18 56 24 Q34 28 30 36Z" fill="#1a1a00" opacity=".7"></path>
-<path d="M30 40 Q56 28 148 30 Q168 36 170 44 Q168 30 148 26 Q100 20 56 24 Q36 30 30 40Z" fill="#fff" opacity=".3"></path>
-<path d="M30 64 Q56 78 148 72 Q168 66 170 58 Q168 70 148 76 Q100 82 56 76 Q32 70 30 64Z" fill="#fff" opacity=".9"></path>
-<path d="M170 50 Q178 40 182 35 Q184 43 182 50 Q184 57 182 65 Q178 60 170 50Z" fill="#a0a030"></path>
-<circle cx="170" cy="50" r="3.5" fill="#888"></circle>
-<circle cx="26" cy="50" r="3.5" fill="#b0b0b0"></circle>
-<path d="M82 76 Q85 88 79 93" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M82 76 Q87 90 93 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M132 74 Q135 86 129 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M132 74 Q137 88 143 89" stroke="#aaa" stroke-width="2" fill="none"></path>
-<circle cx="44" cy="40" r="7" fill="#fff"></circle>
-<circle cx="45" cy="40" r="5" fill="#111"></circle>
-<circle cx="45" cy="40" r="2.5" fill="#ffdd00"></circle>
-<circle cx="46" cy="39" r="1" fill="#fff"></circle>
-<path d="M18 38 Q22 44 18 52" stroke="#4a9aba" stroke-width="1.5" fill="none" stroke-dasharray="3,2" opacity=".4"></path>
-<path d="M184 38 Q188 44 184 52" stroke="#4a9aba" stroke-width="1.5" fill="none" stroke-dasharray="3,2" opacity=".4"></path>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Topwater Walker (Zara Spook)</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Pencil body · walk-the-dog · two trebles</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Topwater Walker</div>
-        <div class="lure-cat">Topwater</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(31)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="100" fill="#0a1020"></rect>
-<line x1="14" y1="50" x2="170" y2="50" stroke="#c0c0c0" stroke-width="2"></line>
-<path d="M10 50 Q8 44 14 44 Q20 44 18 50" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<circle cx="62" cy="50" r="5" fill="#e84040"></circle>
-<circle cx="76" cy="50" r="5" fill="#e84040"></circle>
-<circle cx="90" cy="50" r="5" fill="#e84040"></circle>
-<path d="M96 44 Q102 40 120 42 Q132 44 133 50 Q132 56 120 58 Q102 60 96 56 Q92 53 96 44Z" fill="#b0b0b0"></path>
-<path d="M98 46 Q118 42 132 48 Q118 44 98 47" fill="#d0d0d0" opacity=".6"></path>
-<path d="M133 50 Q145 46 148 56 Q145 66 133 64" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M133 64 L129 59" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<ellipse cx="42" cy="58" rx="24" ry="10" fill="#d4af37" transform="rotate(-20 42 58)"></ellipse>
-<ellipse cx="42" cy="58" rx="18" ry="7" fill="#f0c840" opacity=".7" transform="rotate(-20 42 58)"></ellipse>
-<circle cx="60" cy="53" r="5" fill="#888"></circle>
-<rect x="58" y="50" width="8" height="6" rx="2" fill="#777"></rect>
-<path d="M152 50 Q162 46 166 52 Q166 58 160 62 Q154 66 152 60" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<text x="8" y="88" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Underspin</text>
-<text x="8" y="98" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Blade below jig head · spinning blade flash · slow roll</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Underspin</div>
-        <div class="lure-cat">Finesse</div>
-        <div class="lure-tags"><span class="stag">Winter</span><span class="stag">Spring</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(32)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="80" fill="#0a1020"></rect>
-<path d="M16 40 Q18 29 42 25 Q100 19 170 25 Q184 29 186 40 Q184 51 170 55 Q100 61 42 55 Q18 51 16 40Z" fill="#1a1a30"></path>
-<line x1="38" y1="25" x2="38" y2="55" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="63" y1="24" x2="63" y2="56" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="88" y1="24" x2="88" y2="56" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="113" y1="24" x2="113" y2="56" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="138" y1="24" x2="138" y2="56" stroke="#2a2a48" stroke-width="1.2"></line>
-<line x1="163" y1="25" x2="163" y2="55" stroke="#2a2a48" stroke-width="1.2"></line>
-<circle cx="75" cy="31" r="1.5" fill="#6060a0" opacity=".6"></circle>
-<circle cx="115" cy="33" r="1.5" fill="#6060a0" opacity=".6"></circle>
-<path d="M78 24 Q78 14 78 8" stroke="#b0b0b0" stroke-width="1.4" fill="none"></path>
-<path d="M78 8 Q94 4 98 16 Q100 26 92 30" stroke="#b0b0b0" stroke-width="2.2" fill="none"></path>
-<path d="M92 30 L88 26" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<path d="M16 40 Q12 44 10 50" stroke="#1a1a30" stroke-width="7" stroke-linecap="round" fill="none"></path>
-<path d="M186 40 Q190 44 192 50" stroke="#1a1a30" stroke-width="7" stroke-linecap="round" fill="none"></path>
-<text x="8" y="70" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Stick Worm — Weightless</text>
-<text x="8" y="80" font-family="DM Sans,sans-serif" font-size="9" fill="#4a6aaa">Nose hook only · falls on slack line · spiraling drop</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Stick Worm (Weightless)</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(33)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 115" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="115" fill="#0a1020"></rect>
-<line x1="16" y1="22" x2="100" y2="22" stroke="#c8c8c8" stroke-width="1.2"></line>
-<circle cx="100" cy="22" r="8" fill="#888"></circle>
-<circle cx="100" cy="22" r="6" fill="#aaa"></circle>
-<line x1="96" y1="22" x2="104" y2="22" stroke="#555" stroke-width="2"></line>
-<line x1="100" y1="30" x2="100" y2="72" stroke="#c8c8c8" stroke-width="1.2"></line>
-<path d="M100 72 Q100 62 104 54 Q108 46 108 38 Q108 46 112 54 Q116 62 116 72 Q108 78 100 72Z" fill="#cc3333"></path>
-<line x1="100" y1="32" x2="100" y2="26" stroke="#b0b0b0" stroke-width="1.4" fill="none"></line>
-<path d="M100 26 Q116 22 120 34 Q122 44 114 48" stroke="#b0b0b0" stroke-width="2.2" fill="none"></path>
-<path d="M114 48 L110 44" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<text x="108" y="20" font-family="DM Sans,sans-serif" font-size="9" fill="#d0d0d0">split shot</text>
-<text x="120" y="58" font-family="DM Sans,sans-serif" font-size="9" fill="#9fecc8">finesse</text>
-<text x="120" y="68" font-family="DM Sans,sans-serif" font-size="9" fill="#9fecc8">worm</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Split Shot Rig</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#4a6aaa">Pinch weight 12-18in above hook · ultra-clear water</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Split Shot Rig</div>
-        <div class="lure-cat">Finesse</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(34)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="90" fill="#121008"></rect>
-<path d="M14 45 Q14 28 38 24 Q80 18 142 24 Q170 30 174 45 Q170 60 142 66 Q80 72 38 66 Q14 62 14 45Z" fill="#8a1818"></path>
-<path d="M18 32 Q38 20 142 26 Q168 32 174 40 Q168 26 142 24 Q80 18 38 24 Q22 28 18 32Z" fill="#cc3333" opacity=".25"></path>
-<line x1="34" y1="24" x2="34" y2="66" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="50" y1="23" x2="50" y2="67" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="66" y1="22" x2="66" y2="68" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="82" y1="22" x2="82" y2="68" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="98" y1="21" x2="98" y2="69" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="114" y1="22" x2="114" y2="68" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="130" y1="22" x2="130" y2="68" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="146" y1="23" x2="146" y2="67" stroke="#aa2020" stroke-width="2.2"></line>
-<line x1="160" y1="24" x2="160" y2="66" stroke="#aa2020" stroke-width="2.2"></line>
-<path d="M174 45 Q180 37 184 33 Q184 39 182 45 Q184 51 184 57 Q180 53 174 45Z" fill="#8a1818"></path>
-<path d="M78 22 Q78 12 78 5" stroke="#c0c0c0" stroke-width="1.5" fill="none"></path>
-<path d="M78 5 Q94 1 98 13 Q100 23 92 27" stroke="#c0c0c0" stroke-width="2.2" fill="none"></path>
-<path d="M92 27 L88 23" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<text x="8" y="80" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Ribbed Worm (10–12 inch)</text>
-<text x="8" y="90" font-family="DM Sans,sans-serif" font-size="9" fill="#7a4a3a">Deep ribs · large profile · big bass trigger in any depth</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Ribbed Worm</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(35)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 105" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="105" fill="#0a1020"></rect>
-<path d="M36 50 Q38 28 60 22 Q78 18 94 22 Q110 26 110 50 Q110 74 94 78 Q78 82 60 78 Q38 72 36 50Z" fill="#3a6a9a"></path>
-<path d="M40 34 Q60 20 94 24 Q108 28 110 40 Q108 26 94 22 Q78 18 60 22 Q46 26 40 34Z" fill="#fff" opacity=".25"></path>
-<ellipse cx="73" cy="22" rx="22" ry="8" fill="#2a5a8a"></ellipse>
-<ellipse cx="73" cy="22" rx="16" ry="5" fill="#3a6a9a" opacity=".7"></ellipse>
-<ellipse cx="73" cy="78" rx="22" ry="8" fill="#1a4a7a"></ellipse>
-<path d="M51 78 Q47 87 43 92 Q51 89 55 83" stroke="#3a6a9a" stroke-width="2.2" fill="none"></path>
-<path d="M59 80 Q57 89 55 95 Q61 91 63 85" stroke="#2a5a8a" stroke-width="2.2" fill="none"></path>
-<path d="M67 81 Q67 91 67 97 Q73 93 73 87" stroke="#3a6a9a" stroke-width="2.2" fill="none"></path>
-<path d="M79 81 Q81 91 81 97 Q75 93 75 87" stroke="#2a5a8a" stroke-width="2.2" fill="none"></path>
-<path d="M87 80 Q90 89 92 93 Q88 91 86 85" stroke="#3a6a9a" stroke-width="2.2" fill="none"></path>
-<path d="M95 78 Q99 87 103 89 Q99 89 95 85" stroke="#2a5a8a" stroke-width="2.2" fill="none"></path>
-<path d="M60 30 Q58 20 58 13" stroke="#c0c0c0" stroke-width="1.4" fill="none"></path>
-<path d="M58 13 Q74 9 78 21 Q80 31 72 35" stroke="#c0c0c0" stroke-width="2.2" fill="none"></path>
-<path d="M72 35 L68 31" stroke="#c0c0c0" stroke-width="2" fill="none"></path>
-<text x="8" y="92" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Tube Bait</text>
-<text x="8" y="102" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Hollow cylinder · curly tentacles · crawfish / goby imitation</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Tube Bait</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Fall</span><span class="stag">Winter</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(36)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="130" fill="#121008"></rect>
-<path d="M46 62 Q44 42 60 36 Q78 30 92 34 Q106 38 106 54 Q106 70 92 76 Q76 82 60 76 Q44 72 46 62Z" fill="#2a5a30"></path>
-<ellipse cx="72" cy="36" rx="22" ry="10" fill="#3a7a40"></ellipse>
-<ellipse cx="72" cy="36" rx="15" ry="6.5" fill="#4a8a50"></ellipse>
-<circle cx="60" cy="30" r="4" fill="#c0c0c0"></circle>
-<circle cx="60" cy="30" r="2.5" fill="#888"></circle>
-<line x1="58" y1="30" x2="58" y2="22" stroke="#b0b0b0" stroke-width="1.5"></line>
-<line x1="54" y1="22" x2="62" y2="22" stroke="#b0b0b0" stroke-width="1.5"></line>
-<line x1="92" y1="36" x2="150" y2="22" stroke="#b0b0b0" stroke-width="2.5"></line>
-<path d="M150 22 Q164 20 164 36 Q164 52 152 54" stroke="#b0b0b0" stroke-width="2.5" fill="none"></path>
-<path d="M152 54 L148 49" stroke="#b0b0b0" stroke-width="2" fill="none"></path>
-<path d="M57 74 Q51 92 47 108" stroke="#1a5a20" stroke-width="1.8" fill="none"></path>
-<path d="M63 78 Q59 96 57 112" stroke="#0a4a10" stroke-width="1.8" fill="none"></path>
-<path d="M69 80 Q67 98 67 114" stroke="#2a6a30" stroke-width="1.8" fill="none"></path>
-<path d="M75 80 Q75 98 77 112" stroke="#1a5a20" stroke-width="1.8" fill="none"></path>
-<path d="M81 78 Q83 96 85 110" stroke="#0a4a10" stroke-width="1.8" fill="none"></path>
-<path d="M87 76 Q91 94 93 108" stroke="#2a6a30" stroke-width="1.8" fill="none"></path>
-<text x="8" y="120" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Arky / Round Head Jig</text>
-<text x="8" y="130" font-family="DM Sans,sans-serif" font-size="9" fill="#4a7a3a">Versatile head · swim, hop, drag or skip · any structure</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Jig (Arky/Round Head)</div>
-        <div class="lure-cat">Jig</div>
-        <div class="lure-tags"><span class="stag">Spring</span><span class="stag">Summer</span><span class="stag">Fall</span></div>
-      </div>
-    </div><div class="lure-card" onclick="openDetail(37)">
-      
-      <div class="lure-photo-box"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="110" fill="#121008"></rect>
-<path d="M68 55 Q70 44 86 40 Q104 36 116 42 Q126 48 124 60 Q122 72 108 76 Q90 80 78 72 Q66 66 68 55Z" fill="#3a2a10"></path>
-<path d="M72 44 Q86 38 114 44 Q124 50 124 56 Q122 46 116 42 Q104 36 86 40 Q74 44 72 44Z" fill="#5a4a20" opacity=".4"></path>
-<path d="M124 56 Q132 50 138 56 Q142 62 136 68 Q130 72 124 66 Q120 62 124 56Z" fill="#3a2a10"></path>
-<path d="M58 52 Q50 44 46 52 Q46 62 55 64 Q64 64 68 58" fill="#3a2a10"></path>
-<path d="M80 74 Q74 84 68 94 Q74 90 78 82 Q82 90 86 96 Q86 84 84 74" fill="#2a1a08"></path>
-<path d="M102 76 Q98 86 94 96 Q98 92 100 84 Q104 92 106 98 Q106 86 104 76" fill="#2a1a08"></path>
-<path d="M116 72 Q120 82 124 90 Q120 90 118 82 Q114 90 112 96 Q110 86 112 76" fill="#2a1a08"></path>
-<path d="M82 42 Q80 32 78 22 Q82 28 86 38" fill="#4a3a18" opacity=".6"></path>
-<path d="M114 44 Q116 34 118 24 Q114 30 110 40" fill="#4a3a18" opacity=".6"></path>
-<circle cx="86" cy="46" r="3" fill="#90c040" opacity=".4"></circle>
-<circle cx="112" cy="46" r="3" fill="#90c040" opacity=".4"></circle>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Punch Craw / Beaver Bait</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#7a6a3a">Compact crawfish shape · punches mats · jig trailer</text>
-</svg></div>
-      <div class="lure-body">
-        <div class="lure-name">Punch Craw</div>
-        <div class="lure-cat">Soft Plastic</div>
-        <div class="lure-tags"><span class="stag">Summer</span></div>
-      </div>
-    </div></div>
+  <div class="lure-grid" id="lure-grid"></div>
 
   <!-- DETAIL VIEW (inside library page) -->
-  <div id="detail-view" style="display: block; padding-bottom: calc(var(--nav) + 4rem);">
+  <div id="detail-view" style="display:none;padding-bottom:calc(var(--nav) + 4rem)">
     <div class="detail-back" onclick="closeDetail()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
       Back to Library
     </div>
-    <div class="detail-hero" id="d-hero"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="110" fill="#0a1a30"></rect>
-<!-- elongated body -->
-<path d="M50 50 Q52 30 82 24 Q118 18 152 26 Q168 32 170 50 Q168 68 152 74 Q118 82 82 76 Q52 70 50 50Z" fill="#4a90d0"></path>
-<!-- silver flash sides -->
-<path d="M54 38 Q82 26 152 30 Q168 36 170 46 Q168 32 152 26 Q118 20 82 24 Q58 28 54 38Z" fill="#e0f0ff" opacity=".8"></path>
-<!-- belly -->
-<path d="M54 62 Q82 76 152 70 Q168 64 170 56 Q168 68 152 74 Q118 82 82 76 Q56 70 54 62Z" fill="#fff" opacity=".95"></path>
-<!-- LONG diving lip - the key difference from shallow -->
-<path d="M40 52 L18 82 Q16 86 20 88 Q24 88 26 84 L50 54Z" fill="#d8d8d8"></path>
-<path d="M42 53 L22 80 Q21 83 23 84 L50 56Z" fill="#eeeeee" opacity=".7"></path>
-<!-- line tie at lip -->
-<circle cx="19" cy="86" r="3" fill="#aaa"></circle>
-<!-- front treble -->
-<path d="M95 76 Q98 88 92 94" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M95 76 Q100 90 106 91" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- rear treble -->
-<path d="M148 72 Q151 84 145 90" stroke="#aaa" stroke-width="2" fill="none"></path>
-<path d="M148 72 Q153 86 159 87" stroke="#aaa" stroke-width="2" fill="none"></path>
-<!-- eye -->
-<circle cx="68" cy="40" r="7" fill="#fff"></circle>
-<circle cx="69" cy="40" r="5" fill="#ee3300"></circle>
-<circle cx="70" cy="40" r="3" fill="#1a1a1a"></circle>
-<circle cx="71" cy="39" r="1" fill="#fff"></circle>
-<!-- depth rating badge -->
-<rect x="155" y="8" width="40" height="16" rx="4" fill="#1a3a5a"></rect>
-<text x="162" y="20" font-family="DM Sans,sans-serif" font-size="10" fill="#7ac0ff">10–25 ft</text>
-<text x="8" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Deep Diver Crankbait</text>
-<text x="8" y="110" font-family="DM Sans,sans-serif" font-size="9" fill="#4a8aaa">Long lip · 10–25 ft · ledge fishing</text>
-</svg></div>
+    <div class="detail-hero" id="d-hero"></div>
     <div class="dc">
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div><div class="d-title BB" id="d-name">Deep Diver Crankbait</div><div class="d-sub" id="d-cat">Hard Bait · Summer, Winter</div></div>
+        <div><div class="d-title BB" id="d-name"></div><div class="d-sub" id="d-cat"></div></div>
         <button class="ebtn" onclick="openEditModal()" style="margin-top:4px">Edit</button>
       </div>
       <div class="shdr">Technique Video</div>
-      <div id="vid-player-wrap" class="vid-player-wrap"><div class="vid-iframe-wrap"><iframe src="./HookLine Pro WORKING_files/adURFF2reE8.html" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+      <div id="vid-player-wrap" class="vid-player-wrap"></div>
       <input class="url-field" id="d-vid-url" type="text" placeholder="Paste YouTube URL..." onchange="saveVidUrl()">
       <div class="shdr">When to Use</div>
-      <div class="cond-grid" id="d-cond"><div class="cbox"><div class="cbox-lbl">Best Season</div><div class="cbox-val">Summer, Winter</div></div><div class="cbox"><div class="cbox-lbl">Weather</div><div class="cbox-val">Post-frontal</div></div><div class="cbox"><div class="cbox-lbl">Water Clarity</div><div class="cbox-val">Clear</div></div><div class="cbox"><div class="cbox-lbl">Best Depth</div><div class="cbox-val">10–25 ft</div></div><div class="cbox"><div class="cbox-lbl">Best Time</div><div class="cbox-val">Summer midday, winter suspended fish</div></div></div>
-      <div class="shdr">Best Location &amp; Environment</div>
-      <div class="hab-wrap"><svg class="hab-svg" id="d-hab" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="200" fill="#a0c0d8"></rect><rect y="65" width="480" height="135" fill="#0a2535"></rect><rect y="65" width="480" height="28" fill="#0a3a5a" opacity=".6"></rect><rect y="125" width="480" height="30" fill="#081e2c" opacity=".5"></rect><path d="M0 200 L0 155 Q100 128 200 140 Q290 150 480 118 L480 200Z" fill="#0a1e2e"></path><line x1="420" y1="70" x2="420" y2="195" stroke="#fff" stroke-width="1" opacity=".15"></line><text x="426" y="93" font-family="DM Sans,sans-serif" font-size="10" fill="#fff" opacity=".4">10ft</text><text x="426" y="138" font-family="DM Sans,sans-serif" font-size="10" fill="#fff" opacity=".4">20ft</text><text x="426" y="180" font-family="DM Sans,sans-serif" font-size="10" fill="#fff" opacity=".4">30ft</text><ellipse cx="210" cy="158" rx="14" ry="5" fill="#1a4060" opacity=".8"></ellipse><ellipse cx="240" cy="161" rx="12" ry="5" fill="#1a4060" opacity=".7"></ellipse><ellipse cx="210" cy="150" rx="8" ry="4" fill="#c87a2a" opacity=".9"></ellipse><line x1="210" y1="20" x2="210" y2="146" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3"></line><rect x="10" y="10" width="210" height="26" rx="6" fill="rgba(0,0,0,.45)"></rect><text x="18" y="27" font-family="DM Sans,sans-serif" font-size="13" fill="#fff" font-weight="500">Deep Structure / Channel Edge</text></svg></div>
-      <div class="hab-desc" id="d-hab-desc">Creek channel swings, ledges, offshore humps. Mark fish on electronics then position boat for long cast that puts bait on structure.</div>
-      <div class="shdr">Rod, Reel &amp; Line</div>
-      <div class="gear-card" id="d-gear">
-    <div class="gear-row"><span style="font-size:16px;flex-shrink:0">🎣</span><span><strong>Rod:</strong> 7'6in Medium Heavy, Moderate</span></div>
-    <div class="gear-row"><span style="font-size:16px;flex-shrink:0">⚙️</span><span><strong>Reel:</strong> 5.4:1 baitcaster</span></div>
-    <div class="gear-row"><span style="font-size:16px;flex-shrink:0">🧵</span><span><strong>Line:</strong> 12lb fluorocarbon</span></div></div>
+      <div class="cond-grid" id="d-cond"></div>
+      <div class="shdr">Best Location & Environment</div>
+      <div class="hab-wrap"><svg class="hab-svg" id="d-hab" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg"></svg></div>
+      <div class="hab-desc" id="d-hab-desc"></div>
+      <div class="shdr">Rod, Reel & Line</div>
+      <div class="gear-card" id="d-gear"></div>
       <div class="shdr">Retrieve Technique</div>
-      <div class="ov-box"><div class="ov-lbl">Overview</div><div class="ov-txt" id="d-ov">Max cast distance is critical — the bait only hits rated depth at full line. Point rod tip at the water on retrieve. Hit bottom and keep cranking, deflect off structure then pause. Slow gear ratio keeps constant pressure on fish.</div></div>
+      <div class="ov-box"><div class="ov-lbl">Overview</div><div class="ov-txt" id="d-ov"></div></div>
       <div class="tips-label">Tips</div>
-      <div id="d-tips"><div class="tip-list"><div class="tip-item"><div class="tip-dot"></div><span>Full cast length is mandatory for depth</span></div><div class="tip-item"><div class="tip-dot"></div><span>Point rod tip down at water during retrieve</span></div><div class="tip-item"><div class="tip-dot"></div><span>Follow ledge schools with electronics in summer</span></div><div class="tip-item"><div class="tip-dot"></div><span>Slower in cold water, burn it in summer</span></div><div class="tip-item"><div class="tip-dot"></div><span>Upsize treble hooks if losing fish at the boat</span></div></div></div>
+      <div id="d-tips"></div>
     </div>
   </div>
 </div>
@@ -2359,7 +526,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
     <label>Category</label><input id="an-cat" placeholder="e.g. Finesse">
     <label>Emoji</label><input id="an-emoji" placeholder="e.g. 🍄">
     <label>Video URL</label><input id="an-vid" placeholder="YouTube or video file URL">
-    <label>Rod</label><input id="an-rod" placeholder="e.g. 7&#39; Medium Fast">
+    <label>Rod</label><input id="an-rod" placeholder="e.g. 7' Medium Fast">
     <label>Reel</label><input id="an-reel" placeholder="e.g. 2500 spinning">
     <label>Line</label><input id="an-line" placeholder="e.g. 8lb fluorocarbon">
     <label>Retrieve Overview</label><textarea id="an-ov" placeholder="General technique summary..."></textarea>
@@ -2400,7 +567,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
   <div class="active-loc-banner" id="active-loc-banner">
     <span id="active-loc-text">Using pinned location</span>
     <span class="loc-src-tag loc-src-pin" id="active-loc-tag">PIN</span>
-    <button onclick="clearPinLocation()" style="margin-left:auto;font-size:11px;border:none;background:none;color:var(--danger);cursor:pointer;font-family:&#39;DM Sans&#39;,sans-serif;padding:2px 6px">✕ Clear</button>
+    <button onclick="clearPinLocation()" style="margin-left:auto;font-size:11px;border:none;background:none;color:var(--danger);cursor:pointer;font-family:'DM Sans',sans-serif;padding:2px 6px">✕ Clear</button>
   </div>
 
   <!-- Leaflet map renders here -->
@@ -2409,7 +576,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
   <!-- Public Land / Access overlay controls -->
   <div class="land-bar" id="land-bar">
     <button class="land-toggle" id="land-toggle-btn" onclick="toggleLandOverlay()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       Show Public Land
     </button>
     <div class="land-legend" id="land-legend">
@@ -2430,12 +597,14 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 
   <div class="map-spots-panel">
     <div class="map-spots-title">Saved Spots</div>
-    <div id="spots-list"><div style="text-align:center;padding:1.5rem;color:var(--mu);font-size:13px">No spots saved yet.<br>Hold the map on a body of water to drop a pin.</div></div>
+    <div id="spots-list">
+      <div style="text-align:center;padding:1.5rem;color:var(--mu);font-size:13px">No spots saved yet.<br>Hold the map on a body of water to drop a pin.</div>
+    </div>
     <div class="map-zip-section">
       <div class="map-zip-label">Or jump to a city / ZIP code:</div>
       <div class="map-zip-row">
         <input id="wx-zip-input" class="url-field" style="margin:0;flex:1" type="text" placeholder="City name or ZIP code...">
-        <button onclick="loadByZip()" style="padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:&#39;DM Sans&#39;,sans-serif;font-size:13px;cursor:pointer;white-space:nowrap">Go</button>
+        <button onclick="loadByZip()" style="padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap">Go</button>
       </div>
     </div>
   </div>
@@ -2456,22 +625,22 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
     <div class="bible-toc">
       <div class="bible-toc-label">Jump to topic</div>
       <div class="bible-toc-grid">
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-temp&#39;)">Water Temp</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-thermo&#39;)">Thermocline</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-pressure&#39;)">Pressure</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-wind&#39;)">Wind</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-light&#39;)">Light &amp; Sky</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-clarity&#39;)">Water Clarity</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-oxygen&#39;)">Oxygen</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-season&#39;)">Seasons</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-moon&#39;)">Moon Phases</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-retrieve&#39;)">Presentation</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-structure&#39;)">Structure</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-forage&#39;)">Forage</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-luresize&#39;)">Lure Size Science</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-pressure2&#39;)">Fishing Pressure</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-current&#39;)">Current</button>
-        <button class="bible-toc-btn" onclick="bibleJump(&#39;bt-senses&#39;)">Fish Senses</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-temp')">Water Temp</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-thermo')">Thermocline</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-pressure')">Pressure</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-wind')">Wind</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-light')">Light & Sky</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-clarity')">Water Clarity</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-oxygen')">Oxygen</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-season')">Seasons</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-moon')">Moon Phases</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-retrieve')">Presentation</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-structure')">Structure</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-forage')">Forage</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-luresize')">Lure Size Science</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-pressure2')">Fishing Pressure</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-current')">Current</button>
+        <button class="bible-toc-btn" onclick="bibleJump('bt-senses')">Fish Senses</button>
       </div>
     </div>
 
@@ -2790,13 +959,13 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 
     <!-- Location bar -->
     <div class="wx-loc-bar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" width="14" height="14" style="flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" width="14" height="14" style="flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
       <span class="wx-loc-name" id="wx-tab-loc">Detecting location...</span>
       <button class="wx-loc-change" onclick="toggleWxLocForm()">Change</button>
     </div>
     <div class="wx-loc-form" id="wx-loc-form">
-      <input id="wx-tab-zip" class="url-field" style="margin:0;flex:1" type="text" placeholder="City name or ZIP code..." onkeydown="if(event.key===&#39;Enter&#39;)loadWxForecast()">
-      <button onclick="loadWxForecast()" style="padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:&#39;DM Sans&#39;,sans-serif;font-size:13px;cursor:pointer">Go</button>
+      <input id="wx-tab-zip" class="url-field" style="margin:0;flex:1" type="text" placeholder="City name or ZIP code..." onkeydown="if(event.key==='Enter')loadWxForecast()">
+      <button onclick="loadWxForecast()" style="padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer">Go</button>
     </div>
 
     <!-- Content area -->
@@ -2810,24 +979,24 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 </div><!-- /app -->
 
 <nav>
-  <button class="nb" id="nb-live" onclick="switchPage(&#39;live&#39;)">
-    <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+  <button class="nb on" id="nb-live" onclick="switchPage('live')">
+    <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
     Live
   </button>
-  <button class="nb" id="nb-wx" onclick="switchPage(&#39;wx&#39;)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+  <button class="nb" id="nb-wx" onclick="switchPage('wx')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
     Weather
   </button>
-  <button class="nb" id="nb-map" onclick="switchPage(&#39;map&#39;)">
-    <svg viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+  <button class="nb" id="nb-map" onclick="switchPage('map')">
+    <svg viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
     Map
   </button>
-  <button class="nb on" id="nb-lib" onclick="switchPage(&#39;lib&#39;)">
-    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+  <button class="nb" id="nb-lib" onclick="switchPage('lib')">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     Lures
   </button>
-  <button class="nb" id="nb-bible" onclick="switchPage(&#39;bible&#39;)">
-    <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+  <button class="nb" id="nb-bible" onclick="switchPage('bible')">
+    <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
     Bible
   </button>
 </nav>
@@ -4996,6 +3165,11 @@ async function loadByZip(){
 
 /* startup */
 renderSpotsList();
+/* Always open on Live tab with no lure detail open */
+switchPage('live');
+document.getElementById('detail-view').style.display='none';
+if(document.getElementById('lure-grid')) document.getElementById('lure-grid').style.display='';
+if(document.getElementById('lib-search')) document.getElementById('lib-search').closest('.lib-search').style.display='';
 
 
 /* ════════════════════════════════════════════════════════════
@@ -5446,6 +3620,5 @@ function initWxTab(){
 
 
 </script>
-
-
-</body></html>
+</body>
+</html>
