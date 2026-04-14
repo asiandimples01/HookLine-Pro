@@ -1122,28 +1122,7 @@ const SIZE_RANK_ORDER = Object.entries(LURE_SIZE_LB)
   .map(([name])=>name);
 
 const LURE_PHOTOS = {
-  "Texas Rig": `<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="120" fill="#1a2a1a"/>
-<!-- bullet weight -->
-<ellipse cx="52" cy="60" rx="10" ry="16" fill="#b0b0b0"/>
-<ellipse cx="52" cy="60" rx="8" ry="13" fill="#d0d0d0"/>
-<circle cx="52" cy="47" r="3" fill="#888"/>
-<!-- line through weight -->
-<line x1="52" y1="44" x2="52" y2="10" stroke="#c8c8c8" stroke-width="1.2"/>
-<!-- plastic worm body -->
-<path d="M62 58 Q90 45 120 55 Q145 62 160 52 Q170 46 175 52 Q170 60 160 62 Q145 70 120 63 Q90 55 65 68 Q62 66 62 58Z" fill="#4a1a6a"/>
-<!-- worm segments -->
-<path d="M80 52 Q80 66 80 66" stroke="#6a2a9a" stroke-width="1" fill="none"/>
-<path d="M100 53 Q100 67 100 67" stroke="#6a2a9a" stroke-width="1" fill="none"/>
-<path d="M120 55 Q120 67 120 67" stroke="#6a2a9a" stroke-width="1" fill="none"/>
-<path d="M140 56 Q140 66 140 66" stroke="#6a2a9a" stroke-width="1" fill="none"/>
-<!-- hook point -->
-<path d="M160 58 Q185 56 182 72 Q178 84 168 82" stroke="#c0c0c0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-<!-- hook point tip -->
-<path d="M168 82 L164 78" stroke="#c0c0c0" stroke-width="2" fill="none"/>
-<text x="8" y="108" font-family="DM Sans,sans-serif" font-size="11" fill="#9fecc8" font-weight="500">Texas Rig</text>
-<text x="8" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#5a8a6a">Bullet weight · EWG hook · soft plastic</text>
-</svg>`,
+  "Texas Rig": `<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAB4AMgDASIAAhEBAxEB/8QAHQABAAEFAQEBAAAAAAAAAAAAAAYDBAUHCAIJAf/EAFEQAAEDAwEDBQoICQkJAQAAAAEAAgMEBREGBxIhEzFBUbQICSIyNzhhcXaEFCM2U3SBlNMVFjNCVJGVobMkRFJiZXWSsbIXJTVDY2RygqTh/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAIDAQT/xAAkEQACAgICAQQDAQAAAAAAAAAAAQIRAzESIQQFIlHwMkFhof/aAAwDAQACEQMRAD8Aj3e+PLPd/Z2btNMu7Fwn3vjyz3f2dm7TTLuxdlsmOgiKMa4gZWV2n6KaScQTV8glbFO+LfAppnAEsIOMgHGegLhRJ8plRX8VLJ81XftOq+8QaTsvzVd+06r7xDtEqymVFvxTsnzVd+06r7xPxTsnzdd+06r7xBRKcplRb8U7J83XftOq+8T8U7J81XftOq+8QUSnKZUV/FKyfNV37TqvvFa3nS1nitFbLG2va9lNI5rhc6nIIYSD+UQUTRFjdLSPl01bJZXufI+jhc5zjkuJY3JJ61kkOBERAEREAREQBERAEUb1prfTekIYpb7cmUvKnDGBpe8jpO63jgdaz1DVQVtJFVU0jZYZmNkje05DmkZBHoIKA+dXdlecjqv3PscCJ3ZXnI6r9z7HAi0WjN7Jf3vjyz3f2dm7TTLuxcJ9748s939nZu00y7sUS2VHQUZ1rPDTXbTUs8gjYLhKCT9EnUmUG2tAlun8dFyef/lnUt0i0rZljqC1g4EznccZDCvI1HbSM70vNnG4oWKdwJycEY4Z617+DPDiCRgOAzjrUcma8UTQagthGeWfzZ8QqoL3bDn+UgYIHFpUHEDgRnrI4KjMHtA3eJJPR1JzY4o2NHcKGTxKuE8ceOBx+tVGVVK/G5UwuzzYkC1fHSzT8ZTzDeHRwV82B7GkgjGMnC7zOcTYvKRfOM/xBWt942O4Y/RZf9DlBiyRuWl2MENVG5On/BlbuyOA+Dzcc/8ATcnM5wNiaR+Stp+hQ/w2rKLF6R+Stp+hQfw2rKKzMIiIAiIgCIiALBa21DT6dsslZJG+onc4RU1NGMvnlccNY0ekrL1lTDSU0lRPIyKKNpe97zgNaBkkrk/b3rp2pZmTRcrDSUsx/BnJuMcjzzOkcRx3TjAC0x4pZPxKjG2YbWvL6w2nQWU1Zr65rv8Ae1Wx+Y2Oz4UUfQGRjwB1u3iuu9MNbHaaeFjNyOKNrGDqaBgD9QWge5+0MaO3w3KeL46sxM5xHEg+KF0ZRQiCnawdAWdV0JHzq7srzkdV+59jgRO7K85HVfufY4EWi0YvZL+98eWe7+zs3aaZd2LhPvfHlnu/s7N2mmXdiiWyo6Cg21rm09/eT+yzqcqDbWubT395v7LOplo0jtEcZK8nier9yqGaTOeGScqk1pACPGB0rA3ooV1wMLQefwjzdPBUqWSaQkvLuDcjjw49SxNHKLjcKqMPD2RbwIHEcT/+FSGOMNGAOhEzjRWie8DxujCq8o45yc8OvmVEdK9qgVuUJDs8c4KtrpJm2VpwB8RMf1scqit7p/wqt+jS/wChyA2TpH5K2n6DB/DasosXpH5K2n6DB/DasotjzhERAEREAQnAyiim0PVkWm7YOQhdWXGoO5S0rOLnHm3j1NHSfqXYxcnSDdEJ2+6pZyTNKUk+HzN5avLcnk4QMhpx0uOOHq61zZPy+rNawUdM8vo4nNY0Z3gGjnx1c5VztBvtRPVVNDFVOq7rWv3rhMBvB2cHcDvRk5x1epTDYlpSaDUFvJLuLJJKhhaMFuAG+kHex9S9rmsOPitlJfs6S0DRCmtcEYbgMjAHowFKVZ2mnFPSNbjHBXi8JJ85O7K85HVfufY4ETuyvOR1X7n2OBFotGb2S/vfHlnu/s7N2mmXdi4T73x5Z7v7Ozdppl3YolsqOgobtM3eX07vtDh+EZOBH/aTqZKH7SGb9Vpxv9oydlnUvRpHaMS2KkxxiHD0lU30tIQQTJj0OVz8GOFTfAcrKmb2jVuyurlh1jqzSl5qC6uoa0yUji1oMlK7wo8YAz4J5/WtmNpISfyj8eoKF7RdH3KruNHq7SzmRajtrCwRuO6yugzkwPPQc8Wu6DwPArIaD1radTMkpcvt93pjuVduqhyc8D+kFp/z5j0Eola6OP5JMKFuOE/H0tX78APzzf8ACVdCFwXsROSmctFr8Abn8ucY/o9KpXOhgFprcySH+Sy9Q/McsiIXLG6qraC02CvqLlVxU0baWUkyOA/McupMWTfSPyVtP0GH+G1ZRYvSPyVtP0GD+G1ZRamAREQBEJAGSoZtB2gWnSsfwYk1l0kbvQ0UR8M/1nn8xvpK7GLk6R1Ky/15q23aVtJqqtxknk8Cmpo+Mk7+poHR1lcsbQtfVkNfPUPrBUX6scI5t05bSM4/FsbnHAfv6isdtI1/cK6/Pqm1ba28vcYi2Aksp2YGGR/vBI48T08RebM9ndTca5tyuUBNQ928I3eEGesnnK9qjHBG3sceXT0WezDRVRPObtc2kHBkcX8dxo4kn6l0jsl098HozcZ4THLVESbp52M/Mb+rifSSrClsEMdRR6egj3uUaJ613VE08Gn/AM3cPUHLaVDTtp4GsA49K8c5OTtlSfVFwBgABERSQfOTuyvOR1X7n2OBE7srzkdV+59jgRaLRm9kv73x5Z7v7Ozdppl3YuE+98eWe7+zs3aaZd2KJbKjoKKa+Gbhpwf2hL2SdStYLV1orrobdNbqmlhnoql0wFTE57HgxSRkeC5pB8POc9C4UY/kuCpyQjqXsWnVv6Zp/wCyT/eobRqw/wA80/8AZJ/vVyirKHJcVH9X6B01qx8dRdKJ8dwgGILhSSGCqiHU2RvEj+qcj0KSmy6s/TdP/ZJ/vUFm1YOat0/9kn+9XKO8qNcDR+06x+Bp3XNBdaVviwXukc2QDq5SLgfWWhe46nbbGNyTTekpyP8AmMuxaD6cGPK2MLTq4fzzT/2Sf71fotWrv0zT/wBkn+9Xe/kcl8GuxbNstzyyqu2l7BC4YJpmyVUrfVwYP3r9dsosopKq4anr6/VVdHTSuabg4CnY4MdxbA3wc+l28th/grV36Zp/7JP96qVXZNW1FJPT/DrAzlYnx7wpJzjeaRn8r6Uab2zvP4M9pH5K2n6DD/DasorWz0hoLTR0Jk5Q08DIt/GN7daBnH1KvJIyNpc9wa1oySTgAdZXTM9q0ulyobZRSVlfVQ01PGMvlleGtb9ZWvtebXbJZKeWO07t2qmu3C9j92midjPhy83AdDcrm3V21q4XC+MuNW+O9VDoZY6eEwfEUjweDo4zwc7oJdlenF4s8nekccklZvfX+1h0dHy1rq4rNbd7jc6yPL5QOiCE+MT/AEjgLma46ru1+r6mgscBkmqXkT1x3jNL05cT4pxjIHSrqmsGsNoFbFUairKk04dlkRA3urhjxeA5v8ltTT+zubStZTXltunqrcWllwhhaZJ2jOWzNbzvxzOaOJHEZIwd3kx4YuMe2VjTtSl/TF7JtlvJSMqqiPlKh2CZHDg31LoS12ig07aJKyp3YoYIzJI49AAySqenL5ouG2sqaa/2h0Ibne+Fxtx6wSCD6CAV6jnGsq6F1M15sVPKJOVc0tbWyNPg7oIyYmnjnmcQMZAyvDKTk7ZTdl5oa3z8hLd7hEY624P5eRjueJuMRx/+rcZ9JcpQvMbQ1oaF6Ukt2EREOHzk7srzkdV+59jgRO7K85HVfufY4EWi0ZvZL+98eWe7+zs3aaZd2LhPvfHlnu/s7N2mmXdhUS2VHQRRDXmt6PTUPJshdWVz/wAlTxuAJJ5skqP6H2lVt51SbLc7R8C5SPfheHHPAZIcD0c4yOkelarx8jhzrotRb0bPRAcgFfjiAMlYnD9RRLU20LTNhL46m4xyTs8aGEh7geo8cBQg7fNPcuWGgrGNGeLjgnqwMdPQt4eLmmrjEri6ujciKK6N15p/VMZ/BtX8aHFphkG6/IAJA6Hc45iedZW96hs1lgM11uVLRMAz8dIGk+oc5+oLN45KXFrs5X6MqvL3taCSeZac1tt6sFoZLHbYDUyAYbLUP5KMkjIwOL3cOPMFpfVe1jV+r6l1Ha4qmujII5KKEx03hNxgt53YPMXE+pbw8TJLuXS/pN9ddnRWs9rGnLCyWKlm/CdTH44p3DkYj0cpL4rfVxK502mbYb1fZnUXwk1THPaWUVGHNpnNIz4R8d/Rz451aWjZlrDUrYG36ufHTMwWUsIGGjqwOC29orY/b7dh4pm8oTl0jhvPJPPxWvLBhXt9zChO7bpffr+s0HR6R1Xq6SM14NBQ+NFTsGA0HqA5+HSePWtt6B2N0tDuv+DYJ53yDLyt52XSVHRNBETQesjJUip6SGAYYwetefL5E8m30WmoqkRPTWjKO3xtxCAQPGI4qVx0VOyMMDBgK4RYHG2zFTadss1YKuW10UlRnPKvp2Ofnr3iMrJxsawYaML0iHLCIiAIiID5yd2V5yOq/c+xwIndlecjqv3PscCLRaM3sl/e+PLPd/Z2btNMu6pfEK4V73x5Z7v7Ozdppl3YolsqOjX+lrBS1OprpcrnG2as+EfFtkGeTHNkA+rGfR6VDtstZPY9oFpvAklijp4mcljG4/wnh0ZHPxyScehbsbBE2UyhgDyME44lYLXelqLVFpNJUkxyMO/DK3njd146R1jpXpxZ0sic9aN1k91svdPXmiu1shq6WTeY9gdg+MMjmIWrdruv66asqdL6bbUExkw1tVTtLnh2OMceOII5i7rOBzFWNZQ7RdOtipqS0UtyMTsRVEbxulvEDeBwW45yOZSXZfpea02yKCdrXVbyZKucDwpZXEucc8+Mk4C1UMeF83T+DqjFW2ak0vs61PcqvfqLaYqd+64yVTw2RreB3G4yc9ZwQtgXbZLHcqVsdPT0dve1oDZGh8jgM+kgfuW5oaeOJoDWjKq4C5k9Qyzla6JU60c03DYZqekdylovVMBk+C50jMZ6RjPNjIVl/sg1tJNuVupXMjc0Nc+Bh5RwHPlx4njj9S6jIB6F5McZOSwI/UMz2/8AETyvaOfNPbBrJTvbLVwSVkud4undnJPTjmWyrHs/ttDG1kdLFG0fmtaAP1BToNA5gF+ryzySn3J2HJmNorPSUzQGxt4dACyDI2MGGtAXpFmSEREAREQBERAEREAREQHzk7srzkdV+59jgRO7K85HVfufY4EWi0ZvZL+98eWe7+zs3aaZd2IiiWyo6CIi4UeXxsf4zQV+RxMj8VoCIgPaIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgPnJ3ZXnI6r9z7HAiItFozez/2Q==" style="width:100%;height:90px;object-fit:contain;background:#0f1419;border-radius:6px;display:block;">`,
   "Drop Shot": `<svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
 <rect width="200" height="130" fill="#0a1a2a"/>
 <!-- main line -->
@@ -2296,8 +2275,22 @@ const DEFAULT_LURES = [
 
 let lures = JSON.parse(localStorage.getItem('hl_lures2') || 'null') || JSON.parse(JSON.stringify(DEFAULT_LURES));
 
-/* ── URL migration: patch cached lures that still have old search URLs ── */
+/* ── URL migration: always sync vidUrl+vidTitle from DEFAULT_LURES into cached lures ── */
 (function migrateLureUrls(){
+  let changed = false;
+  lures.forEach(l => {
+    const def = DEFAULT_LURES.find(d => d.id === l.id);
+    if(def && (l.vidUrl !== def.vidUrl || l.vidTitle !== def.vidTitle)){
+      l.vidUrl   = def.vidUrl;
+      l.vidTitle = def.vidTitle;
+      changed = true;
+    }
+  });
+  if(changed) saveLuresLocal();
+})();
+
+/* ── legacy patch map (kept for reference, no longer needed) ── */
+(function _legacyPatches(){
   const patches = {
     'Texas Rig': { vidUrl: 'https://www.youtube.com/embed/S9IGRvQqcrc?start=461&end=485', vidTitle: 'Texas Rig (7:41–8:05)' },
     'Drop Shot': { vidUrl: 'https://www.youtube.com/embed/meDATXBzlPo?start=764&end=786', vidTitle: 'Drop Shot (12:44–13:06)' },
@@ -2353,16 +2346,16 @@ let lures = JSON.parse(localStorage.getItem('hl_lures2') || 'null') || JSON.pars
   ,
     'Punch Craw': { vidUrl: 'https://www.youtube.com/embed/HBzEmJx-7N4?start=355&end=370', vidTitle: 'Punch Craw (5:55–6:10)' }
   };
-  let changed = false;
+  let changed2 = false;
   lures.forEach(l => {
     const p = patches[l.name];
     if(p && l.vidUrl !== p.vidUrl){
       l.vidUrl   = p.vidUrl;
       l.vidTitle = p.vidTitle;
-      changed = true;
+      changed2 = true;
     }
   });
-  if(changed) saveLuresLocal();
+  if(changed2) saveLuresLocal();
 })();
 let activeCat = 'All';
 
@@ -3553,6 +3546,7 @@ function renderWxTab(){
 
     <!-- Slot card -->
     <div class="wx-slot-card">
+      <div id="wx-slot-card-inner">
       <div class="wx-slot-hero">
         <div><span class="wx-slot-temp">${airF}</span><span class="wx-slot-unit">°F</span></div>
         <div class="wx-slot-desc">
@@ -3572,6 +3566,7 @@ function renderWxTab(){
         <span class="wx-bite-val ${bite.cls}">${bite.label}</span>
         <div class="wx-bite-bar-wrap"><div class="wx-bite-bar-fill ${bite.cls}" style="width:${bite.s}%"></div></div>
         <span style="font-size:12px;font-weight:600;color:var(--mu)">${bite.s}%</span>
+      </div>
       </div>
     </div>
 
@@ -3619,8 +3614,119 @@ function wxSelectDay(i){
 
 function wxSelectSlot(val){
   wxSlotIdx = parseInt(val);
-  renderWxTab();
+  updateWxSlot();
 }
+function updateWxSlot(){
+  if(!wxData15||!wxDataHr) return;
+  const slots15 = parseOMSlots(wxData15,'minutely_15');
+  const slotsHr = parseOMSlots(wxDataHr,'hourly');
+  const days15  = wxGroupByDay(slots15);
+  const daysHr  = wxGroupByDay(slotsHr);
+  const isToday = wxDayIdx===0;
+  const curDays = isToday ? days15 : daysHr;
+  const dayIdxAdj = isToday ? 0 : wxDayIdx;
+  if(dayIdxAdj>=curDays.length) return;
+  const day = curDays[dayIdxAdj];
+  if(!day||!day.slots.length) return;
+  if(wxSlotIdx>=day.slots.length) wxSlotIdx=day.slots.length-1;
+  const slot   = day.slots[wxSlotIdx];
+  const airF   = Math.round(slot.temperature_2m||70);
+  const feelsF = Math.round(slot.apparent_temperature||airF);
+  const wtF    = estimateWaterTemp(airF);
+  const windMph= Math.round(slot.wind_speed_10m||0);
+  const gustMph= Math.round(slot.wind_gusts_10m||0);
+  const wDir   = wxWindDir(slot.wind_direction_10m||0);
+  const humid  = Math.round(slot.relative_humidity_2m||50);
+  const pop    = Math.round(slot.precipitation_probability||0);
+  const clouds = Math.round(slot.cloud_cover||0);
+  const wCode  = slot.weather_code||0;
+  const rain   = (slot.precipitation||0)>0||wCode>=51;
+  const hr     = slot.dt.getHours();
+  const icon   = wmoIcon(wCode);
+  const desc   = wmoDesc(wCode);
+  const resLabel = isToday?'15-min':'1-hour';
+  const timeStr  = slot.dt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+  const bite   = wxBiteFrom(airF,windMph,clouds,rain,slot.surface_pressure||1013,hr);
+
+  /* Update slot card */
+  const card = document.getElementById('wx-slot-card-inner');
+  if(card){
+    card.innerHTML =
+      '<div class="wx-slot-hero">'
+      +'<div><span class="wx-slot-temp">'+airF+'</span><span class="wx-slot-unit">°F</span></div>'
+      +'<div class="wx-slot-desc">'
+      +'<div class="wx-slot-desc-main">'+icon+' '+desc+'</div>'
+      +'<div class="wx-slot-desc-sub">'+timeStr+' &nbsp;·&nbsp; <span style="font-size:10px;background:var(--bg2);border:1px solid var(--bd);border-radius:4px;padding:1px 5px;color:var(--accent)">'+resLabel+'</span></div>'
+      +'<div class="wx-slot-desc-sub">Feels '+feelsF+'°F &nbsp;·&nbsp; Water ~'+wtF+'°F</div>'
+      +'<div class="wx-slot-desc-sub">Wind '+windMph+' mph '+wDir+(gustMph>windMph?' (gusts '+gustMph+')':'')+'</div>'
+      +'</div></div>'
+      +'<div class="wx-slot-grid">'
+      +'<div class="wx-slot-stat"><div class="wx-slot-stat-val">'+humid+'%</div><div class="wx-slot-stat-lbl">Humidity</div></div>'
+      +'<div class="wx-slot-stat"><div class="wx-slot-stat-val">'+pop+'%</div><div class="wx-slot-stat-lbl">Rain Chance</div></div>'
+      +'<div class="wx-slot-stat"><div class="wx-slot-stat-val">'+clouds+'%</div><div class="wx-slot-stat-lbl">Cloud Cover</div></div>'
+      +'</div>'
+      +'<div class="wx-bite-band">'
+      +'<span class="wx-bite-label">Bite</span>'
+      +'<span class="wx-bite-val '+bite.cls+'">'+bite.label+'</span>'
+      +'<div class="wx-bite-bar-wrap"><div class="wx-bite-bar-fill '+bite.cls+'" style="width:'+bite.s+'%"></div></div>'
+      +'<span style="font-size:12px;font-weight:600;color:var(--mu)">'+bite.s+'%</span>'
+      +'</div>';
+  }
+
+  /* Update slider time label */
+  const sliderTime = document.querySelector('.wx-slider-time');
+  if(sliderTime) sliderTime.textContent = timeStr;
+
+  /* Update graph dot only */
+  const biteScores = day.slots.map(s=>{
+    const r2=(s.precipitation||0)>0||(s.weather_code||0)>=51;
+    return wxBiteFrom(s.temperature_2m||70,s.wind_speed_10m||0,s.cloud_cover||0,r2,s.surface_pressure||1013,s.dt.getHours()).s;
+  });
+  const gW=380,gH=90,padL=28,padR=12,padT=8,padB=18;
+  const innerW=gW-padL-padR,innerH=gH-padT-padB;
+  const n=biteScores.length-1||1;
+  const dotX=padL+innerW*(wxSlotIdx/n);
+  const dotY=padT+innerH*(1-biteScores[wxSlotIdx]/100);
+  const dotCol=bite.cls==='bite-excellent'?'#22c55e':bite.cls==='bite-good'?'#84cc16':bite.cls==='bite-fair'?'#f59e0b':'#ef4444';
+  const dot = document.querySelector('.wx-graph-svg-wrap circle');
+  if(dot){
+    dot.setAttribute('cx',dotX.toFixed(1));
+    dot.setAttribute('cy',dotY.toFixed(1));
+    dot.setAttribute('fill',dotCol);
+  }
+
+  /* Update top-5 lures */
+  const luresWrap = document.querySelector('.wx-lures-wrap');
+  if(luresWrap){
+    const wxConds={
+      season:getSeason(slot.dt.getMonth()),
+      weather:estimateWeather(clouds,rain,windMph),
+      clarity:estimateClarity(humid,windMph,rain),
+      wtemp:(()=>{const wt=estimateWaterTemp(airF);if(wt<50)return'cold';if(wt<60)return'cool';if(wt<72)return'prime';if(wt<82)return'warm';return'hot';})(),
+      pressure:'Stable',
+      time:getTimeOfDay(hr),
+      location:'Open Water'
+    };
+    const top5=lures.map(l=>({...l,score:scoreLure(l,wxConds)})).sort((a,b)=>b.score-a.score).slice(0,5);
+    const max=top5[0].score||1;
+    luresWrap.innerHTML='<div class="wx-lures-title">Top Lures Right Now</div>'
+      +top5.map((l,i)=>{
+        const pct=Math.round((l.score/max)*100);
+        const sCls=pct>=75?'score-h':pct>=50?'score-m':'score-l';
+        const thumb=LURE_PHOTOS[l.name]
+          ?LURE_PHOTOS[l.name].substring(0,LURE_PHOTOS[l.name].indexOf('</svg>')+6)
+          :'<svg viewBox="0 0 52 36"><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="18">'+l.emoji+'</text></svg>';
+        return'<div class="wx-lure-row" onclick="switchPage(&quot;lib&quot;);setTimeout(()=>openDetail('+l.id+'),80)">'
+          +'<div class="wx-lure-rank'+(i===0?' gold':'')+'">'+(i===0?'🥇':i+1)+'</div>'
+          +'<div class="wx-lure-thumb">'+thumb+'</div>'
+          +'<div class="wx-lure-info"><div class="wx-lure-name">'+l.name+'</div><div class="wx-lure-cat">'+l.cat+'</div></div>'
+          +'<div class="wx-lure-score '+sCls+'">'+pct+'%</div>'
+          +'</div>';
+      }).join('');
+  }
+}
+
+
 
 function initWxTab(){
   if(wxData15 && wxDataHr && wxLocName){
