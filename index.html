@@ -3334,8 +3334,19 @@ async function loadWxForecast(lat, lon, locName){
     wxData15  = d15;
     wxDataHr  = dHr;
     wxDayIdx  = 0;
-    wxSlotIdx = 0;
     wxViewMode = '15min';
+    /* Snap slider to current time on today's 15-min slots */
+    (function(){
+      const now = Date.now();
+      const slots = parseOMSlots(d15, 'minutely_15');
+      const todaySlots = wxGroupByDay(slots)[0]?.slots || [];
+      let best = 0, bestDiff = Infinity;
+      todaySlots.forEach((s, i) => {
+        const diff = Math.abs(s.dt.getTime() - now);
+        if(diff < bestDiff){ bestDiff = diff; best = i; }
+      });
+      wxSlotIdx = best;
+    })();
     renderWxTab();
   }catch(e){
     content.innerHTML=`<div style="padding:1.5rem;color:var(--danger);font-size:13px">Could not load forecast. Check your connection.<br><small>${e.message||''}</small></div>`;
@@ -3607,8 +3618,21 @@ function renderWxTab(){
 
 function wxSelectDay(i){
   wxDayIdx  = i;
-  wxSlotIdx = 0;
   wxViewMode = i===0 ? '15min' : 'hourly';
+  if(i === 0 && wxData15){
+    /* Snap to current time for today */
+    const now = Date.now();
+    const slots = parseOMSlots(wxData15, 'minutely_15');
+    const todaySlots = wxGroupByDay(slots)[0]?.slots || [];
+    let best = 0, bestDiff = Infinity;
+    todaySlots.forEach((s, idx) => {
+      const diff = Math.abs(s.dt.getTime() - now);
+      if(diff < bestDiff){ bestDiff = diff; best = idx; }
+    });
+    wxSlotIdx = best;
+  } else {
+    wxSlotIdx = 0;
+  }
   renderWxTab();
 }
 
