@@ -10,15 +10,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --accent:#1D9E75;--ad:#085041;--al:#E1F5EE;
-  --bg:#fff;--bg2:#f4f4f2;--bg3:#eaeae6;
-  --tx:#1a1a1a;--mu:#6b6b6b;--bd:#e0e0d8;
-  --warn:#BA7517;--wl:#FAEEDA;--danger:#A32D2D;
+  /* Royal blue accent replaces green */
+  --accent:#2C5FD4;--ad:#1A3A8A;--al:#E8EEFF;
+  --bg:#0F1117;--bg2:#181C26;--bg3:#1E2333;
+  --tx:#E8EAF0;--mu:#7A8099;--bd:#252A3A;
+  --warn:#C9861A;--wl:#2A1F08;--danger:#C0392B;
   --r:12px;--nav:56px;
 }
 @media(prefers-color-scheme:dark){:root{
-  --bg:#191917;--bg2:#222220;--bg3:#2a2a27;
-  --tx:#f0f0ec;--mu:#909088;--bd:#333330;--al:#04342C;--wl:#412402;
+  --bg:#0F1117;--bg2:#181C26;--bg3:#1E2333;
+  --tx:#E8EAF0;--mu:#7A8099;--bd:#252A3A;--al:#1A2550;--wl:#2A1F08;
 }}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);font-size:15px;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .BB{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em}
@@ -54,9 +55,9 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .wx-time{font-size:11px;color:var(--mu);margin-top:1px}
 .bite-pill{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;margin-top:6px}
 .bite-excellent{background:var(--al);color:var(--ad)}
-.bite-good{background:#E6F1FB;color:#0C447C}
-.bite-fair{background:var(--wl);color:#633806}
-.bite-tough{background:#FCEBEB;color:#791F1F}
+.bite-good{background:#1A2550;color:#7EB3FF}
+.bite-fair{background:var(--wl);color:#E0973A}
+.bite-tough{background:#2A1010;color:#FF8080}
 
 .wx-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .wx-stat{background:var(--bg2);border-radius:10px;padding:10px 8px;text-align:center;border:1px solid var(--bd)}
@@ -91,7 +92,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .rank-card:hover{border-color:var(--accent)}
 .rank-card.top{border:2px solid var(--accent)}
 .rank-num{width:44px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--mu);flex-shrink:0}
-.rank-num.gold{color:#BA7517;background:var(--wl)}
+.rank-num.gold{color:#E0A030;background:var(--wl)}
 .rank-photo{width:72px;overflow:hidden;flex-shrink:0;background:var(--bg3)}.rank-photo svg{width:100%;height:100%;display:block}
 .rank-body{flex:1;padding:10px 12px;min-width:0}
 .rank-name{font-weight:500;font-size:15px;margin-bottom:2px}
@@ -103,7 +104,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .rtag.b{background:#E6F1FB;color:#0C447C}
 .rank-score-wrap{width:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg3);flex-shrink:0;gap:4px;padding:8px 4px}
 .rank-score{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;line-height:1}
-.score-h{color:var(--accent)}.score-m{color:var(--warn)}.score-l{color:var(--mu)}
+.score-h{color:#4D8FFF}.score-m{color:var(--warn)}.score-l{color:var(--mu)}
 .rank-bar-wrap{width:32px;height:4px;background:var(--bd);border-radius:2px}
 .rank-bar{height:4px;border-radius:2px;background:var(--accent)}
 
@@ -212,7 +213,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .active-loc-banner.show{display:flex;align-items:center;gap:8px}
 .loc-src-tag{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500}
 .loc-src-pin{background:#FCEBEB;color:#791F1F}
-.loc-src-zip{background:#E6F1FB;color:#0C447C}
+.loc-src-zip{background:#1A2550;color:#7EB3FF}
 .loc-src-gps{background:var(--al);color:var(--ad)}
 /* Leaflet popup button */
 .lf-popup-btn{display:block;width:100%;margin-top:6px;padding:6px 0;background:var(--accent,#1D9E75);color:#fff;border:none;border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;text-align:center}
@@ -223,7 +224,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 
 /* BASS BIBLE */
 .bible-wrap{padding:0 0 2rem}
-.bible-hero{padding:1.5rem 1rem 1rem;background:var(--accent-dark,#085041);position:relative;overflow:hidden}
+.bible-hero{padding:1.5rem 1rem 1rem;background:#0D1A3A;position:relative;overflow:hidden}
 .bible-hero::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 1px,transparent 1px,transparent 12px)}
 .bible-hero h1{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.06em;color:#fff;line-height:1;margin-bottom:4px}
 .bible-hero .hero-sub{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5}
@@ -233,12 +234,12 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .bible-toc-btn{padding:5px 11px;border-radius:20px;border:1px solid var(--bd);background:var(--bg2);font-size:12px;color:var(--accent);cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;white-space:nowrap;transition:all .15s}
 .bible-toc-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .bible-section{padding:1.25rem 1rem 0}
-.bible-section-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;color:var(--accent);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent-light,#E1F5EE);display:flex;align-items:center;gap:8px}
+.bible-section-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;color:var(--accent);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:2px solid #2C5FD4;display:flex;align-items:center;gap:8px}
 .bible-section-title .bicon{font-size:18px}
 .bible-body{font-size:14px;color:var(--tx);line-height:1.8}
 .bible-body p{margin-bottom:.85rem}
 .bible-body p:last-child{margin-bottom:0}
-.bible-callout{background:var(--accent-light,#E1F5EE);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 14px;margin:.75rem 0;font-size:13px;color:var(--accent-dark,#085041);line-height:1.7}
+.bible-callout{background:#141D35;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 14px;margin:.75rem 0;font-size:13px;color:#A8BFFF;line-height:1.7}
 .bible-callout strong{font-weight:500}
 .bible-temp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:.75rem 0}
 .bible-temp-card{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:10px 12px}
@@ -293,16 +294,16 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .wx-bite-band{display:flex;align-items:center;gap:10px;padding:10px 1.25rem;border-top:1px solid var(--bd)}
 .wx-bite-label{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--mu)}
 .wx-bite-val{font-size:15px;font-weight:600;background:transparent}
-.wx-bite-val.bite-excellent{color:#22c55e;background:transparent}
-.wx-bite-val.bite-good{color:#84cc16;background:transparent}
-.wx-bite-val.bite-fair{color:#f59e0b;background:transparent}
-.wx-bite-val.bite-tough{color:#ef4444;background:transparent}
+.wx-bite-val.bite-excellent{color:#4ADE80;background:transparent}
+.wx-bite-val.bite-good{color:#86EFAC;background:transparent}
+.wx-bite-val.bite-fair{color:#FCD34D;background:transparent}
+.wx-bite-val.bite-tough{color:#F87171;background:transparent}
 .wx-bite-bar-wrap{flex:1;height:6px;background:var(--bd);border-radius:3px;overflow:hidden}
 .wx-bite-bar-fill{height:100%;border-radius:3px;transition:width .4s}
-.bite-excellent .wx-bite-bar-fill,.wx-bite-bar-fill.bite-excellent{background:#22c55e}
-.bite-good .wx-bite-bar-fill,.wx-bite-bar-fill.bite-good{background:#84cc16}
-.bite-fair .wx-bite-bar-fill,.wx-bite-bar-fill.bite-fair{background:#f59e0b}
-.bite-tough .wx-bite-bar-fill,.wx-bite-bar-fill.bite-tough{background:#ef4444}
+.bite-excellent .wx-bite-bar-fill,.wx-bite-bar-fill.bite-excellent{background:#4ADE80}
+.bite-good .wx-bite-bar-fill,.wx-bite-bar-fill.bite-good{background:#86EFAC}
+.bite-fair .wx-bite-bar-fill,.wx-bite-bar-fill.bite-fair{background:#FCD34D}
+.bite-tough .wx-bite-bar-fill,.wx-bite-bar-fill.bite-tough{background:#F87171}
 /* Time slider */
 .wx-slider-wrap{padding:0 1rem 0}
 .wx-slider-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
@@ -327,10 +328,10 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .wx-fc-desc{font-size:12px;color:var(--mu);flex:1}
 .wx-fc-temps{font-size:12px;font-weight:500;color:var(--tx);white-space:nowrap}
 .wx-fc-bite{font-size:11px;font-weight:600;padding:2px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0}
-.wx-fc-bite.bite-excellent{background:rgba(34,197,94,.15);color:#22c55e}
-.wx-fc-bite.bite-good{background:rgba(132,204,22,.15);color:#84cc16}
-.wx-fc-bite.bite-fair{background:rgba(245,158,11,.15);color:#f59e0b}
-.wx-fc-bite.bite-tough{background:rgba(239,68,68,.15);color:#ef4444}
+.wx-fc-bite.bite-excellent{background:rgba(74,222,128,.15);color:#4ADE80}
+.wx-fc-bite.bite-good{background:rgba(134,239,172,.15);color:#86EFAC}
+.wx-fc-bite.bite-fair{background:rgba(252,211,77,.15);color:#FCD34D}
+.wx-fc-bite.bite-tough{background:rgba(248,113,113,.15);color:#F87171}
 .wx-loading{text-align:center;padding:3rem 1rem;color:var(--mu);font-size:14px}
 
 .rank-separator{display:flex;align-items:center;gap:10px;padding:8px 1rem 4px;color:var(--mu);font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:500}
@@ -350,9 +351,9 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .wx-lure-name{font-size:13px;font-weight:500;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wx-lure-cat{font-size:11px;color:var(--mu)}
 .wx-lure-score{font-size:13px;font-weight:700;flex-shrink:0}
-.wx-lure-score.score-h{color:#22c55e}
-.wx-lure-score.score-m{color:#f59e0b}
-.wx-lure-score.score-l{color:#ef4444}
+.wx-lure-score.score-h{color:#4D8FFF}
+.wx-lure-score.score-m{color:#FCD34D}
+.wx-lure-score.score-l{color:#F87171}
 
 /* BIG FISH CATEGORY */
 .ctag-bigfish{background:linear-gradient(135deg,#b8860b,#daa520)!important;color:#fff!important;border-color:#b8860b!important;font-weight:600}
@@ -376,6 +377,287 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .vid-thumb-meta{font-size:11px;color:rgba(255,255,255,.65);background:rgba(0,0,0,.4);padding:2px 8px;border-radius:10px}
 .vid-iframe-wrap{width:100%;aspect-ratio:16/9;position:relative}
 .vid-iframe-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
+/* ══════════════════════════════════════════════
+   SPACING SYSTEM OVERRIDES
+   Scale: 8 | 16 | 24 | 32 | 40px
+   Goals: reduce crowding, improve scanability,
+   whitespace-led section separation
+   ══════════════════════════════════════════════ */
+
+/* ── Global app breathing room ── */
+.app{padding-bottom:calc(var(--nav) + 5rem)}
+
+/* ── HEADER ── */
+.hdr{padding:1rem 1rem .85rem}
+.hdr .sub{margin-bottom:4px}
+
+/* ── WEATHER HERO (live tab) ── */
+.wx-hero{padding:1.25rem 1rem 1rem}
+.wx-main-row{margin-bottom:16px}
+.wx-loc{margin-top:4px}
+.wx-time{margin-top:3px}
+.bite-pill{margin-top:8px}
+.wx-stats-grid{gap:10px;margin-top:4px}
+.wx-stat{padding:12px 8px}
+.wx-stat-lbl{margin-top:4px}
+.wx-stat-trend{margin-top:3px}
+
+/* ── WHAT-IF TOGGLE & PANEL ── */
+.whatif-toggle{padding:13px 1rem}
+.whatif-panel{padding:1.25rem 1rem 1.75rem}
+.wi-label{margin-top:16px;margin-bottom:8px}
+.wi-label:first-child{margin-top:0}
+.wi-btns{gap:8px}
+.wib{padding:7px 14px}
+.wi-reset,.wi-run{margin-top:16px;padding:11px 20px}
+.wi-note{margin-top:10px;padding:8px 12px}
+
+/* ── SECTION HEADERS ── */
+.sec-hdr{padding:1.25rem 1rem 8px;margin-top:8px}
+
+/* ── RANK CARDS ── */
+.rank-list{padding:0 1rem 1.5rem}
+.rank-card{margin-bottom:12px}
+.rank-body{padding:12px 14px}
+.rank-name{margin-bottom:3px}
+.rank-cat{margin-bottom:8px}
+.rank-why{margin-bottom:8px;line-height:1.55}
+.rank-tags{gap:5px}
+.rank-score-wrap{padding:10px 6px;gap:6px}
+.rank-separator{padding:12px 1rem 6px}
+
+/* ── LURE LIBRARY ── */
+.lib-search{padding:12px 1rem}
+.cat-row{gap:7px;padding-top:10px}
+.ctag{padding:6px 13px}
+.lure-grid{gap:12px;padding:12px 1rem 1.5rem}
+.lure-body{padding:12px}
+.lure-name{margin-bottom:3px}
+.lure-cat{margin-bottom:8px}
+.lure-tags{gap:5px}
+
+/* ── DETAIL VIEW ── */
+.detail-back{padding:14px 1rem}
+.detail-hero{height:180px}
+.dc{padding:1.25rem}
+.d-sub{margin-bottom:1.25rem}
+.shdr{margin:1.5rem 0 10px;padding-bottom:6px}
+.url-field{margin-bottom:16px;padding:10px 12px}
+.cond-grid{gap:10px;margin-bottom:1.25rem}
+.cbox{padding:12px 14px}
+.cbox-lbl{margin-bottom:5px}
+.hab-wrap{margin-bottom:14px}
+.hab-desc{padding:12px 16px;line-height:1.65}
+.gear-card{padding:16px;margin-bottom:14px}
+.gear-row{margin-bottom:8px;gap:12px}
+.ov-box{padding:16px;margin-bottom:14px}
+.ov-lbl{margin-bottom:8px}
+.ov-txt{line-height:1.75}
+.tip-list{margin-bottom:1.5rem}
+.tip-item{padding:11px 16px;gap:12px;line-height:1.65}
+.tips-label{margin:1.25rem 0 8px;padding-top:6px}
+.vid-player-wrap{margin-bottom:12px}
+
+/* ── MAP TAB ── */
+.map-spots-panel{padding:1.25rem 1rem;padding-bottom:calc(var(--nav) + 3.5rem)}
+.map-spots-title{margin-bottom:14px}
+.map-spot-item{padding:12px 14px;margin-bottom:10px;gap:12px}
+.map-spot-meta{margin-top:2px}
+.map-zip-section{margin-top:16px;padding-top:16px}
+.map-zip-label{margin-bottom:8px}
+.active-loc-banner{margin:0 1rem 14px;padding:10px 14px}
+.map-hint{padding:10px 1rem;gap:8px;line-height:1.5}
+
+/* ── WEATHER TAB ── */
+.wx-loc-bar{padding:12px 1rem}
+.wx-loc-form{padding:10px 1rem 12px;gap:8px}
+.wx-day-btn{padding:12px 16px}
+.wx-slot-card{margin:1rem 1rem .75rem}
+.wx-slot-hero{padding:1.25rem 1.25rem .875rem;gap:1.25rem}
+.wx-slot-desc-main{margin-bottom:4px}
+.wx-slot-desc-sub{line-height:1.6}
+.wx-slot-stat{padding:12px 14px}
+.wx-slot-stat-lbl{margin-top:3px}
+.wx-bite-band{padding:12px 1.25rem;gap:12px}
+.wx-slider-wrap{padding:0 1rem .25rem}
+.wx-slider-hdr{margin-bottom:8px}
+.wx-tick-row{margin-top:5px}
+.wx-graph-wrap{padding:.875rem 1rem 0}
+.wx-graph-title{margin-bottom:10px}
+.wx-forecast-list{padding:.875rem 1rem 0}
+.wx-forecast-title{margin-bottom:10px}
+.wx-fc-row{padding:10px 14px;margin-bottom:8px;gap:12px}
+.wx-lures-wrap{padding:.875rem 1rem 0}
+.wx-lures-title{margin-bottom:10px}
+.wx-lure-row{padding:10px 12px;margin-bottom:8px;gap:12px}
+.wx-lure-thumb{width:54px;height:38px}
+
+/* ── BASS BIBLE ── */
+.bible-hero{padding:1.75rem 1rem 1.25rem}
+.bible-hero h1{margin-bottom:6px}
+.bible-toc{padding:1.25rem 1rem}
+.bible-toc-label{margin-bottom:10px}
+.bible-toc-grid{gap:8px}
+.bible-toc-btn{padding:6px 13px}
+.bible-section{padding:1.5rem 1rem 0}
+.bible-section-title{margin-bottom:1rem;padding-bottom:.625rem}
+.bible-body{line-height:1.85}
+.bible-body p{margin-bottom:1rem}
+.bible-callout{padding:12px 16px;margin:1rem 0;line-height:1.75}
+.bible-temp-grid{gap:10px;margin:.875rem 0}
+.bible-temp-card{padding:12px 14px}
+.bible-temp-range{margin-bottom:3px}
+.bible-temp-label{margin-bottom:4px}
+.bible-divider{margin:1.5rem 0 0}
+.bible-summary{padding:1.25rem 1.5rem;margin:1.5rem 1rem}
+.bible-summary-title{margin-bottom:1rem}
+.bible-summary-item{margin-bottom:10px;gap:10px;line-height:1.65}
+
+/* ── MODALS ── */
+.modal{padding:1.75rem}
+.modal h3{margin-bottom:1.25rem}
+.modal label{margin-top:14px;margin-bottom:5px}
+.modal input,.modal select,.modal textarea{padding:11px 12px}
+.mbtns{margin-top:18px;gap:10px}
+.mbtns button{padding:13px}
+
+/* ══════════════════════════════════════════════
+   CARD CONTRAST SYSTEM
+   Goal: visual grouping via subtle elevation,
+   not color. Works light + dark mode.
+   ══════════════════════════════════════════════ */
+
+/* ── Base card — neutral container ── */
+.card{
+  background:var(--bg2);
+  border:1px solid var(--bd);
+  border-radius:var(--r);
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+  padding:20px;
+}
+
+/* ── Elevated card — one step above base ── */
+.card-elevated{
+  background:var(--bg);
+  border:1px solid var(--bd);
+  border-radius:var(--r);
+  box-shadow:0 2px 8px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.03);
+  padding:20px;
+}
+
+/* ── Accent card — highlight / recommendation block ── */
+.card-accent{
+  background:var(--al);
+  border:1px solid rgba(44,95,212,.25);
+  border-radius:var(--r);
+  box-shadow:0 1px 6px rgba(44,95,212,.12);
+  padding:20px;
+}
+
+/* Dark mode: bump shadow opacity */
+@media(prefers-color-scheme:dark){
+  .card{box-shadow:0 1px 4px rgba(0,0,0,.22)}
+  .card-elevated{box-shadow:0 2px 10px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.04)}
+  .card-accent{border-color:rgba(44,95,212,.35);box-shadow:0 1px 6px rgba(44,95,212,.15)}
+}
+
+/* ── Rank card upgrades ── */
+/* Top-3 picks: elevated + left accent bar */
+.rank-card.top{
+  box-shadow:0 2px 10px rgba(44,95,212,.18),0 0 0 1px rgba(44,95,212,.2);
+  border-color:var(--accent);
+}
+/* All rank cards: base shadow */
+.rank-card{
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+@media(prefers-color-scheme:dark){
+  .rank-card{box-shadow:0 1px 4px rgba(0,0,0,.25)}
+  .rank-card.top{box-shadow:0 2px 10px rgba(44,95,212,.2)}
+}
+
+/* ── Weather slot card ── */
+.wx-slot-card{
+  box-shadow:0 2px 8px rgba(0,0,0,.07),0 0 0 1px rgba(0,0,0,.03);
+}
+@media(prefers-color-scheme:dark){
+  .wx-slot-card{box-shadow:0 2px 10px rgba(0,0,0,.3)}
+}
+
+/* ── Weather stat boxes ── */
+.wx-stat{
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+
+/* ── Forecast day rows ── */
+.wx-fc-row{
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+
+/* ── Top-lure rows (weather tab) ── */
+.wx-lure-row{
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.wx-lure-row:first-of-type{
+  box-shadow:0 2px 8px rgba(44,95,212,.15);
+}
+
+/* ── Lure library cards ── */
+.lure-card{
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+@media(prefers-color-scheme:dark){
+  .lure-card{box-shadow:0 1px 4px rgba(0,0,0,.25)}
+}
+
+/* ── Detail view content boxes ── */
+.cbox{
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.gear-card{
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.ov-box{
+  box-shadow:0 1px 6px rgba(44,95,212,.1);
+}
+.tip-list{
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+
+/* ── Spot map items ── */
+.map-spot-item{
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+
+/* ── Bible callout boxes ── */
+.bible-callout{
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+.bible-summary{
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.bible-temp-card{
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+
+/* ── Bite score band: subtle accent strip ── */
+.wx-bite-band{
+  background:var(--bg);
+}
+@media(prefers-color-scheme:dark){
+  .wx-bite-band{background:var(--bg2)}
+}
+
+/* ── Bite graph container ── */
+.wx-graph-svg-wrap{
+  box-shadow:0 1px 4px rgba(0,0,0,.07);
+}
+
+/* ── What-if panel ── */
+.whatif-panel{
+  box-shadow:inset 0 -2px 6px rgba(0,0,0,.04);
+}
 </style>
 </head>
 <body>
@@ -558,7 +840,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 <div class="pg" id="pg-map">
   <div class="map-hdr">
     <div style="display:flex;justify-content:space-between;align-items:flex-end">
-      <div><div class="sub">Hold map to drop a pin</div><h1>Spot Map</h1></div>
+      <div><div class="sub">Hold map to drop a pin</div><h1>Fish Finder</h1></div>
       <div class="live-badge" id="map-loc-badge" style="font-size:11px;color:var(--mu)">Hold 1s to pin</div>
     </div>
   </div>
@@ -1563,6 +1845,16 @@ function calcBiteScore(conds){
 
 async function loadWeather(lat,lon,src,locName){
   try{
+    /* If no name provided, reverse-geocode via Nominatim */
+    if(!locName){
+      try{
+        const gr=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`,{headers:{'Accept-Language':'en'}});
+        const gd=await gr.json();
+        const city=gd.address?.city||gd.address?.town||gd.address?.village||gd.address?.county||'';
+        const state=gd.address?.state||'';
+        locName=city+(state?', '+state:'');
+      }catch(e){ locName=''; }
+    }
     const vars='temperature_2m,apparent_temperature,precipitation,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,surface_pressure,relative_humidity_2m,weather_code,is_day';
     const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=${vars}&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=auto`);
     const d=await r.json();
@@ -1649,7 +1941,7 @@ function renderWeatherHero(){
       </div>
       <div style="margin-top:8px;font-size:12px;color:var(--mu);display:flex;align-items:center;gap:6px">
         <span id="wx-src-tag" class="loc-src-tag loc-src-gps">GPS</span>
-        <span id="wx-src-label">Auto location — change on Spot Map tab</span>
+        <span id="wx-src-label">Auto location — change on Fish Finder tab</span>
       </div>
     </div>`;
 }
@@ -1850,8 +2142,15 @@ function renderVidPlayer(url, title){
       +'<div class="vid-thumb-ttl">'+safeTitle+'</div>'
       +(timeLbl?'<div class="vid-thumb-meta">'+timeLbl+'</div>':'')
       +'</div>';
+    function _launchYt(el){
+      loadVidEmbed(el.dataset.ytid, parseInt(el.dataset.start)||0, parseInt(el.dataset.end)||0, wrap);
+    }
+    thumb.addEventListener('touchend', function(e){
+      e.preventDefault();
+      _launchYt(this);
+    });
     thumb.addEventListener('click', function(){
-      loadVidEmbed(this.dataset.ytid, parseInt(this.dataset.start)||0, parseInt(this.dataset.end)||0, wrap);
+      _launchYt(this);
     });
     wrap.innerHTML = '';
     wrap.appendChild(thumb);
@@ -1972,7 +2271,7 @@ document.getElementById('wx-hero').innerHTML = `
       <span class="spin" style="width:14px;height:14px;border-width:2px"></span>
       Loading live weather... (rankings shown with defaults)
     </div>
-    <div style="font-size:12px;color:var(--mu)">Enter a ZIP or city on the Spot Map tab to set your location.</div>
+    <div style="font-size:12px;color:var(--mu)">Enter a ZIP or city on the Fish Finder tab to set your location.</div>
   </div>`;
 
 /* Run advisor immediately with defaults */
@@ -2091,7 +2390,7 @@ function dropPin(lat, lon){
   if(pendingMarker){pendingMarker.remove();pendingMarker=null;}
 
   const icon = L.divIcon({
-    html:'<div style="width:26px;height:38px;display:flex;flex-direction:column;align-items:center"><div style="width:20px;height:20px;background:#BA7517;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div><div style="width:2px;height:18px;background:#BA7517;margin-top:-2px"></div></div>',
+    html:'<div style="width:26px;height:38px;display:flex;flex-direction:column;align-items:center"><div style="width:20px;height:20px;background:#2C5FD4;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div><div style="width:2px;height:18px;background:#2C5FD4;margin-top:-2px"></div></div>',
     iconSize:[26,38], iconAnchor:[13,38], popupAnchor:[0,-40],
     className:''
   });
@@ -2277,7 +2576,7 @@ function updateActiveBanner(){
   } else {
     banner.classList.remove('show');
     if(srcTag){srcTag.textContent='GPS';srcTag.className='loc-src-tag loc-src-gps';}
-    if(srcLabel)srcLabel.textContent='Auto GPS location — change on Spot Map tab';
+    if(srcLabel)srcLabel.textContent='Auto GPS location — change on Fish Finder tab';
   }
 }
 
@@ -2584,7 +2883,7 @@ function renderWxTab(){
   const area = `${padL},${padT+innerH} ${pts} ${padL+innerW},${padT+innerH}`;
   const dotX = padL + innerW*(wxSlotIdx/(biteScores.length-1||1));
   const dotY = padT + innerH*(1-biteScores[wxSlotIdx]/100);
-  const dotCol = bite.cls==='bite-excellent'?'#22c55e':bite.cls==='bite-good'?'#84cc16':bite.cls==='bite-fair'?'#f59e0b':'#ef4444';
+  const dotCol = bite.cls==='bite-excellent'?'#4ADE80':bite.cls==='bite-good'?'#86EFAC':bite.cls==='bite-fair'?'#FCD34D':'#F87171';
 
   // x-axis time labels (show ~5)
   const step = Math.max(1, Math.floor(biteScores.length/5));
@@ -2824,7 +3123,7 @@ function updateWxSlot(){
   const n=biteScores.length-1||1;
   const dotX=padL+innerW*(wxSlotIdx/n);
   const dotY=padT+innerH*(1-biteScores[wxSlotIdx]/100);
-  const dotCol=bite.cls==='bite-excellent'?'#22c55e':bite.cls==='bite-good'?'#84cc16':bite.cls==='bite-fair'?'#f59e0b':'#ef4444';
+  const dotCol=bite.cls==='bite-excellent'?'#4ADE80':bite.cls==='bite-good'?'#86EFAC':bite.cls==='bite-fair'?'#FCD34D':'#F87171';
   const dot = document.querySelector('.wx-graph-svg-wrap circle');
   if(dot){
     dot.setAttribute('cx',dotX.toFixed(1));
