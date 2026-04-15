@@ -676,6 +676,13 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
   <div class="wx-hero" id="wx-hero">
     <div class="load-txt"><span class="spin"></span> Loading live conditions...</div>
   </div>
+  <!-- Location permission fallback button -->
+  <div id="loc-btn-wrap" style="padding:10px 1rem 0;display:none">
+    <button onclick="requestLocation()" style="width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+      📍 Use My Location
+    </button>
+    <div style="font-size:11px;color:var(--mu);text-align:center;margin-top:6px">If denied, go to Settings → Safari → Location → Allow</div>
+  </div>
 
   <!-- WHAT-IF TOGGLE -->
   <button class="whatif-toggle" id="wi-toggle" onclick="toggleWhatIf()">
@@ -874,7 +881,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
   <div class="map-hint">
     <span class="hint-icon">👆</span>
     <span><strong>Hold finger on map for 1 second</strong> to drop a pin. Drag to explore. Tap a pin to name, use, or delete it.</span>
-    <button class="map-gps-btn" onclick="recenterMap()">📍 GPS</button>
+    <button class="map-gps-btn" onclick="requestLocation()">📍 My Location</button>
   </div>
 
   <div class="map-spots-panel">
@@ -1841,6 +1848,31 @@ function calcBiteScore(conds){
   return{s,label,cls};
 }
 
+function requestLocation(){
+  document.getElementById('loc-btn-wrap') && (document.getElementById('loc-btn-wrap').style.display='none');
+  if(!navigator.geolocation){
+    alert('Location not supported on this device.');
+    return;
+  }
+  document.getElementById('wx-hero').innerHTML='<div class="load-txt"><span class="spin"></span> Getting your location...</div>';
+  navigator.geolocation.getCurrentPosition(
+    pos=>{
+      const lat=pos.coords.latitude, lon=pos.coords.longitude;
+      _lastGpsLat=lat; _lastGpsLon=lon;
+      mapLat=lat; mapLon=lon;
+      locationSource='gps';
+      loadWeather(lat,lon);
+      loadWxForecast(lat,lon);
+      if(leafletMap) leafletMap.flyTo({center:[lon,lat],zoom:leafletMap.getZoom()||13});
+    },
+    err=>{
+      document.getElementById('wx-hero').innerHTML='<div style="padding:1rem;color:var(--danger);font-size:13px">Location denied. Go to Settings → Safari → Location → Allow, then try again.</div>';
+      document.getElementById('loc-btn-wrap') && (document.getElementById('loc-btn-wrap').style.display='block');
+    },
+    {enableHighAccuracy:true,timeout:10000,maximumAge:0}
+  );
+}
+
 async function loadWeather(lat,lon,src,locName){
   try{
     /* If no name provided, reverse-geocode via Nominatim */
@@ -2310,8 +2342,17 @@ if(navigator.geolocation){
     maximumAge: 30000,
     timeout: 15000
   });
+  // If no GPS fix in 5s, show manual button (handles iOS silent denial)
+  setTimeout(()=>{
+    if(_lastGpsLat === null){
+      const btn = document.getElementById('loc-btn-wrap');
+      if(btn) btn.style.display='block';
+    }
+  }, 5000);
 } else {
   loadWeather(33.77,-117.97);
+  const btn = document.getElementById('loc-btn-wrap');
+  if(btn) btn.style.display='block';
 }
 
 /* ── MAP TAB — LEAFLET ── */
