@@ -2314,21 +2314,15 @@ let _lastGpsLat = null, _lastGpsLon = null;
 function _onGpsUpdate(pos){
   const lat = pos.coords.latitude;
   const lon = pos.coords.longitude;
-  // Always store latest GPS coords
+  // Store coords
+  const firstFix = (_lastGpsLat === null);
   _lastGpsLat = lat; _lastGpsLon = lon;
-  // Update map default center so it opens at right place
-  if(locationSource === 'gps' && !activePin){
-    mapLat = lat; mapLon = lon;
-  }
-  // Skip weather reload if manual pin/zip is active
+  // Only act if GPS is the active source (pin/zip override it)
   if(activePin || locationSource === 'zip') return;
-  // Move map if it's already open
-  if(leafletMap){
-    leafletMap.flyTo({center:[lon,lat],zoom:leafletMap.getZoom()||13,duration:1500});
-  }
-  loadWeather(lat, lon);
-  if(wxData15 && wxDataHr){
-    loadWxForecast(lat, lon);
+  mapLat = lat; mapLon = lon;
+  // Only load weather on the very first fix — not every GPS tick
+  if(firstFix){
+    loadWeather(lat, lon);
   }
 }
 
@@ -2398,14 +2392,12 @@ function initMap(){
     geolocate.trigger();
   });
 
-  // When geolocate fires, sync weather if no pin active
+  // Store coords from geolocate but don't reload weather (watchPosition handles first fix)
   geolocate.on('geolocate', (e) => {
+    _lastGpsLat = e.coords.latitude;
+    _lastGpsLon = e.coords.longitude;
     if(!activePin && locationSource === 'gps'){
-      const glat = e.coords.latitude;
-      const glon = e.coords.longitude;
-      _lastGpsLat = glat; _lastGpsLon = glon;
-      mapLat = glat; mapLon = glon;
-      loadWeather(glat, glon);
+      mapLat = _lastGpsLat; mapLon = _lastGpsLon;
     }
   });
 
