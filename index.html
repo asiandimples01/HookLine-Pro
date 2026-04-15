@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HookLine Pro</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -190,7 +190,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
 .map-hdr{padding:.9rem 1rem .7rem;background:var(--bg);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100}
 .map-hdr h1{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:var(--accent);letter-spacing:.04em}
 .map-hdr .sub{font-size:11px;color:var(--mu);margin-bottom:2px}
-#leaflet-map{width:100%;height:55vh;min-height:300px;max-height:480px;z-index:1;touch-action:none}
+#mapbox-map{width:100%;height:55vh;min-height:300px;max-height:480px;z-index:1;touch-action:none}
 .map-hint{padding:8px 1rem;font-size:12px;color:var(--mu);background:var(--bg2);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:6px;line-height:1.4}
 .map-hint .hint-icon{font-size:18px;flex-shrink:0}
 .map-gps-btn{margin-left:auto;padding:5px 12px;border:1px solid var(--accent);border-radius:20px;background:none;color:var(--accent);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;flex-shrink:0}
@@ -853,7 +853,7 @@ nav{position:fixed;bottom:0;bottom:env(safe-area-inset-bottom,0);left:50%;transf
   </div>
 
   <!-- Leaflet map renders here -->
-  <div id="leaflet-map"></div>
+  <div id="mapbox-map"></div>
 
   <!-- Public Land / Access overlay controls -->
   <div class="land-bar" id="land-bar">
@@ -1327,29 +1327,27 @@ function toggleLandOverlay(){
     btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Hide Public Land`;
     legend.classList.add('show');
     disc.classList.add('show');
-    if(leafletMap && !landOverlayLayer){
-      /* USGS National Map — Protected Areas Database (PAD-US) WMS
-         Free, no key, covers USFS / BLM / NPS / State public lands */
-      landOverlayLayer = L.tileLayer.wms(
-        'https://services.nationalmap.gov/arcgis/services/TNM_Vector_Overlay/MapServer/WMSServer',
-        {
-          layers: '17',
-          format: 'image/png',
-          transparent: true,
-          opacity: 0.45,
-          attribution: 'USGS National Map — Protected Areas'
+    if(leafletMap){
+      try{
+        if(!leafletMap.getSource('padus-wms')){
+          leafletMap.addSource('padus-wms',{
+            type:'raster',
+            tiles:['https://services.nationalmap.gov/arcgis/services/TNM_Vector_Overlay/MapServer/WMSServer?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=17&FORMAT=image/png&TRANSPARENT=true&SRS=EPSG:3857&BBOX={bbox-epsg-3857}&WIDTH=256&HEIGHT=256'],
+            tileSize:256
+          });
+          leafletMap.addLayer({id:'padus-layer',type:'raster',source:'padus-wms',paint:{'raster-opacity':0.45}});
+        } else {
+          leafletMap.setLayoutProperty('padus-layer','visibility','visible');
         }
-      );
-      landOverlayLayer.addTo(leafletMap);
-    } else if(leafletMap && landOverlayLayer){
-      landOverlayLayer.addTo(leafletMap);
+        landOverlayLayer=true;
+      }catch(e){}
     }
   } else {
     btn.classList.remove('on');
     btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Show Public Land`;
     legend.classList.remove('show');
     disc.classList.remove('show');
-    if(landOverlayLayer && leafletMap) leafletMap.removeLayer(landOverlayLayer);
+    if(landOverlayLayer && leafletMap){try{leafletMap.setLayoutProperty('padus-layer','visibility','none');}catch(e){} landOverlayLayer=null;}
   }
 }
 
@@ -1908,7 +1906,7 @@ async function loadByZip(){
     const geo=await wxGeocodeQuery(z);
     activePin=null;locationSource='zip';
     mapLat=geo.lat;mapLon=geo.lon;
-    if(typeof leafletMap!=='undefined'&&leafletMap){leafletMap.setView([mapLat,mapLon],12);}
+    if(typeof leafletMap!=='undefined'&&leafletMap){leafletMap.flyTo({center:[mapLon,mapLat],zoom:12});}
     await loadWeather(geo.lat,geo.lon,'zip',geo.name);
     if(typeof loadWxForecast==='function')loadWxForecast(geo.lat,geo.lon,geo.name);
     if(typeof updateActiveBanner==='function')updateActiveBanner();
@@ -2277,67 +2275,107 @@ document.getElementById('wx-hero').innerHTML = `
 /* Run advisor immediately with defaults */
 runAdvisor();
 
-/* Try to load live weather in the background */
-if(navigator.geolocation){
-  navigator.geolocation.getCurrentPosition(
-    p=>loadWeather(p.coords.latitude,p.coords.longitude),
-    ()=>loadWeather(33.77,-117.97)
-  );
-}else{loadWeather(33.77,-117.97);}
+/* Continuously watch GPS — updates live weather + map whenever position changes */
+let _gpsWatchId = null;
+let _lastGpsLat = null, _lastGpsLon = null;
 
-/* ── MAP TAB — LEAFLET ── */
-let leafletMap = null;
-let pendingMarker = null;   // temporary marker before saving
-let spotMarkers = {};       // id -> L.marker for saved spots
-let activePin = null;       // {id,lat,lon,name} currently used for weather
-let savedSpots = JSON.parse(localStorage.getItem('hl_spots')||'[]');
-let mapLat = 33.77, mapLon = -117.97;
-let locationSource = 'gps';
-let lpTimer = null;         // long-press timer
-
-function saveSpotsLocal(){localStorage.setItem('hl_spots',JSON.stringify(savedSpots));}
-
-/* ── Init Leaflet once ── */
-function initMap(){
-  if(leafletMap) return;
-
-  // Leaflet loaded in <head>
-  if(window.L){
-    _buildMap();
-  } else {
-    // L not ready yet, small wait
-    setTimeout(_buildMap, 300);
+function _onGpsUpdate(pos){
+  const lat = pos.coords.latitude;
+  const lon = pos.coords.longitude;
+  // Always store latest GPS coords
+  _lastGpsLat = lat; _lastGpsLon = lon;
+  // Update map default center so it opens at right place
+  if(locationSource === 'gps' && !activePin){
+    mapLat = lat; mapLon = lon;
+  }
+  // Skip weather reload if manual pin/zip is active
+  if(activePin || locationSource === 'zip') return;
+  // Move map if it's already open
+  if(leafletMap){
+    leafletMap.flyTo({center:[lon,lat],zoom:leafletMap.getZoom()||13,duration:1500});
+  }
+  loadWeather(lat, lon);
+  if(wxData15 && wxDataHr){
+    loadWxForecast(lat, lon);
   }
 }
 
-function _buildMap(){
-  const lat = activePin ? activePin.lat : mapLat;
-  const lon = activePin ? activePin.lon : mapLon;
+function _onGpsError(){
+  loadWeather(33.77,-117.97);
+}
 
-  leafletMap = L.map('leaflet-map',{
-    center:[lat,lon],
-    zoom:13,
-    zoomControl:true,
-    tap:true,
-    tapTolerance:15
+if(navigator.geolocation){
+  _gpsWatchId = navigator.geolocation.watchPosition(_onGpsUpdate, _onGpsError, {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 15000
+  });
+} else {
+  loadWeather(33.77,-117.97);
+}
+
+/* ── MAP TAB — LEAFLET ── */
+let leafletMap = null;  // renamed below but kept as alias
+let pendingMarker = null;
+let spotMarkers = {};
+let activePin = null;
+let savedSpots = JSON.parse(localStorage.getItem('hl_spots')||'[]');
+let mapLat = 33.77, mapLon = -117.97;
+let locationSource = 'gps';
+let lpTimer = null;
+
+function saveSpotsLocal(){localStorage.setItem('hl_spots',JSON.stringify(savedSpots));}
+
+/* ── Init Mapbox GL ── */
+function initMap(){
+  if(leafletMap) return;
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYXNpYW5kaW1wbGVzMDEiLCJhIjoiY21vMDB5ams4MDNjcjJxb25pNzZjNms0bCJ9.ErgPU_q6uURxEkxV688nTw';
+  // Use latest GPS coords if available, else stored default
+  const lat = activePin ? activePin.lat : (_lastGpsLat !== null ? _lastGpsLat : mapLat);
+  const lon = activePin ? activePin.lon : (_lastGpsLon !== null ? _lastGpsLon : mapLon);
+
+  const map = new mapboxgl.Map({
+    container: 'mapbox-map',
+    style: 'mapbox://styles/mapbox/outdoors-v12',
+    center: [lon, lat],
+    zoom: 13,
+    attributionControl: true
+  });
+  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+  // Built-in blue dot + auto-center on real GPS position
+  const geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: { enableHighAccuracy: true },
+    trackUserLocation: true,
+    showUserHeading: true,
+    showAccuracyCircle: true
+  });
+  map.addControl(geolocate, 'top-right');
+
+  // Auto-trigger location tracking once map loads
+  map.on('load', () => {
+    geolocate.trigger();
   });
 
-  /* OpenTopoMap — topographic contour terrain, no API key required */
-  L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{
-    attribution:'Map data © OpenStreetMap contributors, SRTM | Map style © OpenTopoMap (CC-BY-SA)',
-    maxZoom:17,
-    subdomains:['a','b','c']
-  }).addTo(leafletMap);
+  // When geolocate fires, sync weather if no pin active
+  geolocate.on('geolocate', (e) => {
+    if(!activePin && locationSource === 'gps'){
+      const glat = e.coords.latitude;
+      const glon = e.coords.longitude;
+      _lastGpsLat = glat; _lastGpsLon = glon;
+      mapLat = glat; mapLon = glon;
+      loadWeather(glat, glon);
+    }
+  });
 
-  /* ── Long-press to drop pin ── */
-  let lpStart = null;
+  leafletMap = map; // alias so rest of code keeps working
+
+  /* Long-press to drop pin */
   let lpLatLng = null;
   let ringEl = null;
 
-  function startLP(latlng, clientX, clientY){
-    lpStart = Date.now();
-    lpLatLng = latlng;
-    // show ring animation at touch point
+  function startLP(lng, lat, clientX, clientY){
+    lpLatLng = {lat, lng};
     if(ringEl){ringEl.remove();}
     ringEl = document.createElement('div');
     ringEl.className = 'lp-ring';
@@ -2356,66 +2394,67 @@ function _buildMap(){
     if(ringEl){ringEl.remove();ringEl=null;}
   }
 
-  // Touch events
-  leafletMap.on('touchstart', e=>{
-    if(e.originalEvent.touches.length!==1)return;
-    const t=e.originalEvent.touches[0];
-    startLP(e.latlng, t.clientX, t.clientY);
-  });
-  leafletMap.on('touchmove',  cancelLP);
-  leafletMap.on('touchend',   cancelLP);
-  leafletMap.on('touchcancel',cancelLP);
-  leafletMap.on('dragstart',  cancelLP);
-  leafletMap.on('zoomstart',  cancelLP);
+  const canvas = map.getCanvas();
 
-  // Mouse fallback (desktop)
-  leafletMap.on('mousedown', e=>{
-    startLP(e.latlng, e.originalEvent.clientX, e.originalEvent.clientY);
-  });
-  leafletMap.on('mousemove', cancelLP);
-  leafletMap.on('mouseup',   cancelLP);
+  canvas.addEventListener('touchstart', e=>{
+    if(e.touches.length!==1)return;
+    const t=e.touches[0];
+    const rect=canvas.getBoundingClientRect();
+    const point={x:t.clientX-rect.left, y:t.clientY-rect.top};
+    const lngLat=map.unproject(point);
+    startLP(lngLat.lng, lngLat.lat, t.clientX, t.clientY);
+  }, {passive:true});
+  canvas.addEventListener('touchmove',  cancelLP, {passive:true});
+  canvas.addEventListener('touchend',   cancelLP, {passive:true});
+  canvas.addEventListener('touchcancel',cancelLP, {passive:true});
 
-  // Render any existing saved spot markers
+  canvas.addEventListener('mousedown', e=>{
+    const rect=canvas.getBoundingClientRect();
+    const point={x:e.clientX-rect.left, y:e.clientY-rect.top};
+    const lngLat=map.unproject(point);
+    startLP(lngLat.lng, lngLat.lat, e.clientX, e.clientY);
+  });
+  canvas.addEventListener('mousemove', cancelLP);
+  canvas.addEventListener('mouseup',   cancelLP);
+  map.on('dragstart', cancelLP);
+  map.on('zoomstart', cancelLP);
+
   savedSpots.forEach(s=>addSpotMarker(s));
-
-  // If there's an active pin, recenter
-  if(activePin){
-    leafletMap.setView([activePin.lat,activePin.lon],13);
-  }
+  if(activePin){ map.flyTo({center:[activePin.lon,activePin.lat],zoom:13}); }
 }
 
-/* ── Drop a pending pin ── */
+/* ── Drop a pending pin (Mapbox GL) ── */
 function dropPin(lat, lon){
-  // Remove old pending marker
   if(pendingMarker){pendingMarker.remove();pendingMarker=null;}
 
-  const icon = L.divIcon({
-    html:'<div style="width:26px;height:38px;display:flex;flex-direction:column;align-items:center"><div style="width:20px;height:20px;background:#2C5FD4;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div><div style="width:2px;height:18px;background:#2C5FD4;margin-top:-2px"></div></div>',
-    iconSize:[26,38], iconAnchor:[13,38], popupAnchor:[0,-40],
-    className:''
-  });
+  const el = document.createElement('div');
+  el.style.cssText='width:26px;height:38px;display:flex;flex-direction:column;align-items:center;cursor:grab';
+  el.innerHTML='<div style="width:20px;height:20px;background:#BA7517;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div><div style="width:2px;height:18px;background:#BA7517;margin-top:-2px"></div>';
 
-  pendingMarker = L.marker([lat,lon],{icon,draggable:true}).addTo(leafletMap);
+  let curLat=lat, curLon=lon;
 
-  const popupContent = () => `
+  const popupHTML = ()=>`
     <div style="font-family:'DM Sans',sans-serif;min-width:160px">
       <div style="font-weight:500;font-size:14px;margin-bottom:4px">New Pin</div>
-      <div style="font-size:12px;color:#666;margin-bottom:8px">${lat.toFixed(5)}°, ${lon.toFixed(5)}°</div>
-      <button class="lf-popup-btn" onclick="useThisPin(${lat},${lon})">Use for Weather</button>
-      <button class="lf-popup-btn" style="margin-top:4px;background:#085041" onclick="saveThisPin(${lat},${lon})">Save as Spot</button>
+      <div style="font-size:12px;color:#666;margin-bottom:8px">${curLat.toFixed(5)}°, ${curLon.toFixed(5)}°</div>
+      <button class="lf-popup-btn" onclick="useThisPin(${curLat},${curLon})">Use for Weather</button>
+      <button class="lf-popup-btn" style="margin-top:4px;background:#085041" onclick="saveThisPin(${curLat},${curLon})">Save as Spot</button>
       <button class="lf-popup-btn lf-popup-del" style="margin-top:4px" onclick="cancelPendingPin()">Remove Pin</button>
     </div>`;
 
-  pendingMarker.bindPopup(popupContent(), {closeButton:false}).openPopup();
+  const popup = new mapboxgl.Popup({closeButton:false,offset:[-1,-38]}).setHTML(popupHTML());
+  pendingMarker = new mapboxgl.Marker({element:el,anchor:'bottom',draggable:true})
+    .setLngLat([lon,lat])
+    .setPopup(popup)
+    .addTo(leafletMap);
+  pendingMarker.togglePopup();
 
-  // Update popup if dragged
-  pendingMarker.on('dragend', e=>{
-    const p=e.target.getLatLng();
-    pendingMarker.setPopupContent(popupContent().replace(/useThisPin\([^)]+\)/,`useThisPin(${p.lat},${p.lng})`).replace(/saveThisPin\([^)]+\)/,`saveThisPin(${p.lat},${p.lng})`).replace(/cancelPendingPin/,'cancelPendingPin'));
-    pendingMarker.openPopup();
+  pendingMarker.on('dragend',()=>{
+    const pos=pendingMarker.getLngLat();
+    curLat=pos.lat; curLon=pos.lng;
+    popup.setHTML(popupHTML());
+    if(!popup.isOpen()) pendingMarker.togglePopup();
   });
-
-  document.getElementById('map-pin-note')||0;
 }
 
 function cancelPendingPin(){
@@ -2424,7 +2463,7 @@ function cancelPendingPin(){
 
 /* ── Use pin for weather immediately ── */
 async function useThisPin(lat,lon){
-  if(pendingMarker){pendingMarker.closePopup();}
+  if(pendingMarker && pendingMarker.getPopup && pendingMarker.getPopup()&&pendingMarker.getPopup().isOpen()){pendingMarker.getPopup().remove();}
   document.getElementById('map-loc-badge').textContent='Loading...';
   try{
     const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`,
@@ -2467,22 +2506,26 @@ async function saveThisPin(lat,lon){
   document.getElementById('map-loc-badge').textContent='📍 '+name;
 }
 
-/* ── Add a permanent spot marker ── */
+/* ── Add a permanent spot marker (Mapbox GL) ── */
 function addSpotMarker(spot){
   if(!leafletMap)return;
   const isActive = activePin && activePin.id===spot.id;
-  const icon = L.divIcon({
-    html:`<div style="width:26px;height:38px;display:flex;flex-direction:column;align-items:center"><div style="width:20px;height:20px;background:${isActive?'#e84040':'#1D9E75'};border:3px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div><div style="width:2px;height:18px;background:${isActive?'#e84040':'#1D9E75'};margin-top:-2px"></div></div>`,
-    iconSize:[26,38],iconAnchor:[13,38],popupAnchor:[0,-40],className:''
-  });
-  const m = L.marker([spot.lat,spot.lon],{icon}).addTo(leafletMap);
-  m.bindPopup(`
+  const color = isActive ? '#e84040' : '#2C5FD4';
+  const el = document.createElement('div');
+  el.style.cssText = `width:26px;height:38px;display:flex;flex-direction:column;align-items:center;cursor:pointer`;
+  el.innerHTML = `<div style="width:20px;height:20px;background:${color};border:3px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div><div style="width:2px;height:18px;background:${color};margin-top:-2px"></div>`;
+  const popup = new mapboxgl.Popup({closeButton:false,offset:[-1,-38]}).setHTML(`
     <div style="font-family:'DM Sans',sans-serif;min-width:160px">
       <div style="font-weight:500;font-size:14px;margin-bottom:2px">${spot.name}</div>
       <div style="font-size:12px;color:#666;margin-bottom:8px">${spot.lat.toFixed(4)}°, ${spot.lon.toFixed(4)}°</div>
       <button class="lf-popup-btn" onclick="useSpot(${spot.id})">Use for Weather</button>
       <button class="lf-popup-btn lf-popup-del" style="margin-top:4px" onclick="deleteSpot(${spot.id})">Delete Spot</button>
-    </div>`,{closeButton:false});
+    </div>`);
+  const m = new mapboxgl.Marker({element:el,anchor:'bottom'})
+    .setLngLat([spot.lon,spot.lat])
+    .setPopup(popup)
+    .addTo(leafletMap);
+  el.addEventListener('click',()=>m.togglePopup());
   spotMarkers[spot.id]=m;
 }
 
@@ -2492,7 +2535,7 @@ async function useSpot(id){
   if(!spot)return;
   activePin={...spot};
   locationSource='pin';
-  if(leafletMap){leafletMap.setView([spot.lat,spot.lon],14);}
+  if(leafletMap){leafletMap.flyTo({center:[spot.lon,spot.lat],zoom:14});}
   // Refresh markers to update colors
   Object.values(spotMarkers).forEach(m=>m.remove());
   spotMarkers={};
@@ -2504,7 +2547,7 @@ async function useSpot(id){
   renderSpotsList();
   document.getElementById('map-loc-badge').textContent='📍 '+spot.name;
   // Close any open popup
-  if(leafletMap){leafletMap.closePopup();}
+  
 }
 
 /* ── Delete a spot ── */
@@ -2518,7 +2561,6 @@ function deleteSpot(id){
     clearPinLocation();
   }
   renderSpotsList();
-  if(leafletMap)leafletMap.closePopup();
 }
 
 /* ── Re-center on GPS ── */
@@ -2528,7 +2570,10 @@ function recenterMap(){
     navigator.geolocation.getCurrentPosition(pos=>{
       mapLat=pos.coords.latitude;
       mapLon=pos.coords.longitude;
-      leafletMap.setView([mapLat,mapLon],13);
+      leafletMap.flyTo({center:[mapLon,mapLat],zoom:13});
+      if(!activePin && locationSource==='gps'){
+        loadWeather(mapLat,mapLon);
+      }
     });
   }
 }
@@ -3165,8 +3210,14 @@ function updateWxSlot(){
 
 
 function initWxTab(){
-  if(wxData15 && wxDataHr && wxLocName){
+  // If data already loaded AND a pin/zip overrides GPS, just render
+  if(wxData15 && wxDataHr && wxLocName && (activePin || locationSource==='zip')){
     renderWxTab();
+    return;
+  }
+  // If data already loaded and on GPS, re-fetch with latest GPS position
+  if(wxData15 && wxDataHr && _lastGpsLat !== null && locationSource==='gps'){
+    loadWxForecast(_lastGpsLat, _lastGpsLon);
     return;
   }
   if(liveConditions.locationName && liveConditions.locationName !== 'Your Location'){
@@ -3178,6 +3229,7 @@ function initWxTab(){
       p=>{
         wxLat = p.coords.latitude;
         wxLon = p.coords.longitude;
+        _lastGpsLat = wxLat; _lastGpsLon = wxLon;
         fetch(`https://nominatim.openstreetmap.org/reverse?lat=${wxLat}&lon=${wxLon}&format=json`,{headers:{'Accept-Language':'en'}})
           .then(r=>r.json())
           .then(g=>{
